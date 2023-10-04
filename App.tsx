@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { Text, View } from 'react-native'
-
+import BoldText from "@/screens/TestScreen";
+import { StyledView } from '@/components/Styled';
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="font-semibold text-2xl">123123123123</Text>
+    <StyledView className="flex-1 bg-white">
+      <BoldText></BoldText>
       <StatusBar style="auto" />
-    </View>
+    </StyledView>
   )
 }
