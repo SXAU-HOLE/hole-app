@@ -1,9 +1,14 @@
 import React, { useCallback, useState } from 'react'
-import { StyledView, StyledText, StyledTextInput,StyledButton } from '@/components/Styled'
+import {
+  StyledView,
+  StyledText,
+  StyledTextInput,
+  StyledButton,
+} from '@/components/Styled'
 import { useFonts } from 'expo-font'
 import { StyleSheet } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
-import * as COLORS from '@/constants/COLOR'
+import * as COLORS from '@/shared/constants/COLOR'
 import Card from '@/components/Login_SignIn/Card'
 import Btn from '@/components/Login_SignIn/Btn'
 
@@ -33,7 +38,7 @@ export default function SignInScreen() {
       <StyledText className="text-gray-500 mb-8 mt-2 ml-5">
         请输入你的账号和密码
       </StyledText>
-      <Card content='输入你的学号和密码，一起在农大树洞畅游吧！'/>
+      <Card content="输入你的学号和密码，一起在农大树洞畅游吧！" />
 
       <StyledView className="flex flex-column justify-around"></StyledView>
 
@@ -55,7 +60,11 @@ export default function SignInScreen() {
             </StyledText>
           </StyledView>
 
-        <Btn className='mt-4 flex items-center p-3 rounded-full' style={{ backgroundColor: COLORS.PRIMARY_COLOR }} title='注册' />
+          <Btn
+            className="mt-4 flex items-center p-3 rounded-full"
+            style={{ backgroundColor: COLORS.PRIMARY_COLOR }}
+            title="注册"
+          />
         </StyledView>
       </StyledView>
     </StyledView>

@@ -4,10 +4,10 @@ import {
   StyledText,
   StyledTouchbleOpacity,
 } from '@/components/Styled'
-import * as COLORS from '@/constants/COLOR'
+import * as COLORS from '@/shared/constants/COLOR'
 type prop = {
   title: string
-  className:string
+  className: string
   style?: any
   onPress?: any
 }
@@ -18,7 +18,7 @@ export default function Btn(props: prop) {
       style={props.style}
       onPress={props.onPress}
     >
-      <StyledText className='text-white'>{props.title}</StyledText>
+      <StyledText className="text-white">{props.title}</StyledText>
     </StyledTouchbleOpacity>
   )
 }

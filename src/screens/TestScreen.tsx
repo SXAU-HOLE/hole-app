@@ -1,18 +1,17 @@
-import React from "react";
+import React from 'react'
 
-import {StyledText, StyledView} from "@/components/Styled";
+import { StyledText, StyledView } from '@/components/Styled'
 
-import LoginScreen from "./LoginScreen";
-import SignInScreen from "./SignInScreen";
+import LoginScreen from './LoginScreen'
+import SignInScreen from './SignInScreen'
 export default function BoldText() {
-    return(
-        <StyledView>
-            
-            {/* <SearchBar /> */}
-            
-            <LoginScreen />
-            {/* <SignInScreen /> */}
-            {/* <SearchBarv2 /> */}
-        </StyledView>
-    )
+  return (
+    <StyledView>
+      {/* <SearchBar /> */}
+
+      {/* <LoginScreen /> */}
+      {/* <SignInScreen /> */}
+      {/* <SearchBarv2 /> */}
+    </StyledView>
+  )
 }

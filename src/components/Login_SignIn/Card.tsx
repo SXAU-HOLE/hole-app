@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyledView, StyledText, StyledButton } from '@/components/Styled'
 import { StyleSheet } from 'react-native'
-import * as COLORS from '@/constants/COLOR'
+import * as COLORS from '@/shared/constants/COLOR'
 import Icon from 'react-native-vector-icons/Feather'
 type prop = {
   content: string
 }
-export default function Card(props:prop) {
+export default function Card(props: prop) {
   return (
     <StyledView className=" flex-column justify-center pl-5 mb-8 pr-5">
       <StyledView className="w-full rounded-lg shadow-lg" style={styles.card}>
