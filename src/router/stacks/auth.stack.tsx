@@ -1,4 +1,4 @@
-import Login from '@/pages/auth/Login'
+import Login from '@/pages/auth/login'
 import Forget from '@/pages/auth/forget'
 import Register from '@/pages/auth/register'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
