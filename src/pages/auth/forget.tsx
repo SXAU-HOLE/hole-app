@@ -9,7 +9,11 @@ import PasswordInput from '@/components/form/PasswordInput'
 import { Button } from 'react-native-paper'
 
 const ForgetForm = () => {
-  const { control, handleSubmit } = useForm<ForgetFormValidator>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgetFormValidator>({
     resolver: classValidatorResolver(ForgetFormValidator),
     mode: 'onBlur',
   })

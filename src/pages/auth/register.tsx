@@ -9,7 +9,11 @@ import { Button } from 'react-native-paper'
 import PasswordInput from '@/components/form/PasswordInput'
 
 const RegisterForm = () => {
-  const { control, handleSubmit } = useForm<RegisterFormValidator>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormValidator>({
     resolver: classValidatorResolver(RegisterFormValidator),
     mode: 'onBlur',
   })

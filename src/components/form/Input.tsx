@@ -1,3 +1,4 @@
+import { isNotEmptyObject } from 'class-validator'
 import React from 'react'
 import {
   Control,
@@ -32,7 +33,7 @@ const Input = <T extends object>({
             label={label}
             mode="outlined"
             outlineColor="#CCD6E3"
-            error={!!error}
+            error={isNotEmptyObject(error)}
             style={{
               backgroundColor: 'transparent',
             }}
@@ -43,7 +44,9 @@ const Input = <T extends object>({
           ></TextInput>
 
           {error?.message && (
-            <HelperText type="error">{error.message}</HelperText>
+            <HelperText type="error" visible={error}>
+              {error.message}
+            </HelperText>
           )}
         </>
       )}

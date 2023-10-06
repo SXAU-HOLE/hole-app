@@ -10,7 +10,11 @@ import Input from '@/components/form/Input'
 import PasswordInput from '@/components/form/PasswordInput'
 
 const LoginForm = () => {
-  const { control, handleSubmit } = useForm<LoginFormValidator>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValidator>({
     resolver: classValidatorResolver(LoginFormValidator),
     mode: 'onBlur',
   })
@@ -34,7 +38,6 @@ const LoginForm = () => {
           name="password"
           control={control}
           label="密码"
-          secureTextEntry
         ></PasswordInput>
       </View>
 
