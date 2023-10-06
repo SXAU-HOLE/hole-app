@@ -1,4 +1,3 @@
-import Login from '@/pages/auth/Login'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import AuthStacks from './stacks/auth.stack'

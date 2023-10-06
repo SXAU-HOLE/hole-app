@@ -25,7 +25,7 @@ const PasswordInput = <T extends object>({
       secureTextEntry={isShowPassword}
       right={
         <TextInput.Icon
-          icon="eye"
+          icon={isShowPassword ? 'eye' : 'eye-off'}
           onPress={() => setIsShowPassword(!isShowPassword)}
         />
       }
