@@ -62,7 +62,7 @@ const CHART_COLORS = {
   red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4'],
 }
 
-const colors = {
+export const colors = {
   primary: PRIMARY.main,
   onPrimary: PRIMARY.lighter,
   primaryContainer: PRIMARY.light,
@@ -103,14 +103,4 @@ const colors = {
   surfaceDisabled: 'rgba(26, 28, 24, 0.12)',
   onSurfaceDisabled: 'rgba(26, 28, 24, 0.38)',
   backdrop: 'rgba(44, 50, 41, 0.4)',
-}
-
-module.exports = {
-  content: ["./App.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}", "./src/**/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      colors
-    }, //TODO add theme
-  },
-  plugins: [],
 }

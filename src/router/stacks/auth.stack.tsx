@@ -1,6 +1,5 @@
 import Login from '@/pages/auth/Login'
 import Register from '@/pages/auth/register'
-import LoginScreen from '@/screens/LoginScreen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 
@@ -10,8 +9,8 @@ const AuthStacks = () => {
   return (
     <AuthStack.Navigator
       screenOptions={{
-        // headerShown: false,
-        // statusBarColor: '#fff',
+        headerShown: false,
+        statusBarColor: '#fff',
         statusBarStyle: 'dark',
       }}
     >

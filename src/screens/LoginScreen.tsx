@@ -1,10 +1,5 @@
-import React, { useCallback, useState } from 'react'
-import {
-  StyledView,
-  StyledText,
-  StyledTextInput,
-  StyledButton,
-} from '@/components/Styled'
+import React, { useCallback } from 'react'
+import { StyledView, StyledText, StyledTextInput } from '@/components/Styled'
 import { useFonts } from 'expo-font'
 import { StyleSheet } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'

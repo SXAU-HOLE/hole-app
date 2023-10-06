@@ -1,11 +1,14 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import Layout from '@/layouts/layout'
+import PaperProvider from '@/shared/providers/paper'
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Layout></Layout>
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer>
+        <Layout />
+      </NavigationContainer>
+    </PaperProvider>
   )
 }
