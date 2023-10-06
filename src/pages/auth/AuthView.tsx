@@ -2,7 +2,6 @@ import { View, Text, SafeAreaView } from 'react-native'
 import React, { ReactNode, useCallback } from 'react'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
-import Card from '@/components/Login_SignIn/Card'
 import Alert from '@/components/Alert'
 
 interface IProps {

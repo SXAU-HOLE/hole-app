@@ -1,20 +1,18 @@
 import { View } from 'react-native'
 import React from 'react'
 import AuthView from './AuthView'
-import { Button, HelperText, TextInput } from 'react-native-paper'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { Button } from 'react-native-paper'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginFormValidator } from '@/shared/validators/auth'
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import { Link } from '@/components/Link'
+import Input from '@/components/form/Input'
+import PasswordInput from '@/components/form/PasswordInput'
 
 const LoginForm = () => {
-  const {
-    formState: { errors },
-    control,
-    handleSubmit,
-  } = useForm<LoginFormValidator>({
+  const { control, handleSubmit } = useForm<LoginFormValidator>({
     resolver: classValidatorResolver(LoginFormValidator),
-    mode: 'onChange',
+    mode: 'onBlur',
   })
 
   const onSubmit: SubmitHandler<LoginFormValidator> = (data) => {
@@ -24,57 +22,20 @@ const LoginForm = () => {
   return (
     <View>
       <View>
-        <Controller
-          control={control}
+        <Input<LoginFormValidator>
           name="studentId"
-          render={({ field: { onChange, onBlur, value } }) => (
-            <>
-              <TextInput
-                label={'学号'}
-                mode="outlined"
-                outlineColor="#CCD6E3"
-                error={!!errors.studentId}
-                style={{
-                  backgroundColor: 'transparent',
-                }}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              ></TextInput>
-
-              {errors?.studentId && (
-                <HelperText type="error">{errors.studentId.message}</HelperText>
-              )}
-            </>
-          )}
-        ></Controller>
+          control={control}
+          label="学号"
+        ></Input>
       </View>
 
       <View className="mt-2">
-        <Controller
-          control={control}
+        <PasswordInput<LoginFormValidator>
           name="password"
-          render={({ field: { onChange, onBlur, value } }) => (
-            <>
-              <TextInput
-                label={'密码'}
-                mode="outlined"
-                outlineColor="#CCD6E3"
-                error={!!errors.password}
-                style={{
-                  backgroundColor: 'transparent',
-                }}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              ></TextInput>
-
-              {errors?.password && (
-                <HelperText type="error">{errors.password.message}</HelperText>
-              )}
-            </>
-          )}
-        ></Controller>
+          control={control}
+          label="密码"
+          secureTextEntry
+        ></PasswordInput>
       </View>
 
       <View className="flex items-end mt-3">
