@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { View,TouchableOpacity } from 'react-native'
 import React from 'react'
 import AuthView from './AuthView'
 import { Button } from 'react-native-paper'
@@ -30,6 +30,7 @@ const LoginForm = () => {
           name="studentId"
           control={control}
           label="学号"
+          keyboardType='numeric'
         ></Input>
       </View>
 
@@ -47,11 +48,11 @@ const LoginForm = () => {
         </Link>
       </View>
 
-      <View className="mt-3">
-        <Button mode="contained" onPress={handleSubmit(onSubmit)}>
+      <TouchableOpacity className="mt-3" onPress={handleSubmit(onSubmit)}>
+        <Button mode="contained">
           登录
         </Button>
-      </View>
+      </TouchableOpacity>
 
       <View className="mt-6">
         <Link size="normal" to="register">
