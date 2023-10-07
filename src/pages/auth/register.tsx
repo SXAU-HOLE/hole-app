@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { View,TouchableOpacity} from 'react-native'
 import React from 'react'
 import AuthView from './AuthView'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -36,6 +36,7 @@ const RegisterForm = () => {
           control={control}
           name={'studentId'}
           label={'学号'}
+          keyboardType='numeric'
         />
       </View>
 
@@ -55,15 +56,14 @@ const RegisterForm = () => {
         />
       </View>
 
-      <View className={'mt-2'}>
+      <TouchableOpacity className={'mt-2'} onPress={handleSubmit(onSubmit)}>
         <Button
           mode={'contained'}
           className={'shadow-none w-full'}
-          onPress={handleSubmit(onSubmit)}
         >
           注册
         </Button>
-      </View>
+      </TouchableOpacity>
     </View>
   )
 }
