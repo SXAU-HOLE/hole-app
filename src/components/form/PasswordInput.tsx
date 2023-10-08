@@ -22,7 +22,7 @@ const PasswordInput = <T extends object>({
       name={name}
       control={control}
       label={label}
-      secureTextEntry={isShowPassword}
+      secureTextEntry={!isShowPassword}
       right={
         <TextInput.Icon
           icon={isShowPassword ? 'eye' : 'eye-off'}
