@@ -21,6 +21,9 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "no-undef": "off"
+        "no-undef": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-unused-vars": "off"
     }
 }

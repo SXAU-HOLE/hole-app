@@ -1,4 +1,4 @@
-import { View,TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AuthView from './AuthView'
 import { Button } from 'react-native-paper'
@@ -8,6 +8,8 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import { Link } from '@/components/Link'
 import Input from '@/components/form/Input'
 import PasswordInput from '@/components/form/PasswordInput'
+import { LoginRequest } from '@/apis/auth'
+import { useAuth } from '@/hooks/auth'
 
 const LoginForm = () => {
   const {
@@ -19,8 +21,14 @@ const LoginForm = () => {
     mode: 'onBlur',
   })
 
-  const onSubmit: SubmitHandler<LoginFormValidator> = (data) => {
-    console.log(data)
+  const { login } = useAuth()
+
+  const onSubmit: SubmitHandler<LoginFormValidator> = async (data) => {
+    const { access_token } = await LoginRequest(data)
+
+    if (access_token) {
+      login(access_token)
+    }
   }
 
   return (
@@ -30,7 +38,7 @@ const LoginForm = () => {
           name="studentId"
           control={control}
           label="学号"
-          keyboardType='numeric'
+          keyboardType="numeric"
         ></Input>
       </View>
 
@@ -49,9 +57,7 @@ const LoginForm = () => {
       </View>
 
       <TouchableOpacity className="mt-3" onPress={handleSubmit(onSubmit)}>
-        <Button mode="contained">
-          登录
-        </Button>
+        <Button mode="contained">登录</Button>
       </TouchableOpacity>
 
       <View className="mt-6">

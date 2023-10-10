@@ -1,4 +1,5 @@
 import { RequestConfig } from '@/shared/config'
+import store from '@/store'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import Toast from 'react-native-toast-message'
 
@@ -32,15 +33,16 @@ instance.interceptors.response.use(
           : msg,
       })
     }
-
-    throw error
   },
 )
 
-export function request(config: AxiosRequestConfig) {
-  return instance({
+export function request<T = any>(config: AxiosRequestConfig) {
+  return instance<T>({
     method: 'GET',
     ...config,
-    // TODO add Token
-  })
+    headers: {
+      Authorization: 'Bearer ' + store.getState().user?.tooken,
+      ...config.headers,
+    },
+  }) as Promise<T>
 }
