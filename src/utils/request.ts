@@ -1,5 +1,5 @@
 import { RequestConfig } from '@/shared/config'
-import store from '@/store'
+import { store } from '@/store'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import Toast from 'react-native-toast-message'
 

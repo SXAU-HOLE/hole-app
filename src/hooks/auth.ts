@@ -1,4 +1,4 @@
-import store from '@/store'
+import { store } from '@/store'
 import { useSelector } from 'react-redux'
 import {
   logout as storeLogout,
@@ -12,7 +12,7 @@ export function useAuth() {
 
   const login = (token: string) => {
     store.dispatch(StoreLogin(token))
-    linkTo('/index')
+    linkTo('/hole')
   }
 
   const logout = () => {

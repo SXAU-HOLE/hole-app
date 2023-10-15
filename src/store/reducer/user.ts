@@ -15,6 +15,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<string>) => {
+      console.log('login')
+
       state.isLogin = true
       state.tooken = action.payload
     },
@@ -29,4 +31,4 @@ export const userSlice = createSlice({
 
 export const { login, logout } = userSlice.actions
 
-export const UserSlice = userSlice.reducer
+export const UserReducer = userSlice.reducer

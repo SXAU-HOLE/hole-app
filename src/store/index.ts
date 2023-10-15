@@ -1,10 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { UserSlice } from './reducer/user'
+import { persistReducer, persistStore } from 'redux-persist'
+import { UserReducer } from './reducer/user'
+import createSecureStore from 'redux-persist-expo-securestore'
+import { combineReducers, createStore } from 'redux'
 
-const store = configureStore({
-  reducer: {
-    user: UserSlice,
+const SecureStorage = createSecureStore()
+
+const userPersistReducer = persistReducer(
+  {
+    key: 'user',
+    storage: SecureStorage,
   },
+  UserReducer,
+)
+
+const rootReducer = combineReducers({
+  user: userPersistReducer,
 })
 
-export default store
+export const store = createStore(rootReducer)
+export const persistor = persistStore(store)

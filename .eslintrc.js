@@ -18,7 +18,8 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "@tanstack/eslint-plugin-query"
     ],
     "rules": {
         "no-undef": "off",

@@ -1,5 +1,5 @@
 import { View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import AuthView from './AuthView'
 import { Button } from 'react-native-paper'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -10,6 +10,7 @@ import Input from '@/components/form/Input'
 import PasswordInput from '@/components/form/PasswordInput'
 import { LoginRequest } from '@/apis/auth'
 import { useAuth } from '@/hooks/auth'
+import { store } from '@/store'
 
 const LoginForm = () => {
   const {
