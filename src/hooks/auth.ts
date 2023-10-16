@@ -7,7 +7,7 @@ import {
 import { useLinkTo } from '@react-navigation/native'
 
 export function useAuth() {
-  const isLogin = useSelector((state: any) => state.user.login)
+  const isLogin = store.getState().user.isLogin
   const linkTo = useLinkTo()
 
   const login = (token: string) => {

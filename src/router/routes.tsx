@@ -12,8 +12,11 @@ export const Routes = () => {
   return (
     <>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={'auth'} component={AuthStacks}></Stack.Screen>
-        <Stack.Screen name={'hole'} component={HoleStacks}></Stack.Screen>
+        {isLogin ? (
+          <Stack.Screen name={'hole'} component={HoleStacks}></Stack.Screen>
+        ) : (
+          <Stack.Screen name={'auth'} component={AuthStacks}></Stack.Screen>
+        )}
       </Stack.Navigator>
     </>
   )

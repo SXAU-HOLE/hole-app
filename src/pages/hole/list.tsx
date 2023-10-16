@@ -1,45 +1,20 @@
-import { View, Text, SafeAreaView, StatusBar } from 'react-native'
+import { View, Text, SafeAreaView, StatusBar, FlatList } from 'react-native'
 import React, { useEffect } from 'react'
-import { Button, useTheme } from 'react-native-paper'
-import { useAuth } from '@/hooks/auth'
+import { useTheme } from 'react-native-paper'
 import Page from '@/components/Page'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { GetHoleListRequest } from '@/apis/hole'
 import { HoleListMode } from '@/shared/enum'
-
-const HoleCard = () => {}
+import { HoleInfo } from './components/HoleList'
 
 const HoleList = () => {
   const theme = useTheme()
 
-  // const queryClient = useQueryClient()
-  // const query = useQuery({
-  //   queryKey: ['hole'],
-  //   queryFn: () =>
-  //     GetHoleListRequest({ limit: 10, page: 1, mode: HoleListMode.hot }),
-  // })
-
-  // const mutation = useMutation({
-  //   onSuccess: () => {
-  //     // queryClient.invalidateQueries({ queryKey: ['hole'] })
-  //     console.log('query', query.data)
-  //   },
-  //   onError: () => {
-  //     console.log('error')
-  //   },
-  // })
-
-  useEffect(() => {
-    async function getData() {
-      const data = await GetHoleListRequest({
-        limit: 10,
-        page: 1,
-        mode: HoleListMode.hot,
-      })
-      console.log(data)
-    }
-    getData()
-  }, [])
+  const { data, isSuccess } = useQuery({
+    queryKey: ['hole'],
+    queryFn: () =>
+      GetHoleListRequest({ limit: 10, page: 1, mode: HoleListMode.hot }),
+  })
 
   return (
     <Page>
@@ -47,11 +22,17 @@ const HoleList = () => {
         barStyle={'dark-content'}
         backgroundColor={theme.colors.background}
       />
-      <View className=" bg-gray-300">
+      <View className="flex">
         <Text className="h-16">Header</Text>
       </View>
+
       <View>
-        <Text></Text>
+        {isSuccess && (
+          <FlatList
+            data={data?.items}
+            renderItem={({ item }) => <HoleInfo data={item}></HoleInfo>}
+          ></FlatList>
+        )}
       </View>
     </Page>
   )

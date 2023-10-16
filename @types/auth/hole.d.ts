@@ -10,6 +10,15 @@ declare interface IHole {
   body: string
   imgs: string[]
   favoriteCount: number
+  user: IUser
+}
+
+interface IUser {
+  id: number
+  createAt: string
+  username: string
+  role: string
+  avatar: string
 }
 
 interface IPage {

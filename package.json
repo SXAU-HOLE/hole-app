@@ -21,6 +21,7 @@
     "axios": "^1.5.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "date-fns": "^2.30.0",
     "expo": "~49.0.13",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~11.4.0",
