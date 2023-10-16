@@ -27,7 +27,7 @@ const HoleInfoBody = ({ data }: Props) => {
   return (
     <View className="flex space-y-2">
       <View>{data.title}</View>
-      <View className="max-h-48 overflow-hidden">
+      <View className="overflow-hidden">
         <Text variant={'bodyMedium'}>{data.body}</Text>
       </View>
     </View>
