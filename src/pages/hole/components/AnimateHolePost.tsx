@@ -1,8 +1,14 @@
 import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import { FAB } from 'react-native-paper'
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useLinkTo } from '@react-navigation/native'
 
 export function AnimateHolePost({ offset }: { offset: number }) {
+  const linkTo = useLinkTo()
+  const onPress = useCallback(() => {
+    linkTo('/hole/post')
+  }, [linkTo])
+
   const animateStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: withSpring(offset) }],
@@ -16,6 +22,7 @@ export function AnimateHolePost({ offset }: { offset: number }) {
         color={'white'}
         mode={'flat'}
         className={'absolute rounded-full right-0'}
+        onPress={onPress}
       ></FAB>
     </Animated.View>
   )

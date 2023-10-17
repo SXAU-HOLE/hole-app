@@ -5,7 +5,7 @@ import {
   StatusBar,
   View,
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTheme } from 'react-native-paper'
 import Page from '@/components/Page'
 import { HoleInfo } from './HoleInfo'
@@ -70,6 +70,11 @@ const HoleList = ({
     }
   }
 
+  const listRef = useRef<any>()
+  const goTop = () => {
+    listRef.current?.scrollToOffset({ offset: 0, animated: true })
+  }
+
   return (
     <Page>
       <StatusBar
@@ -80,11 +85,15 @@ const HoleList = ({
       <View>
         <View className={'absolute z-[1] bottom-32 right-1'}>
           <AnimateHolePost offset={PostFABOffset} />
-          <AnimateToTop visible={isToTopFABVisible}></AnimateToTop>
+          <AnimateToTop
+            visible={isToTopFABVisible}
+            goTop={goTop}
+          ></AnimateToTop>
         </View>
 
         {isSuccess && (
           <FlatList
+            ref={listRef}
             data={flatData}
             ListFooterComponent={() => (
               <LoadMore
