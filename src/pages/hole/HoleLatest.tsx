@@ -3,7 +3,7 @@ import {useHoleList} from "@/query/hole";
 import {useTheme} from "react-native-paper";
 import HoleList from "@/pages/hole/components/list";
 
-const HoleHot = () => {
+export function HoleLatest() {
     const query = useHoleList()
     const theme = useTheme()
 
@@ -13,6 +13,5 @@ const HoleHot = () => {
             <HoleList {...query}></HoleList>
         </View>
     );
-};
+}
 
-export default HoleHot;

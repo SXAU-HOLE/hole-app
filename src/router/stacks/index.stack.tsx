@@ -2,11 +2,12 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {createMaterialBottomTabNavigator} from "react-native-paper/react-navigation";
 import {createMaterialTopTabNavigator, MaterialTopTabBarProps} from "@react-navigation/material-top-tabs";
 import HoleHot from "@/pages/hole/HoleHot";
-import HoleList from "@/pages/hole/list";
+import HoleList from "@/pages/hole/components/list";
 import React from "react";
 import {Appbar, useTheme} from "react-native-paper";
 import {Pressable, Text, View} from "react-native";
 import Animated, {useAnimatedStyle, useDerivedValue, withTiming} from "react-native-reanimated";
+import {HoleLatest} from "@/pages/hole/HoleLatest";
 
 const IndexStack = createNativeStackNavigator()
 const Tab = createMaterialBottomTabNavigator()
@@ -81,7 +82,7 @@ const TabBarItem = ({isFocused, name}: {
 export function TopTabs() {
     return (
         <TopTab.Navigator tabBar={TopTabBar}>
-            <TopTab.Screen name={'latest'} component={HoleList}></TopTab.Screen>
+            <TopTab.Screen name={'latest'} component={HoleLatest}></TopTab.Screen>
             <TopTab.Screen name={'hot'} component={HoleHot}></TopTab.Screen>
         </TopTab.Navigator>
     )

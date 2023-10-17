@@ -1,6 +1,4 @@
-import HoleList from '@/pages/hole/list'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import HoleHot from "@/pages/hole/HoleHot";
 
 const HoleStack = createNativeStackNavigator()
 
