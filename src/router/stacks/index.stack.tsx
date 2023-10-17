@@ -20,11 +20,15 @@ const TopTabBar: React.FC<MaterialTopTabBarProps> = ({state, jumpTo}) => {
     return (
         <Appbar.Header className={'flex justify-between px-5 bg-white'}>
             <View className={'flex flex-row'}>
-                <Pressable key={'hot'} onPress={() => handlePress('hot')}>
+                <Pressable key={'hot'} onPress={() => handlePress(state.routes[0].key)}>
                     <TabBarItem name={'时间轴'} isFocused={state.index === 0}></TabBarItem>
                 </Pressable>
-                <Text className={'mx-1 text-2xl text-primary'}>/</Text>
-                <Pressable key={'latest'} onPress={() => handlePress('latest')}>
+                <Text className={'mx-1 text-2xl text-primary'}>
+                    {
+                        state.index === 0 ? '\\' : '/'
+                    }
+                </Text>
+                <Pressable key={'latest'} onPress={() => handlePress(state.routes[1].key)}>
                     <TabBarItem name={'随机漫步'} isFocused={state.index === 1}></TabBarItem>
                 </Pressable>
             </View>
@@ -95,7 +99,8 @@ export function IndexStacks() {
 
     return (
         <IndexStack.Navigator screenOptions={{
-            headerShown: false
+            headerShown: false,
+            statusBarColor: 'white'
         }}>
             <IndexStack.Screen name={'Index'} component={TopTabs}></IndexStack.Screen>
         </IndexStack.Navigator>
