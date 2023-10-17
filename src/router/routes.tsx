@@ -3,6 +3,7 @@ import React from 'react'
 import AuthStacks from './stacks/auth.stack'
 import { useAuth } from '@/hooks/auth'
 import HoleStacks from './stacks/hole.stack'
+import {IndexStacks} from "@/router/stacks/index.stack";
 
 const Stack = createStackNavigator()
 
@@ -13,7 +14,7 @@ export const Routes = () => {
     <>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLogin ? (
-          <Stack.Screen name={'hole'} component={HoleStacks}></Stack.Screen>
+          <Stack.Screen name={'index'} component={IndexStacks}></Stack.Screen>
         ) : (
           <Stack.Screen name={'auth'} component={AuthStacks}></Stack.Screen>
         )}

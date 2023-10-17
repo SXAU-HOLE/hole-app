@@ -1,11 +1,9 @@
 import {Appbar, Text} from "react-native-paper";
 import {View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import {useEffect} from "react";
 
 export function HoleHeader() {
     const navigator = useNavigation()
-    const currentRouteName = navigator.getState().routeNames[0]
 
     return (
         <Appbar.Header className={'bg-transparent fixed flex justify-between'}>
@@ -19,3 +17,4 @@ export function HoleHeader() {
         </Appbar.Header>
     )
 }
+

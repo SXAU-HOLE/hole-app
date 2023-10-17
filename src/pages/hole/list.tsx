@@ -31,7 +31,6 @@ const HoleList = () => {
                 barStyle={'dark-content'}
                 backgroundColor={theme.colors.background}
             />
-            <HoleHeader></HoleHeader>
 
             <View>
                 {isSuccess && (
