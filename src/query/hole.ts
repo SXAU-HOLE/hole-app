@@ -1,6 +1,6 @@
 import {GetHoleListRequest} from '@/apis/hole'
 import {HoleListMode} from '@/shared/enum'
-import {useInfiniteQuery} from '@tanstack/react-query'
+import {InfiniteData, useInfiniteQuery, useQueryClient} from '@tanstack/react-query'
 import {useRoute} from "@react-navigation/native";
 import {useMemo} from "react";
 
@@ -15,8 +15,10 @@ export function useHoleList() {
         }
     }, [route])
 
+    const queryKey = ['hole.list',mode]
+
     const query = useInfiniteQuery(
-        ['hole.list', mode],
+        queryKey,
         ({pageParam = 1}) => GetHoleListRequest({limit: 10, page: pageParam, mode: mode!}),
         {
           getNextPageParam: (lastPage) => {
@@ -30,6 +32,16 @@ export function useHoleList() {
           }
         }
     )
+    const client = useQueryClient()
+    const invalidateQuery = async () => {
+        client.setQueryData(queryKey,(oldData: any) => {
+            oldData.pages = oldData.pages.slice(0,1)
+            return oldData
+        })
+        await client.invalidateQueries(queryKey,{
+            refetchPage: (page,index) => index === 0
+        })
+    }
 
-    return {...query}
+    return {...query,invalidateQuery}
 }

@@ -1,5 +1,5 @@
 import {FlatList, StatusBar, View} from 'react-native'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useTheme} from 'react-native-paper'
 import Page from '@/components/Page'
 import {HoleInfo} from './HoleInfo'
@@ -8,18 +8,26 @@ import {MyRefreshControl} from "@/components/RefreshControl";
 import {UseInfiniteQueryResult} from "@tanstack/react-query";
 import {flatInfiniteQueryData} from "@/utils/utils";
 
-type HoleListProps = UseInfiniteQueryResult
+type HoleListProps = UseInfiniteQueryResult &{
+    invalidateQuery: () => any
+}
 
-const HoleList = ({isSuccess, data, hasNextPage, fetchNextPage}: HoleListProps) => {
+const HoleList = ({isSuccess, data, hasNextPage, fetchNextPage, invalidateQuery}: HoleListProps) => {
     const theme = useTheme()
 
     const [refreshing, setRefreshing] = useState(false)
     const {data: flatData, isEmpty} = flatInfiniteQueryData(data)
 
-    const onRefresh = async () => {
+    const onLoadMore = async () => {
         if(!hasNextPage) return
 
         await fetchNextPage()
+    }
+
+    const onRefresh = () => {
+        setRefreshing(true)
+
+        invalidateQuery()
         setRefreshing(false)
     }
 
@@ -42,10 +50,10 @@ const HoleList = ({isSuccess, data, hasNextPage, fetchNextPage}: HoleListProps) 
                                 <HoleInfo data={e} key={e.id} />
                            ))
                         }}
-                        refreshing={true}
-                        refreshControl={<MyRefreshControl refreshing={refreshing}/>}
+                        refreshing={refreshing}
+                        refreshControl={<MyRefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
                         onEndReachedThreshold={0.1}
-                        onEndReached={onRefresh}
+                        onEndReached={onLoadMore}
                     ></FlatList>
                 )}
             </View>
