@@ -8,6 +8,7 @@ import {Appbar, useTheme} from "react-native-paper";
 import {Pressable, Text, View} from "react-native";
 import Animated, {useAnimatedStyle, useDerivedValue, withTiming} from "react-native-reanimated";
 import {HoleLatest} from "@/pages/hole/HoleLatest";
+import HoleStacks from "@/router/stacks/hole.stack";
 
 const IndexStack = createNativeStackNavigator()
 const Tab = createMaterialBottomTabNavigator()
@@ -101,9 +102,11 @@ export function IndexStacks() {
     return (
         <IndexStack.Navigator screenOptions={{
             headerShown: false,
-            statusBarColor: 'white'
+            statusBarColor: 'white',
+            statusBarStyle: 'dark',
         }}>
             <IndexStack.Screen name={'Index'} component={TopTabs}></IndexStack.Screen>
+            <IndexStack.Screen name={'hole'} component={HoleStacks}></IndexStack.Screen>
         </IndexStack.Navigator>
     )
 }

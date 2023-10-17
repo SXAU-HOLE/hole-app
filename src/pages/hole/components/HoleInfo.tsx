@@ -1,11 +1,13 @@
 import { CommentIcon, LikeIcon } from '@/components/Icons'
 import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
-import { View } from 'react-native'
-import { Text } from 'react-native-paper'
+import { Image, View } from 'react-native'
+import { Text, TouchableRipple } from 'react-native-paper'
+import { ImageList } from '@/components/Image/ImageList'
 
 interface Props {
   data: IHole
+  onPress?: () => any
 }
 
 const HoleInfoHeader = ({ data }: Props) => {
@@ -29,6 +31,10 @@ const HoleInfoBody = ({ data }: Props) => {
       <View>{data.title}</View>
       <View className="overflow-hidden">
         <Text variant={'bodyMedium'}>{data.body}</Text>
+
+        <View className={'flex flex-row flex-wrap w-screen'}>
+          {data.imgs.length && <ImageList imgs={data.imgs} />}
+        </View>
       </View>
     </View>
   )
@@ -60,22 +66,24 @@ const HoleInfoBottom = ({ data }: Props) => {
   )
 }
 
-export const HoleInfo = ({ data }: Props) => {
+export const HoleInfo = ({ data, onPress }: Props) => {
   return (
     <View className="bg-white mt-2 rounded-2xl overflow-hidden">
-      <View className="flex-col space-y-3 px-4 py-2">
-        <View>
-          <HoleInfoHeader data={data}></HoleInfoHeader>
-        </View>
+      <TouchableRipple onPress={onPress}>
+        <View className="flex-col space-y-3 px-4 py-2">
+          <View>
+            <HoleInfoHeader data={data}></HoleInfoHeader>
+          </View>
 
-        <View>
-          <HoleInfoBody data={data}></HoleInfoBody>
-        </View>
+          <View>
+            <HoleInfoBody data={data}></HoleInfoBody>
+          </View>
 
-        <View>
-          <HoleInfoBottom data={data}></HoleInfoBottom>
+          <View>
+            <HoleInfoBottom data={data}></HoleInfoBottom>
+          </View>
         </View>
-      </View>
+      </TouchableRipple>
     </View>
   )
 }

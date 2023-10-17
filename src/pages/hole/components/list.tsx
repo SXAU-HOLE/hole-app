@@ -7,6 +7,7 @@ import {LoadMore} from "@/components/LoadMore";
 import {MyRefreshControl} from "@/components/RefreshControl";
 import {UseInfiniteQueryResult} from "@tanstack/react-query";
 import {flatInfiniteQueryData} from "@/utils/utils";
+import {useNavigation} from "@react-navigation/native";
 
 type HoleListProps = UseInfiniteQueryResult &{
     invalidateQuery: () => any
@@ -31,6 +32,17 @@ const HoleList = ({isSuccess, data, hasNextPage, fetchNextPage, invalidateQuery}
         setRefreshing(false)
     }
 
+    const navigation = useNavigation()
+    const go = (id: number) => {
+        // @ts-ignore
+        navigation.navigate('hole',{
+            screen: 'detail',
+            params: {
+                id
+            }
+        })
+    }
+
     return (
         <Page>
             <StatusBar
@@ -47,7 +59,7 @@ const HoleList = ({isSuccess, data, hasNextPage, fetchNextPage, invalidateQuery}
                         )}
                         renderItem={({item}) => {
                            return item.map((e: any) => (
-                                <HoleInfo data={e} key={e.id} />
+                                <HoleInfo data={e} key={e.id} onPress={() => go(e.id)} />
                            ))
                         }}
                         refreshing={refreshing}
