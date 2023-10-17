@@ -1,6 +1,6 @@
 import { formatDistanceToNow, differenceInDays, format } from 'date-fns'
 import zhCN from 'date-fns/locale/zh-CN'
-import {InfiniteData} from "@tanstack/react-query";
+import { InfiniteData } from '@tanstack/react-query'
 
 export function formatDate(time: string) {
   const date = new Date(time)
@@ -8,10 +8,18 @@ export function formatDate(time: string) {
 
   const diff = differenceInDays(now, date)
 
-  return formatDistanceToNow(date, {
-    addSuffix: true,
-    locale: zhCN,
-  }).toString()
+  if (diff < 30) {
+    return formatDistanceToNow(date, {
+      addSuffix: true,
+      locale: zhCN,
+    })
+      .toString()
+      .replace('大约', '')
+  } else if (diff < 365) {
+    return format(date, 'MM/dd', { locale: zhCN }).toString()
+  } else {
+    return format(date, 'YYYY/MM/DD', { locale: zhCN }).toString()
+  }
 }
 
 export function flatInfiniteQueryData(data: InfiniteData<any> | undefined) {
@@ -19,6 +27,6 @@ export function flatInfiniteQueryData(data: InfiniteData<any> | undefined) {
 
   return {
     isEmpty,
-    data: isEmpty ? [] : (data?.pages.map(page => page.items))
+    data: isEmpty ? [] : data?.pages.map((page) => page.items),
   }
 }
