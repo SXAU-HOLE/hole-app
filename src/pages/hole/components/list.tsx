@@ -1,76 +1,116 @@
-import {FlatList, StatusBar, View} from 'react-native'
-import React, {useEffect, useState} from 'react'
-import {useTheme} from 'react-native-paper'
+import {
+  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  StatusBar,
+  View,
+} from 'react-native'
+import React, { useState } from 'react'
+import { useTheme } from 'react-native-paper'
 import Page from '@/components/Page'
-import {HoleInfo} from './HoleInfo'
-import {LoadMore} from "@/components/LoadMore";
-import {MyRefreshControl} from "@/components/RefreshControl";
-import {UseInfiniteQueryResult} from "@tanstack/react-query";
-import {flatInfiniteQueryData} from "@/utils/utils";
-import {useNavigation} from "@react-navigation/native";
+import { HoleInfo } from './HoleInfo'
+import { LoadMore } from '@/components/LoadMore'
+import { MyRefreshControl } from '@/components/RefreshControl'
+import { UseInfiniteQueryResult } from '@tanstack/react-query'
+import { flatInfiniteQueryData } from '@/utils/utils'
+import { useNavigation } from '@react-navigation/native'
+import { AnimateHolePost } from '@/pages/hole/components/AnimateHolePost'
+import { AnimateToTop } from '@/pages/hole/components/AnimateToTop'
 
-type HoleListProps = UseInfiniteQueryResult &{
-    invalidateQuery: () => any
+type HoleListProps = UseInfiniteQueryResult & {
+  invalidateQuery: () => any
 }
 
-const HoleList = ({isSuccess, data, hasNextPage, fetchNextPage, invalidateQuery}: HoleListProps) => {
-    const theme = useTheme()
+const HoleList = ({
+  isSuccess,
+  data,
+  hasNextPage,
+  fetchNextPage,
+  invalidateQuery,
+}: HoleListProps) => {
+  const theme = useTheme()
 
-    const [refreshing, setRefreshing] = useState(false)
-    const {data: flatData, isEmpty} = flatInfiniteQueryData(data)
+  const [refreshing, setRefreshing] = useState(false)
+  const { data: flatData, isEmpty } = flatInfiniteQueryData(data)
 
-    const onLoadMore = async () => {
-        if(!hasNextPage) return
+  const onLoadMore = async () => {
+    if (!hasNextPage) return
 
-        await fetchNextPage()
+    await fetchNextPage()
+  }
+
+  const onRefresh = () => {
+    setRefreshing(true)
+
+    invalidateQuery()
+    setRefreshing(false)
+  }
+
+  const navigation = useNavigation()
+  const go = (id: number) => {
+    // @ts-ignore
+    navigation.navigate('hole', {
+      screen: 'detail',
+      params: {
+        id,
+      },
+    })
+  }
+
+  const [PostFABOffset, setPostFABOffset] = useState(0)
+  const [isToTopFABVisible, setToTopFABVisible] = useState(false)
+
+  function scrollHandler(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    if (event.nativeEvent.contentOffset.y > 500) {
+      setPostFABOffset(-70)
+      setToTopFABVisible(true)
+    } else {
+      setToTopFABVisible(false)
+      setPostFABOffset(0)
     }
+  }
 
-    const onRefresh = () => {
-        setRefreshing(true)
+  return (
+    <Page>
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={theme.colors.background}
+      />
 
-        invalidateQuery()
-        setRefreshing(false)
-    }
+      <View>
+        <View className={'absolute z-[1] bottom-32 right-1'}>
+          <AnimateHolePost offset={PostFABOffset} />
+          <AnimateToTop visible={isToTopFABVisible}></AnimateToTop>
+        </View>
 
-    const navigation = useNavigation()
-    const go = (id: number) => {
-        // @ts-ignore
-        navigation.navigate('hole',{
-            screen: 'detail',
-            params: {
-                id
+        {isSuccess && (
+          <FlatList
+            data={flatData}
+            ListFooterComponent={() => (
+              <LoadMore
+                text={'没有更多帖子了哦'}
+                hasNextPage={false}
+              ></LoadMore>
+            )}
+            renderItem={({ item }) => {
+              return item.map((e: any) => (
+                <HoleInfo data={e} key={e.id} onPress={() => go(e.id)} />
+              ))
+            }}
+            refreshing={refreshing}
+            refreshControl={
+              <MyRefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
-        })
-    }
-
-    return (
-        <Page>
-            <StatusBar
-                barStyle={'dark-content'}
-                backgroundColor={theme.colors.background}
-            />
-
-            <View>
-                {isSuccess && (
-                    <FlatList
-                        data={flatData}
-                        ListFooterComponent={() => (
-                            <LoadMore text={'没有更多帖子了哦'} hasNextPage={false}></LoadMore>
-                        )}
-                        renderItem={({item}) => {
-                           return item.map((e: any) => (
-                                <HoleInfo data={e} key={e.id} onPress={() => go(e.id)} />
-                           ))
-                        }}
-                        refreshing={refreshing}
-                        refreshControl={<MyRefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
-                        onEndReachedThreshold={0.1}
-                        onEndReached={onLoadMore}
-                    ></FlatList>
-                )}
-            </View>
-        </Page>
-    )
+            onEndReachedThreshold={0.1}
+            onEndReached={onLoadMore}
+            onScroll={(event) => {
+              scrollHandler(event)
+            }}
+          ></FlatList>
+        )}
+      </View>
+    </Page>
+  )
 }
 
 export default HoleList
