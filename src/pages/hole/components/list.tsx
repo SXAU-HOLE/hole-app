@@ -115,6 +115,7 @@ const HoleList = ({
             onScroll={(event) => {
               scrollHandler(event)
             }}
+            showsVerticalScrollIndicator={false}
           ></FlatList>
         )}
       </View>

@@ -30,3 +30,7 @@ export function flatInfiniteQueryData(data: InfiniteData<any> | undefined) {
     data: isEmpty ? [] : data?.pages.map((page) => page.items),
   }
 }
+
+export function isImageFile(fileName: string) {
+  return fileName.endsWith('.png') || fileName.endsWith('.jpg')
+}

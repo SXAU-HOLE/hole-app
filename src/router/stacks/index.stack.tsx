@@ -14,15 +14,17 @@ import Animated, {
 } from 'react-native-reanimated'
 import { HoleLatest } from '@/pages/hole/HoleLatest'
 import HoleStacks from '@/router/stacks/hole.stack'
+import { useLinkTo } from '@react-navigation/native'
 
 const IndexStack = createNativeStackNavigator()
 const TopTab = createMaterialTopTabNavigator()
 
 const TopTabBar: React.FC<MaterialTopTabBarProps> = ({ state, jumpTo }) => {
+  const theme = useTheme()
+  const linkTo = useLinkTo()
   const handlePress = (route: string) => {
     jumpTo(route)
   }
-  const theme = useTheme()
 
   return (
     <Appbar.Header
@@ -49,7 +51,7 @@ const TopTabBar: React.FC<MaterialTopTabBarProps> = ({ state, jumpTo }) => {
           ></TabBarItem>
         </Pressable>
       </View>
-      <Appbar.Action icon="magnify" onPress={() => {}} />
+      <Appbar.Action icon="magnify" onPress={() => linkTo('/hole/search')} />
     </Appbar.Header>
   )
 }

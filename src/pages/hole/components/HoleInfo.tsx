@@ -27,12 +27,16 @@ const HoleInfoHeader = ({ data }: Props) => {
 
 const HoleInfoBody = ({ data }: Props) => {
   return (
-    <View className="flex space-y-2">
+    <View className="flex">
       <View>{data.title}</View>
       <View className="overflow-hidden">
-        <Text variant={'bodyMedium'}>{data.body}</Text>
+        <View>
+          <Text variant={'bodyMedium'} numberOfLines={7}>
+            {data.body}
+          </Text>
+        </View>
 
-        <View className={'flex flex-row flex-wrap w-screen'}>
+        <View className={'flex flex-row flex-wrap w-screen mt-1'}>
           {data.imgs.length && <ImageList imgs={data.imgs} />}
         </View>
       </View>
@@ -44,20 +48,24 @@ const HoleInfoBottom = ({ data }: Props) => {
   const iconsList = [
     {
       value: data.favoriteCount,
-      element: <LikeIcon size={16} color={'#686E87'} />,
+      element: <LikeIcon size={18} color={'#686E87'} />,
     },
     {
       value: data.favoriteCount,
       element: (
-        <CommentIcon name="chat" size={16} color={'#686E87'}></CommentIcon>
+        <CommentIcon name="chat" size={18} color={'#686E87'}></CommentIcon>
       ),
     },
+    {},
   ]
 
   return (
-    <View className="flex flex-row">
+    <View className="flex flex-row space-y-1">
       {iconsList.map((icon, index) => (
-        <View key={index} className="flex flex-row items-center space-x-2 mr-4">
+        <View
+          key={index}
+          className="flex-1 flex flex-row items-center justify-center space-x-2 mr-6"
+        >
           {icon.element}
           <Text className="text-[#686E87]">{icon.value}</Text>
         </View>

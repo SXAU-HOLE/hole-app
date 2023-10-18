@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { Avatar } from 'react-native-paper'
+import { isImageFile } from '@/utils/utils'
 
 interface Props {
   url: string
@@ -17,7 +18,7 @@ const UserAvatar = ({ mode = 'sm', ...props }: Props) => {
     <Avatar.Image
       size={props.size || modeSize}
       source={{
-        uri: props.url,
+        uri: isImageFile(props.url) ? `${props.url}` : `${props.url}.png`,
       }}
     />
   )
