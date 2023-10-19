@@ -108,10 +108,14 @@ export function TopTabs() {
 }
 
 export function IndexStacks() {
+  const theme = useTheme()
+
   return (
     <IndexStack.Navigator
       screenOptions={{
         headerShown: false,
+        statusBarColor: theme.colors.background,
+        statusBarStyle: 'dark',
       }}
     >
       <IndexStack.Screen name={'Index'} component={TopTabs}></IndexStack.Screen>

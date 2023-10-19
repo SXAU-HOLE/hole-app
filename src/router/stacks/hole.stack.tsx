@@ -10,7 +10,6 @@ const HoleStacks = () => {
     <HoleStack.Navigator
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#fff',
         statusBarStyle: 'dark',
       }}
     >

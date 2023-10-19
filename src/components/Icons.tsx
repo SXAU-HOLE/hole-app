@@ -26,3 +26,5 @@ export const LikeIcon = withFontAV5Icon('thumbs-up')
 export const CommentIcon = withMaterialIcon('chat')
 
 export const MoveVertical = withFeatherIcon('move-vertical')
+
+export const CloseIcon = withFeatherIcon('x')
