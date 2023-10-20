@@ -59,7 +59,7 @@ export function UploadHoleImgRequest(imgs: string[]) {
     })
   }
 
-  return request<string[]>({
+  return request<IResponse>({
     method: 'POST',
     url: '/oss/upload',
     headers: {

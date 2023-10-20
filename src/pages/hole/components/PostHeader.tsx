@@ -17,10 +17,14 @@ export function PostHeader() {
 
   const mutation = useMutation({
     mutationFn: async (data: PostHoleValidator) => {
-      const resultImg = await UploadHoleImgRequest(imgs)
-      console.log(resultImg)
+      let res = []
 
-      // return await PostHoleRequest({ ...data, imgs: resultImg })
+      if (imgs.length) {
+        const respone = await UploadHoleImgRequest(imgs)
+        res = respone.data
+      }
+
+      return await PostHoleRequest({ ...data, imgs: res })
     },
     onSuccess(data) {
       console.log(data)
