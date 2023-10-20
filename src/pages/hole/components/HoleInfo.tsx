@@ -28,7 +28,16 @@ const HoleInfoHeader = ({ data }: Props) => {
 const HoleInfoBody = ({ data }: Props) => {
   return (
     <View className="flex">
-      <View>{data.title}</View>
+      {data.title !== '' ? (
+        <View>
+          <Text variant={'titleMedium'} className={'font-bold'}>
+            {data.title}
+          </Text>
+        </View>
+      ) : (
+        <></>
+      )}
+
       <View className="overflow-hidden">
         <View>
           <Text variant={'bodyMedium'} numberOfLines={7}>
@@ -36,9 +45,13 @@ const HoleInfoBody = ({ data }: Props) => {
           </Text>
         </View>
 
-        <View className={'flex flex-row flex-wrap w-screen mt-1'}>
-          {data.imgs.length && <ImageList imgs={data.imgs} />}
-        </View>
+        {data.imgs?.length ? (
+          <View className={'flex flex-row flex-wrap w-full mt-1'}>
+            <ImageList imgs={data.imgs} />
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
     </View>
   )
@@ -56,15 +69,14 @@ const HoleInfoBottom = ({ data }: Props) => {
         <CommentIcon name="chat" size={18} color={'#686E87'}></CommentIcon>
       ),
     },
-    {},
   ]
 
   return (
-    <View className="flex flex-row space-y-1">
+    <View className="flex flex-row space-y-1 py-2">
       {iconsList.map((icon, index) => (
         <View
           key={index}
-          className="flex-1 flex flex-row items-center justify-center space-x-2 mr-6"
+          className="flex flex-row items-center  space-x-2 mr-6"
         >
           {icon.element}
           <Text className="text-[#686E87]">{icon.value}</Text>

@@ -6,6 +6,7 @@ import { usePostContext } from '@/shared/context/HolePostContext'
 import { useMutation } from '@tanstack/react-query'
 import { PostHoleValidator } from '@/shared/validators/hole'
 import { PostHoleRequest, UploadHoleImgRequest } from '@/apis/hole'
+import { Toast } from '@/utils/toast'
 
 export function PostHeader() {
   const navigator = useNavigation()
@@ -17,18 +18,19 @@ export function PostHeader() {
   const mutation = useMutation({
     mutationFn: async (data: PostHoleValidator) => {
       const resultImg = await UploadHoleImgRequest(imgs)
+      console.log(resultImg)
 
-      console.log('resultImg', resultImg)
-
-      // return PostHoleRequest({
-      //   imgs,
-      // })
+      // return await PostHoleRequest({ ...data, imgs: resultImg })
+    },
+    onSuccess(data) {
+      console.log(data)
+      Toast.success({ text1: '成功发布帖子' })
+      navigator.goBack()
     },
   })
 
-  const onSubmit = (data: any) => {
-    console.log(data)
-    // mutation.mutate(data)
+  const onSubmit = async (data: any) => {
+    mutation.mutate(data)
   }
 
   return (

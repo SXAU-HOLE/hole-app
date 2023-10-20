@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Image, Pressable, Text, View } from 'react-native'
 import { useTheme } from 'react-native-paper'
 
@@ -24,20 +25,18 @@ export function ImageListItem({ img }: { img: string }) {
 
 export function ImageList({ imgs }: { imgs: string[] }) {
   return (
-    <View>
+    <>
       {imgs.length ? (
-        <View>
-          <View className={'flex flex-row flex-wrap'}>
-            {imgs.map((img, index) => (
-              <View className={'w-[33%] h-28'} key={index}>
-                <ImageListItem img={img}></ImageListItem>
-              </View>
-            ))}
-          </View>
+        <View className={'w-full flex flex-row justify-between'}>
+          {imgs.slice(0, 3).map((img, index) => (
+            <View className={'w-[33%] h-28'} key={index}>
+              <ImageListItem img={img}></ImageListItem>
+            </View>
+          ))}
         </View>
       ) : (
         <></>
       )}
-    </View>
+    </>
   )
 }

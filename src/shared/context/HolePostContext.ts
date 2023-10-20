@@ -23,9 +23,7 @@ export function HolePostContext() {
   const {
     formState: { errors },
     ...form
-  } = useForm<PostHoleValidator>({
-    resolver: classValidatorResolver(PostHoleValidator),
-  })
+  } = useForm<PostHoleValidator>()
 
   return {
     imgs,

@@ -7,7 +7,6 @@ import useKeyboardHeight from '@/hooks/useKeyboardHeight'
 import { HolePostContext, PostContext } from '@/shared/context/HolePostContext'
 import { PostHeader } from '@/pages/hole/components/PostHeader'
 import { PostBody } from '@/pages/hole/components/PostBody'
-import { UploadHoleImgRequest } from '@/apis/hole'
 
 export function HolePost() {
   const [headerHeight, setHeaderHeight] = useState(0)
@@ -19,6 +18,7 @@ export function HolePost() {
   )
 
   return (
+    // @ts-ignore
     <PostContext.Provider value={HolePostContext()}>
       <FullPage>
         <View onLayout={(e) => setHeaderHeight(e.nativeEvent.layout.height)}>

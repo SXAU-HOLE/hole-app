@@ -1,4 +1,4 @@
-import { View,TouchableOpacity} from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import AuthView from './AuthView'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -7,6 +7,8 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import Input from '@/components/form/Input'
 import { Button } from 'react-native-paper'
 import PasswordInput from '@/components/form/PasswordInput'
+import { RegisterRequest } from '@/apis/auth'
+import { useAuth } from '@/hooks/auth'
 
 const RegisterForm = () => {
   const {
@@ -17,9 +19,14 @@ const RegisterForm = () => {
     resolver: classValidatorResolver(RegisterFormValidator),
     mode: 'onBlur',
   })
+  const { login } = useAuth()
 
-  const onSubmit: SubmitHandler<RegisterFormValidator> = (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<RegisterFormValidator> = async (data) => {
+    const { access_token } = await RegisterRequest(data)
+
+    if (access_token) {
+      login(access_token)
+    }
   }
 
   return (
@@ -36,7 +43,7 @@ const RegisterForm = () => {
           control={control}
           name={'studentId'}
           label={'学号'}
-          keyboardType='numeric'
+          keyboardType="numeric"
         />
       </View>
 
@@ -57,10 +64,7 @@ const RegisterForm = () => {
       </View>
 
       <TouchableOpacity className={'mt-2'} onPress={handleSubmit(onSubmit)}>
-        <Button
-          mode={'contained'}
-          className={'shadow-none w-full'}
-        >
+        <Button mode={'contained'} className={'shadow-none w-full'}>
           注册
         </Button>
       </TouchableOpacity>

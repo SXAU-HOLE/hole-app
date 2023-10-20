@@ -16,7 +16,6 @@ export function useImagePicker({ onSuccess, onError, ...options }: Options) {
         quality: 0.8,
         ...options,
       })
-      console.log('result', result)
       if (!result.canceled) {
         onSuccess(result)
       }

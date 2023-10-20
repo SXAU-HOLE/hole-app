@@ -15,14 +15,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<string>) => {
-      console.log('login')
-
       state.isLogin = true
       state.tooken = action.payload
     },
     logout: (state) => {
-      console.log('logged out')
-
       state.isLogin = false
       state.tooken = null
     },

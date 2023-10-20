@@ -12,7 +12,7 @@ export function useAuth() {
 
   const login = (token: string) => {
     store.dispatch(StoreLogin(token))
-    linkTo('/hole')
+    linkTo('/index')
   }
 
   const logout = () => {

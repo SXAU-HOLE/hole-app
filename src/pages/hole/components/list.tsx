@@ -82,7 +82,7 @@ const HoleList = ({
         backgroundColor={theme.colors.background}
       />
 
-      <View>
+      <View className={'h-full'}>
         <View className={'absolute z-[1] bottom-32 right-1'}>
           <AnimateHolePost offset={PostFABOffset} />
           <AnimateToTop

@@ -1,12 +1,13 @@
 import React from 'react'
 import AuthView from './AuthView'
-import { View,TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import Input from '@/components/form/Input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ForgetFormValidator } from '@/shared/validators/auth'
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import PasswordInput from '@/components/form/PasswordInput'
 import { Button } from 'react-native-paper'
+import { ForgetRequest } from '@/apis/auth'
 
 const ForgetForm = () => {
   const {
@@ -18,8 +19,8 @@ const ForgetForm = () => {
     mode: 'onBlur',
   })
 
-  const onSubmit: SubmitHandler<ForgetFormValidator> = (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<ForgetFormValidator> = async (data) => {
+    await ForgetRequest(data)
   }
 
   return (
@@ -29,7 +30,7 @@ const ForgetForm = () => {
           control={control}
           name={'studentId'}
           label={'学号'}
-          keyboardType='numeric'
+          keyboardType="numeric"
         />
       </View>
 
@@ -49,10 +50,8 @@ const ForgetForm = () => {
         />
       </View>
 
-      <TouchableOpacity  onPress={handleSubmit(onSubmit)}>
-        <Button mode="contained">
-          重置密码
-        </Button>
+      <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+        <Button mode="contained">重置密码</Button>
       </TouchableOpacity>
     </View>
   )

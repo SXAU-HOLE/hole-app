@@ -17,7 +17,6 @@ export function BottomActions() {
           draft.push(assets.uri)
         }
       })
-      console.log(imgs)
     },
     onError() {
       Toast.error({ text1: '图片选择失败' })
