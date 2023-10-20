@@ -14,6 +14,7 @@ export const Link: React.FC<Props> = (props) => {
   const navigation = useNavigation()
 
   const handleNavigation = () => {
+    // @ts-ignore
     navigation.navigate(props.to)
   }
 

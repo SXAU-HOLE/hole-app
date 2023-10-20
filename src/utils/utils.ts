@@ -1,6 +1,7 @@
 import { formatDistanceToNow, differenceInDays, format } from 'date-fns'
 import zhCN from 'date-fns/locale/zh-CN'
 import { InfiniteData } from '@tanstack/react-query'
+import { Dimensions } from 'react-native'
 
 export function formatDate(time: string) {
   const date = new Date(time)
@@ -34,3 +35,8 @@ export function flatInfiniteQueryData(data: InfiniteData<any> | undefined) {
 export function isImageFile(fileName: string) {
   return fileName.endsWith('.png') || fileName.endsWith('.jpg')
 }
+
+export const { width: WindowWidth, height: WindowHeight } =
+  Dimensions.get('window')
+export const { width: ScreenWidth, height: ScreenHeight } =
+  Dimensions.get('screen')
