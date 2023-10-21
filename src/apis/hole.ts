@@ -68,3 +68,14 @@ export function UploadHoleImgRequest(imgs: string[]) {
     data: data,
   })
 }
+
+/**
+ * 获取树洞详细
+ */
+export function GetHoleDetailRequest(params: { id: number }) {
+  return request<IResponse>({
+    method: 'GET',
+    url: '/hole/detail',
+    params,
+  })
+}
