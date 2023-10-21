@@ -64,9 +64,27 @@ export function useHoleDetail() {
     queryFn: () => GetHoleDetailRequest(params),
   })
 
-  console.log(query.data)
+  const client = useQueryClient()
+  const invalidate = async () => {
+    await client.invalidateQueries(key)
+  }
+
+  const toggleIsLike = async () => {
+    client.setQueryData<IHole>(key, (oldData) => {
+      oldData!.isLiked = !oldData!.isLiked
+      if (oldData!.isLiked) {
+        oldData!.favoriteCount++
+      } else {
+        oldData!.favoriteCount--
+      }
+      return oldData
+    })
+  }
 
   return {
     ...query,
+    data: query.data!,
+    invalidate,
+    toggleIsLike,
   }
 }

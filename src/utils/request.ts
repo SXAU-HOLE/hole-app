@@ -16,7 +16,11 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
   (data) => {
-    return data.data
+    if (data.data.data) {
+      return data.data.data
+    } else {
+      return data.data
+    }
   },
   (error: AxiosError) => {
     const data = error.response?.data as ErrorResponse

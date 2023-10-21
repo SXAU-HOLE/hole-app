@@ -4,6 +4,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather'
 import { IconProps } from 'react-native-vector-icons/Icon'
 
 import React from 'react'
+import { useTheme } from 'react-native-paper'
 
 export const Icons = (props: IconProps) => <MaterialIcon {...props} />
 
@@ -12,8 +13,20 @@ const withIconProps = (
   name: string,
 ) => {
   // eslint-disable-next-line react/display-name
-  return (props: Omit<IconProps, 'name'> & { name?: string }) => {
-    return <WrappedIconComponent name={name} {...props} />
+  return (
+    props: Omit<IconProps, 'name'> & { name?: string; active?: boolean },
+  ) => {
+    const theme = useTheme()
+
+    return (
+      <WrappedIconComponent
+        name={name}
+        {...props}
+        color={
+          props.active ? theme.colors.primary : theme.colors.surfaceVariant
+        }
+      />
+    )
   }
 }
 

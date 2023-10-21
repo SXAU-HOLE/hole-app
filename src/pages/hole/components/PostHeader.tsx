@@ -27,7 +27,6 @@ export function PostHeader() {
       return await PostHoleRequest({ ...data, imgs: res })
     },
     onSuccess(data) {
-      console.log(data)
       Toast.success({ text1: '成功发布帖子' })
       navigator.goBack()
     },

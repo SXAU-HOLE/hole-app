@@ -64,7 +64,7 @@ const HoleInfoBottom = ({ data }: Props) => {
       element: <LikeIcon size={18} color={'#686E87'} />,
     },
     {
-      value: data.favoriteCount,
+      value: data.commentCounts,
       element: (
         <CommentIcon name="chat" size={18} color={'#686E87'}></CommentIcon>
       ),

@@ -11,6 +11,8 @@ declare interface IHole {
   imgs: string[]
   favoriteCount: number
   user: IUser
+  isLiked: boolean
+  commentCounts: number
 }
 
 interface IUser {

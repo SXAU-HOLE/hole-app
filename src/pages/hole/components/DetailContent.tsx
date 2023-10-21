@@ -1,23 +1,26 @@
+import { LikeIcon } from '@/components/Icons'
 import { AutoSizeImageList } from '@/components/Image/AutoSizeImageList'
 import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
 import { useHoleDetail } from '@/query/hole'
-import { useEffect, useState } from 'react'
 import { View, Image } from 'react-native'
 import { Text } from 'react-native-paper'
+import { LikeHole } from './LikeHole'
+
+export function ContentBottom() {
+  return <LikeHole></LikeHole>
+}
 
 export function DetialContent() {
-  const { data: All } = useHoleDetail()
-  if (!All) return
-  const { data } = All!
+  const { data } = useHoleDetail()
 
   return (
     <View className={'flex flex-col bg-white'}>
       <View className={'px-3 py-2'}>
         <View className={'flex flex-row items-center'}>
-          <UserAvatar url={data.user.avatar} size={36}></UserAvatar>
+          <UserAvatar url={data.user?.avatar} size={36}></UserAvatar>
           <View className={'flex flex-col ml-2'}>
-            <Text variant={'titleMedium'}>{data.user.username}</Text>
+            <Text variant={'titleMedium'}>{data.user?.username}</Text>
             <View className={'flex flex-row'}>
               <TimeText time={data.createAt} />
             </View>
@@ -41,6 +44,7 @@ export function DetialContent() {
           )}
         </View>
       </View>
+      <ContentBottom></ContentBottom>
     </View>
   )
 }

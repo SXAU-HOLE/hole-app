@@ -43,6 +43,16 @@ export function PostLikeHole(data: Id) {
     data,
   })
 }
+/**
+ * 取消点赞
+ */
+export function DeleteLikeHole(data: Id) {
+  return request<IResponse>({
+    method: 'DELETE',
+    url: '/hole/like',
+    data,
+  })
+}
 
 /**
  * 上传图片
@@ -73,7 +83,7 @@ export function UploadHoleImgRequest(imgs: string[]) {
  * 获取树洞详细
  */
 export function GetHoleDetailRequest(params: { id: number }) {
-  return request<IResponse>({
+  return request<IHole>({
     method: 'GET',
     url: '/hole/detail',
     params,
