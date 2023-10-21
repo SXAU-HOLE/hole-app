@@ -1,4 +1,8 @@
-import { HoleListMode } from '@/shared/enum'
+import {
+  HoleDetailCommentMode,
+  HoleDetailCommentOrderMode,
+  HoleListMode,
+} from '@/shared/enum'
 import { PaginateAble } from '@/shared/types'
 import { request } from '@/utils/request'
 import { PostHoleValidator } from '@/shared/validators/hole'
@@ -86,6 +90,23 @@ export function GetHoleDetailRequest(params: { id: number }) {
   return request<IHole>({
     method: 'GET',
     url: '/hole/detail',
+    params,
+  })
+}
+
+/**
+ * 获取评论
+ */
+export function GetHoleDetailCommentsRequest(
+  params: PaginateAble<{
+    mode?: HoleDetailCommentMode
+    order?: HoleDetailCommentOrderMode
+  }> &
+    Id,
+) {
+  return request<IHoleCommentListResponse>({
+    method: 'GET',
+    url: '/hole/comment',
     params,
   })
 }

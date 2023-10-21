@@ -1,4 +1,8 @@
-import { GetHoleDetailRequest, GetHoleListRequest } from '@/apis/hole'
+import {
+  GetHoleDetailCommentsRequest,
+  GetHoleDetailRequest,
+  GetHoleListRequest,
+} from '@/apis/hole'
 import { HoleListMode } from '@/shared/enum'
 import {
   InfiniteData,
@@ -8,6 +12,8 @@ import {
 } from '@tanstack/react-query'
 import { useRoute } from '@react-navigation/native'
 import { useMemo } from 'react'
+import { useBaseInfiniteQuery } from '@/hooks/useBaseInfiniteQuery'
+import { flatInfiniteQueryData } from '@/utils/utils'
 
 export function useHoleList() {
   const route = useRoute()
@@ -86,5 +92,31 @@ export function useHoleDetail() {
     data: query.data!,
     invalidate,
     toggleIsLike,
+  }
+}
+
+export function useHoleComment() {
+  const params = useRoute().params as { id: number }
+
+  const key = ['hole.comments', params.id]
+
+  const query = useBaseInfiniteQuery<IHoleCommentListResponse>({
+    queryKey: key,
+    queryFn: ({ pageParam = 1 }) => {
+      return GetHoleDetailCommentsRequest({
+        limit: 10,
+        page: pageParam,
+        id: params.id,
+      })
+    },
+  })
+
+  const { data: flattenData } = useMemo(() => {
+    return flatInfiniteQueryData<IHoleCommentListItem[]>(query.data)
+  }, [query.data])
+
+  return {
+    ...query,
+    flattenData,
   }
 }

@@ -27,7 +27,7 @@ export function DetialContent() {
           </View>
         </View>
         <View>
-          {data.titile ? (
+          {data.title ? (
             <Text variant={'titleLarge'} className={'font-medium'}>
               {data?.title}
             </Text>

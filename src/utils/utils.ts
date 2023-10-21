@@ -23,12 +23,12 @@ export function formatDate(time: string) {
   }
 }
 
-export function flatInfiniteQueryData(data: InfiniteData<any> | undefined) {
-  const isEmpty = data?.pages[0].items.length === 0
+export function flatInfiniteQueryData<T>(data: InfiniteData<any> | undefined) {
+  const isEmpty = data?.pages[0].items?.length === 0
 
   return {
     isEmpty,
-    data: isEmpty ? [] : data?.pages.map((page) => page.items),
+    data: isEmpty ? [] : (data?.pages.map((page) => page.items) as T[]),
   }
 }
 
