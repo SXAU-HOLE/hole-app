@@ -1,11 +1,7 @@
 import { Text, View } from 'react-native'
-import { SegmentedButtons, useTheme } from 'react-native-paper'
-import { useState } from 'react'
 import { BarsIcon } from '@/components/Icons'
 
 export function CommentHeader() {
-  const [value, setValue] = useState('')
-
   return (
     <View className={'flex flex-row items-center px-3 justify-between h-14'}>
       <View className={'flex flex-row space-x-3'}>

@@ -4671,6 +4671,13 @@ hosted-git-info@^3.0.2:
   dependencies:
     lru-cache "^6.0.0"
 
+hox@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmmirror.com/hox/-/hox-2.1.1.tgz#48713ba875ebd53ecf9124da10ebb22f5698d5c7"
+  integrity sha512-POOE+kzaDXGbBVvMvhKnVRADg9R6yI14/FisHA8HyqKDAPCW1Owejyt/6yvQXngQo6s4OG6DLzAznOASPAJRDw==
+  dependencies:
+    use-sync-external-store "^1.2.0"
+
 http-errors@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"

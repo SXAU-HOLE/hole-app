@@ -110,3 +110,30 @@ export function GetHoleDetailCommentsRequest(
     params,
   })
 }
+
+/**
+ * 创建树洞评论
+ */
+export function PostHoleDetailCommentRequest(data: {
+  body: string
+  id: string
+  imgs: string[]
+}) {
+  return request<IResponse>({
+    method: 'POST',
+    url: '/hole/comment',
+    data,
+  })
+}
+
+export function PostHoleCommentReplyRequest(data: {
+  commentId: string
+  body: string
+  replyId?: string
+}) {
+  return request({
+    method: 'POST',
+    url: '/hole/comment/reply',
+    data,
+  })
+}
