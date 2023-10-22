@@ -13,11 +13,11 @@ export function CommentItem({ data }: { data: IHoleCommentListItem }) {
         }
       >
         <View>
-          <View className={'w-full flex flex-row space-x-2'}>
+          <View className={'w-full flex flex-row'}>
             <View className={'w-1/12'}>
               <UserAvatar url={data.user.avatar} size={30} />
             </View>
-            <View className={'flex flex-col justify-between w-11/12 '}>
+            <View className={'w-11/12 px-2'}>
               <UserText username={data.user.username} />
               <View>
                 <Text>{data.body}</Text>

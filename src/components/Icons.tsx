@@ -1,5 +1,6 @@
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import { IconProps } from 'react-native-vector-icons/Icon'
 
@@ -34,6 +35,7 @@ const withFontAV5Icon = (name: string) => withIconProps(FontAwesome5Icon, name)
 const withMaterialIcon = (name: string) => withIconProps(MaterialIcon, name)
 const withFeatherIcon = (name: string) => withIconProps(FeatherIcon, name)
 
+const withAntDesignIcon = (name: string) => withIconProps(AntDesign, name)
 export const LikeIcon = withFontAV5Icon('thumbs-up')
 
 export const CommentIcon = withMaterialIcon('chat')
@@ -43,3 +45,7 @@ export const MoveVertical = withFeatherIcon('move-vertical')
 export const CloseIcon = withFeatherIcon('x')
 
 export const ImgCloseIcon = withMaterialIcon('close')
+
+export const SmileIcon = withFeatherIcon('smile')
+
+export const BarsIcon = withAntDesignIcon('bars')

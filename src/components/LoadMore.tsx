@@ -3,7 +3,7 @@ import { Text, useTheme } from 'react-native-paper'
 
 interface Props {
   text?: string
-  hasNextPage: boolean
+  hasNextPage?: boolean
 }
 
 export function LoadMore({ hasNextPage, text }: Props) {
