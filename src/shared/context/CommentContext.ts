@@ -10,7 +10,7 @@ import {
 import { useRoute } from '@react-navigation/native'
 
 export type ICommentData = {
-  id?: number
+  id?: string
   commentId?: string
   replyId?: string
   imgs?: string[]
@@ -20,7 +20,7 @@ export type ICommentData = {
 export const [useCommentContext, CommentContext] = createStore(() => {
   const [showInput, setShowInput] = useState(false)
   const [data, setData] = useState<ICommentData | null>(null)
-  const { id } = useRoute().params as { id: number }
+  const { id } = useRoute().params as { id: string }
 
   const isReply = false
 

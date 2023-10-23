@@ -98,7 +98,7 @@ const HoleList = ({
             ListFooterComponent={() => (
               <LoadMore
                 text={'没有更多帖子了哦'}
-                hasNextPage={false}
+                hasNextPage={hasNextPage}
               ></LoadMore>
             )}
             renderItem={({ item }) => {

@@ -14,6 +14,7 @@ import { useRoute } from '@react-navigation/native'
 import { useMemo } from 'react'
 import { useBaseInfiniteQuery } from '@/hooks/useBaseInfiniteQuery'
 import { flatInfiniteQueryData } from '@/utils/utils'
+import { ICommentData } from '@/shared/context/CommentContext'
 
 export function useHoleList() {
   const route = useRoute()
@@ -57,8 +58,12 @@ export function useHoleList() {
       refetchPage: (page, index) => index === 0,
     })
   }
+  const invalidate = async () => {
+    console.log('invalidate')
+    await client.invalidateQueries(queryKey)
+  }
 
-  return { ...query, invalidateQuery }
+  return { ...query, invalidateQuery, invalidate }
 }
 
 export function useHoleDetail() {
@@ -115,8 +120,18 @@ export function useHoleComment() {
     return flatInfiniteQueryData<IHoleCommentListItem[]>(query.data)
   }, [query.data])
 
+  const addComment = async (data: ICommentData, pageIndex = 0) => {
+    await query.setData((oldData: any) => {
+      oldData.pages[0].items = [data, ...oldData.pages[0].items]
+
+      return oldData
+    })
+    console.log(query.data?.pages[0].items)
+  }
+
   return {
     ...query,
     flattenData,
+    addComment,
   }
 }

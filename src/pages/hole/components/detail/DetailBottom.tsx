@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { Keyboard, View } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import useKeyboardHeight from '@/hooks/useKeyboardHeight'
 import { AreaInput } from '@/components/form/AreaInput'
@@ -6,18 +6,23 @@ import { SmileIcon } from '@/components/Icons'
 import { useCommentContext } from '@/shared/context/CommentContext'
 import { useMutation } from '@tanstack/react-query'
 import Toast from 'react-native-toast-message'
+import { useHoleComment } from '@/query/hole'
 
 export function DetailBottom() {
   const keyboardHeight = useKeyboardHeight()
-  const { control, handleSubmit, reqFunc, id } = useCommentContext()
+  const { control, handleSubmit, reqFunc, id, resetField } = useCommentContext()
+  const { addComment } = useHoleComment()
 
   const mutation = useMutation({
     mutationFn: reqFunc,
-    onSuccess() {
+    onSuccess(data) {
       Toast.show({
         type: 'success',
         text1: '留言成功！',
       })
+      Keyboard.dismiss()
+      resetField('body')
+      addComment(data)
     },
   })
 
