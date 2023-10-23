@@ -31,7 +31,9 @@ export function LikeHole() {
         transparent={true}
         onPress={likeHole}
       />
-      <Text className={'text-xs text-black/50'}>{data!.favoriteCount}</Text>
+      <Text className={'text-xs text-black/50 absolute top-10'}>
+        {data!.favoriteCount}
+      </Text>
     </View>
   )
 }

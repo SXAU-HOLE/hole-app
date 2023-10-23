@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { ReactQueryProvider } from '@/shared/providers/react-query'
 import { persistor, store } from '@/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import { CommentContext } from '@/shared/context/CommentContext'
 
 export default function App() {
   return (

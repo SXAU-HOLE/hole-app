@@ -3,10 +3,13 @@ import { UserText } from '@/components/Text/UserText'
 import UserAvatar from '@/components/UserAvatar'
 import { View } from 'react-native'
 import { Text, TouchableRipple } from 'react-native-paper'
+import { useCommentContext } from '@/shared/context/CommentContext'
+import { ReplyBody } from '@/pages/hole/components/reply/ReplyBody'
 
 export function CommentItem({ data }: { data: IHoleCommentListItem }) {
+  const { openInput } = useCommentContext()
   return (
-    <TouchableRipple className="px-3" onPress={() => {}}>
+    <TouchableRipple className="px-3" onPress={() => openInput(data)}>
       <View
         className={
           'flex flex-row border-b-[1px] border-black/5 py-2 rounded-lg'
@@ -22,9 +25,10 @@ export function CommentItem({ data }: { data: IHoleCommentListItem }) {
               <View>
                 <Text>{data.body}</Text>
               </View>
-              <View className={'mt-2 flex flex-row justify-between'}>
+              <View className={'my-2 flex flex-row justify-between'}>
                 <TimeText time={data.createAt}></TimeText>
               </View>
+              {data.replies?.length ? <ReplyBody /> : <></>}
             </View>
           </View>
         </View>

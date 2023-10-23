@@ -11,7 +11,6 @@ import { useHoleComment } from '@/query/hole'
 export function DetailBottom() {
   const keyboardHeight = useKeyboardHeight()
   const { control, handleSubmit, reqFunc, id, resetField } = useCommentContext()
-  const { addComment } = useHoleComment()
 
   const mutation = useMutation({
     mutationFn: reqFunc,
@@ -22,7 +21,6 @@ export function DetailBottom() {
       })
       Keyboard.dismiss()
       resetField('body')
-      addComment(data)
     },
   })
 

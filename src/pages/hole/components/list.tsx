@@ -52,7 +52,10 @@ const HoleList = ({
     navigation.navigate('hole', {
       screen: 'detail',
       params: {
-        id,
+        screen: 'index',
+        params: {
+          id,
+        },
       },
     })
   }
@@ -102,6 +105,7 @@ const HoleList = ({
               ></LoadMore>
             )}
             renderItem={({ item }) => {
+              // @ts-ignore
               return item.map((e: any) => (
                 <HoleInfo data={e} key={e.id} onPress={() => go(e.id)} />
               ))

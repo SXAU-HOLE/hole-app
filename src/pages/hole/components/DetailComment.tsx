@@ -4,9 +4,11 @@ import { DetialContent } from '@/pages/hole/components/DetailContent'
 import { LoadMore } from '@/components/LoadMore'
 import { CommentItem } from '@/pages/hole/components/detail/CommentItem'
 import React from 'react'
+import { useCommentContext } from '@/shared/context/CommentContext'
 
 export function DetailComment() {
   const { flattenData, hasNextPage, fetchNextPage } = useHoleComment()
+  const { onScroll } = useCommentContext()
 
   const onLoadMore = async () => {
     if (!hasNextPage) return
@@ -34,6 +36,7 @@ export function DetailComment() {
         }
         onEndReachedThreshold={0.1}
         onEndReached={onLoadMore}
+        onScroll={onScroll}
       ></FlatList>
     </View>
   )

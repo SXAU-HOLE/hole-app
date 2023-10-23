@@ -4,12 +4,23 @@ import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
 import { useHoleDetail } from '@/query/hole'
 import { View, Image } from 'react-native'
-import { Text, useTheme } from 'react-native-paper'
+import { IconButton, Text, useTheme } from 'react-native-paper'
 import { LikeHole } from './LikeHole'
 import { CommentHeader } from '@/pages/hole/components/detail/CommentHeader'
+import { Toast } from '@/utils/toast'
 
 export function ContentBottom() {
-  return <LikeHole></LikeHole>
+  return (
+    <View className={'py-3 flex flex-row justify-around items-center'}>
+      <IconButton
+        icon={'share'}
+        onPress={() => {
+          Toast.info({ text1: '功能正在开发中~~' })
+        }}
+      ></IconButton>
+      <LikeHole></LikeHole>
+    </View>
+  )
 }
 
 export function DetialContent() {
@@ -37,7 +48,7 @@ export function DetialContent() {
             ) : (
               <></>
             )}
-            <Text variant={'bodyMedium'} className={'mt-3'}>
+            <Text variant={'bodyMedium'} className={'my-3'}>
               {data.body}
             </Text>
             {data.imgs?.length ? (
@@ -49,6 +60,7 @@ export function DetialContent() {
         </View>
         <ContentBottom></ContentBottom>
       </View>
+      {/*  底部距离 */}
       <View
         className={'h-5'}
         style={{ backgroundColor: theme.colors.background }}

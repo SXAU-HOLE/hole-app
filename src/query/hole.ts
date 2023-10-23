@@ -15,6 +15,7 @@ import { useMemo } from 'react'
 import { useBaseInfiniteQuery } from '@/hooks/useBaseInfiniteQuery'
 import { flatInfiniteQueryData } from '@/utils/utils'
 import { ICommentData } from '@/shared/context/CommentContext'
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 
 export function useHoleList() {
   const route = useRoute()
