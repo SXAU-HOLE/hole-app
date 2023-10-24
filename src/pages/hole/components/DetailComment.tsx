@@ -37,6 +37,7 @@ export function DetailComment() {
         onEndReachedThreshold={0.1}
         onEndReached={onLoadMore}
         onScroll={onScroll}
+        showsVerticalScrollIndicator={false}
       ></FlatList>
     </View>
   )

@@ -2,6 +2,7 @@ import {
   GetHoleDetailCommentsRequest,
   GetHoleDetailRequest,
   GetHoleListRequest,
+  GetReplyListRequest,
 } from '@/apis/hole'
 import { HoleListMode } from '@/shared/enum'
 import {
@@ -124,5 +125,19 @@ export function useHoleComment() {
   return {
     ...query,
     flattenData,
+  }
+}
+
+export function useReplyList(commentId: string) {
+  const queryKey = ['hole.reply', commentId]
+
+  const query = useBaseInfiniteQuery<any>({
+    queryKey,
+    queryFn: ({ pageParam }) =>
+      GetReplyListRequest({ id: commentId, page: pageParam, limit: 10 }),
+  })
+
+  return {
+    ...query,
   }
 }

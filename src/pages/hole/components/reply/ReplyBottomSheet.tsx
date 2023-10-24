@@ -5,19 +5,24 @@ import {
   useDerivedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { Actionsheet, KeyboardAvoidingView } from 'native-base'
+import { Actionsheet, Input, KeyboardAvoidingView } from 'native-base'
 import Animated from 'react-native-reanimated'
 import useKeyboardHeight from '@/hooks/useKeyboardHeight'
+import { CommentInputForm } from '@/pages/hole/components/detail/CommentInputForm'
+import { Text, View } from 'react-native'
+import { CommentBottom } from '@/pages/hole/components/detail/CommentBottom'
+import { DetailBottom } from '@/pages/hole/components/detail/DetailBottom'
 
 export interface ReplyProps {
+  isOpen: boolean
+  onClose: () => void
   children: ReactNode
 }
 
-export function ReplyBottomSheet({ children }: ReplyProps) {
+export function ReplyBottomSheet({ isOpen, children, onClose }: ReplyProps) {
   const keyboardHeight = useKeyboardHeight()
-  const [open, setOpen] = useState(true)
 
-  const height = useDerivedValue(() => keyboardHeight + 200, [keyboardHeight])
+  const height = useDerivedValue(() => keyboardHeight + 800, [keyboardHeight])
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -25,18 +30,17 @@ export function ReplyBottomSheet({ children }: ReplyProps) {
     }
   })
 
-  const closeModal = () => {
-    setOpen(false)
-  }
-
   return (
     <>
       <KeyboardAvoidingView>
-        <Actionsheet isOpen={open} onClose={closeModal}>
-          <Actionsheet.Content bg={'#fff'}>
+        <Actionsheet isOpen={isOpen} onClose={onClose}>
+          <Actionsheet.Content bg={'#fff'} className={'relative'}>
             <Animated.View style={[animatedStyle]} className={'w-full'}>
               {children}
             </Animated.View>
+            <View className={'absolute bottom-0 w-full'}>
+              <CommentInputForm></CommentInputForm>
+            </View>
           </Actionsheet.Content>
         </Actionsheet>
       </KeyboardAvoidingView>

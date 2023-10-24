@@ -137,3 +137,11 @@ export function PostHoleCommentReplyRequest(data: {
     data,
   })
 }
+
+export function GetReplyListRequest(params: PaginateAble<{ id: string }>) {
+  return request({
+    method: 'GET',
+    url: '/hole/comment/reply',
+    params,
+  })
+}
