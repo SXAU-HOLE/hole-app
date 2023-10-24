@@ -8,6 +8,7 @@ import { IconButton, Text, useTheme } from 'react-native-paper'
 import { LikeHole } from './LikeHole'
 import { CommentHeader } from '@/pages/hole/components/detail/CommentHeader'
 import { Toast } from '@/utils/toast'
+import ReadMore from 'react-native-read-more-text'
 
 export function ContentBottom() {
   return (

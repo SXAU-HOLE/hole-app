@@ -2,12 +2,14 @@ import TimeText from '@/components/Text/TimeText'
 import { UserText } from '@/components/Text/UserText'
 import UserAvatar from '@/components/UserAvatar'
 import { View } from 'react-native'
-import { Text, TouchableRipple } from 'react-native-paper'
+import { Text, TouchableRipple, useTheme } from 'react-native-paper'
 import { useCommentContext } from '@/shared/context/CommentContext'
 import { ReplyBody } from '@/pages/hole/components/reply/ReplyBody'
+import ReadMore from 'react-native-read-more-text'
 
 export function CommentItem({ data }: { data: IHoleCommentListItem }) {
   const { openInput } = useCommentContext()
+
   return (
     <TouchableRipple className="px-3" onPress={() => openInput(data)}>
       <View
@@ -25,7 +27,21 @@ export function CommentItem({ data }: { data: IHoleCommentListItem }) {
                 <UserText username={data.user.username} />
               </View>
               <View>
-                <Text>{data.body}</Text>
+                <ReadMore
+                  numberOfLines={3}
+                  renderTruncatedFooter={(handlePress) => (
+                    <Text className={'text-primary'} onPress={handlePress}>
+                      展开评论
+                    </Text>
+                  )}
+                  renderRevealedFooter={(handlePress) => (
+                    <Text className={'text-primary'} onPress={handlePress}>
+                      收起评论
+                    </Text>
+                  )}
+                >
+                  <Text>{data.body}</Text>
+                </ReadMore>
               </View>
               <View className={'my-2 flex flex-row justify-between'}>
                 <TimeText time={data.createAt}></TimeText>
