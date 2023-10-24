@@ -121,18 +121,8 @@ export function useHoleComment() {
     return flatInfiniteQueryData<IHoleCommentListItem[]>(query.data)
   }, [query.data])
 
-  const addComment = async (data: ICommentData, pageIndex = 0) => {
-    await query.setData((oldData: any) => {
-      oldData.pages[0].items = [data, ...oldData.pages[0].items]
-
-      return oldData
-    })
-    console.log(query.data?.pages[0].items)
-  }
-
   return {
     ...query,
     flattenData,
-    addComment,
   }
 }

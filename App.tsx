@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { ReactQueryProvider } from '@/shared/providers/react-query'
 import { persistor, store } from '@/store'
 import { PersistGate } from 'redux-persist/integration/react'
-import { CommentContext } from '@/shared/context/CommentContext'
+import { NativeBaseProvider } from 'native-base'
 
 export default function App() {
   return (
@@ -15,7 +15,9 @@ export default function App() {
         <ReactQueryProvider>
           <PaperProvider>
             <NavigationContainer>
-              <Layout />
+              <NativeBaseProvider>
+                <Layout />
+              </NativeBaseProvider>
             </NavigationContainer>
           </PaperProvider>
         </ReactQueryProvider>

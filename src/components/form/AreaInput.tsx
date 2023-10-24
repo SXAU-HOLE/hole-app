@@ -13,6 +13,7 @@ interface Props<T extends FieldValues> extends TextInputProps {
   name: FieldPath<T>
   control: Control<T>
   rules?: UseControllerProps<T>['rules']
+  inputRef?: React.MutableRefObject<any>
 }
 
 export const AreaInput = <T extends object>({
@@ -32,6 +33,7 @@ export const AreaInput = <T extends object>({
       render={({ field: { value, onChange, onBlur } }) => (
         <>
           <TextInput
+            ref={props.inputRef}
             value={value}
             onBlur={onBlur}
             onChangeText={onChange}

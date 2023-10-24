@@ -1,5 +1,5 @@
 import { createStore } from 'hox'
-import { useMemo, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { CommentReplyValidator } from '@/shared/validators/reply'
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
@@ -8,8 +8,8 @@ import {
   PostHoleDetailCommentRequest,
 } from '@/apis/hole'
 import { useRoute } from '@react-navigation/native'
-import { useKeyboard } from 'react-native-toast-message/lib/src/hooks'
-import { Keyboard, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
+import input from '@/components/form/Input'
 
 export type ICommentData = {
   id?: string
@@ -24,8 +24,9 @@ export const [useCommentContext, CommentContext] = createStore(() => {
   const [data, setData] = useState<ICommentData | null>(null)
   const { id } = useRoute().params as { id: string }
   const [isShowHeader, setIsShowHeader] = useState(false)
+  const inputRef = useRef(null) as React.MutableRefObject<any>
 
-  const isReply = data !== null && data !== undefined
+  const isReply = data === null || data === undefined
 
   const form = useForm<CommentReplyValidator>({
     resolver: classValidatorResolver(CommentReplyValidator),
@@ -37,25 +38,33 @@ export const [useCommentContext, CommentContext] = createStore(() => {
       body: param.body,
     } as ICommentData
 
-    if (isReply) {
+    if (!isReply) {
       params.commentId = data?.id
       if (data?.replyId) {
-        params.replyId = data.replyId
+        params.replyId = data?.replyId
       }
     } else {
       params.id = param.id
     }
 
     const func = isReply
-      ? PostHoleCommentReplyRequest
-      : PostHoleDetailCommentRequest
+      ? PostHoleDetailCommentRequest
+      : PostHoleCommentReplyRequest
 
     return func(params as any)
   }
 
   const openInput = (data: ICommentData | null = null) => {
     setData(data)
-    setShowInput(true)
+    inputRef.current?.focus()
+  }
+
+  const closeInput = () => {
+    if (inputRef.current.value) {
+      console.log(inputRef.current.value)
+    } else {
+      setData(null)
+    }
   }
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -74,5 +83,9 @@ export const [useCommentContext, CommentContext] = createStore(() => {
     onScroll,
     id,
     isShowHeader,
+    inputRef,
+    isReply,
+    data,
+    closeInput,
   }
 })

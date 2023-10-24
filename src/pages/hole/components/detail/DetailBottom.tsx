@@ -9,8 +9,8 @@ import Toast from 'react-native-toast-message'
 import { useHoleComment } from '@/query/hole'
 
 export function DetailBottom() {
-  const keyboardHeight = useKeyboardHeight()
   const { control, handleSubmit, reqFunc, id, resetField } = useCommentContext()
+  const { invalidateQuery } = useHoleComment()
 
   const mutation = useMutation({
     mutationFn: reqFunc,
@@ -21,6 +21,7 @@ export function DetailBottom() {
       })
       Keyboard.dismiss()
       resetField('body')
+      invalidateQuery()
     },
   })
 
@@ -36,9 +37,6 @@ export function DetailBottom() {
       className={
         'absolute bottom-0 right-0 left-0 bg-white border-t-[1px] border-black/5'
       }
-      style={{
-        bottom: keyboardHeight,
-      }}
     >
       <View className={'py-1'}>
         <View

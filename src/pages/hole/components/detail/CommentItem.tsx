@@ -21,14 +21,22 @@ export function CommentItem({ data }: { data: IHoleCommentListItem }) {
               <UserAvatar url={data.user.avatar} size={30} />
             </View>
             <View className={'w-11/12 px-2'}>
-              <UserText username={data.user.username} />
+              <View>
+                <UserText username={data.user.username} />
+              </View>
               <View>
                 <Text>{data.body}</Text>
               </View>
               <View className={'my-2 flex flex-row justify-between'}>
                 <TimeText time={data.createAt}></TimeText>
               </View>
-              {data.replies?.length ? <ReplyBody /> : <></>}
+              {data.replies?.length ? (
+                <>
+                  <ReplyBody data={data} />
+                </>
+              ) : (
+                <></>
+              )}
             </View>
           </View>
         </View>
