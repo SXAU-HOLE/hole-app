@@ -24,13 +24,12 @@ export function ReplyBody({
       className={'bg-surfaceVariant/10 rounded-lg p-2'}
     >
       <View className={'flex flex-col'}>
-        {replies.slice(0, 3).map((reply, index) => (
+        {replies.slice(0, 3).map((reply) => (
           <>
             <Pressable
               onPress={() => {
                 openInput({ ...data, commentId: data.id, replyId: reply.id })
               }}
-              key={index}
               className={'flex flex-row space-x-1 my-1'}
             >
               <Text className={'text-primary'}>{reply.user.username}</Text>

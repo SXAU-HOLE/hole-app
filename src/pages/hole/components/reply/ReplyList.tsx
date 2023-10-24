@@ -51,15 +51,15 @@ export function ReplyList({
               renderItem={({ item, index }) => (
                 <CommentItem key={index} data={item} />
               )}
-              ListFooterComponent={() => (
-                <>
-                  <LoadMore
-                    text={'没有更多回复了哦'}
-                    hasNextPage={hasNextPage}
-                  ></LoadMore>
-                  <View className={'mt-20 bg-transparent'}></View>
-                </>
-              )}
+              ListFooterComponent={
+                <LoadMore
+                  text={'没有更多回复了哦'}
+                  hasNextPage={hasNextPage}
+                ></LoadMore>
+              }
+              ListFooterComponentStyle={{
+                marginBottom: 300,
+              }}
               onEndReachedThreshold={0.1}
               onEndReached={onLoadMore}
               showsVerticalScrollIndicator={false}

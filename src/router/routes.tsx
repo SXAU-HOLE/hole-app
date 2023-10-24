@@ -1,4 +1,7 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack'
 import React from 'react'
 import AuthStacks from './stacks/auth.stack'
 import { useAuth } from '@/hooks/auth'
