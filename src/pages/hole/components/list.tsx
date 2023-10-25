@@ -16,6 +16,7 @@ import { flatInfiniteQueryData } from '@/utils/utils'
 import { useNavigation } from '@react-navigation/native'
 import { AnimateHolePost } from '@/pages/hole/components/AnimateHolePost'
 import { AnimateToTop } from '@/pages/hole/components/AnimateToTop'
+import { SkeletonLoading } from '@/components/Skeleton'
 
 type HoleListProps = UseInfiniteQueryResult & {
   invalidateQuery: () => any
@@ -93,8 +94,7 @@ const HoleList = ({
             goTop={goTop}
           ></AnimateToTop>
         </View>
-
-        {isSuccess && (
+        {isSuccess ? (
           <FlatList
             ref={listRef}
             data={flatData}
@@ -121,6 +121,8 @@ const HoleList = ({
             }}
             showsVerticalScrollIndicator={false}
           ></FlatList>
+        ) : (
+          <SkeletonLoading nums={3}></SkeletonLoading>
         )}
       </View>
     </Page>
