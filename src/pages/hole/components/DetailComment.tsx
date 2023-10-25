@@ -31,8 +31,8 @@ export function DetailComment() {
           </>
         )}
         // @ts-ignore
-        renderItem={({ item, index }) =>
-          item.map((e, i) => <CommentItem key={i} data={e}></CommentItem>)
+        renderItem={({ item }) =>
+          item.map((e, i) => <CommentItem key={e.id} data={e}></CommentItem>)
         }
         onEndReachedThreshold={0.1}
         onEndReached={onLoadMore}

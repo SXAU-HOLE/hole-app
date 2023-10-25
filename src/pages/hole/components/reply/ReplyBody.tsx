@@ -25,25 +25,24 @@ export function ReplyBody({
     >
       <View className={'flex flex-col'}>
         {replies.slice(0, 3).map((reply) => (
-          <>
-            <Pressable
-              onPress={() => {
-                openInput({ ...data, commentId: data.id, replyId: reply.id })
-              }}
-              className={'flex flex-row space-x-1 my-1'}
-            >
-              <Text className={'text-primary'}>{reply.user.username}</Text>
-              {reply.replyUser !== null && (
-                <>
-                  <Text className={'mx-1'}>回复</Text>
-                  <Text className={'text-primary'}>
-                    {reply.replyUser.username}
-                  </Text>
-                </>
-              )}
-              <Text>: {reply.body}</Text>
-            </Pressable>
-          </>
+          <Pressable
+            key={reply.id}
+            onPress={() => {
+              openInput({ ...data, commentId: data.id, replyId: reply.id })
+            }}
+            className={'flex flex-row space-x-1 my-1'}
+          >
+            <Text className={'text-primary'}>{reply.user.username}</Text>
+            {reply.replyUser !== null && (
+              <>
+                <Text className={'mx-1'}>回复</Text>
+                <Text className={'text-primary'}>
+                  {reply.replyUser.username}
+                </Text>
+              </>
+            )}
+            <Text>: {reply.body}</Text>
+          </Pressable>
         ))}
       </View>
       {replies.length > 3 ? (

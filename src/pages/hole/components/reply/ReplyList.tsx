@@ -1,12 +1,11 @@
 import { FlatList, Text, View } from 'react-native'
 import { ReplyBottomSheet } from '@/pages/hole/components/reply/ReplyBottomSheet'
 import { useReplyList } from '@/query/hole'
-import { CommentItem } from '@/pages/hole/components/detail/CommentItem'
 import { useTheme } from 'react-native-paper'
 import { Loading } from '@/components/Loading'
-import { DetailBottom } from '@/pages/hole/components/detail/DetailBottom'
 import { LoadMore } from '@/components/LoadMore'
 import React from 'react'
+import { ReplyItem } from '@/pages/hole/components/reply/ReplyItem'
 
 export function ReplyList({
   open,
@@ -49,7 +48,7 @@ export function ReplyList({
             <FlatList
               data={data}
               renderItem={({ item, index }) => (
-                <CommentItem key={index} data={item} />
+                <ReplyItem key={index} data={item} />
               )}
               ListFooterComponent={
                 <LoadMore
