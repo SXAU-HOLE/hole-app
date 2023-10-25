@@ -49,3 +49,5 @@ export const ImgCloseIcon = withMaterialIcon('close')
 export const SmileIcon = withFeatherIcon('smile')
 
 export const BarsIcon = withAntDesignIcon('bars')
+
+export const EmojiIcon = withFontAV5Icon('grin-beam')

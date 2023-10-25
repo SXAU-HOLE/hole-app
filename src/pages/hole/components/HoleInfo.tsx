@@ -4,6 +4,7 @@ import UserAvatar from '@/components/UserAvatar'
 import { Image, View } from 'react-native'
 import { Text, TouchableRipple } from 'react-native-paper'
 import { ImageList } from '@/components/Image/ImageList'
+import { EmojiableText } from '@/components/Text/EmojiableText'
 
 interface Props {
   data: IHole
@@ -40,9 +41,10 @@ const HoleInfoBody = ({ data }: Props) => {
 
       <View className="overflow-hidden">
         <View>
-          <Text variant={'bodyMedium'} numberOfLines={7}>
-            {data.body}
-          </Text>
+          {/*<Text variant={'bodyMedium'} numberOfLines={7}>*/}
+          {/*  {data.body}*/}
+          {/*</Text>*/}
+          <EmojiableText body={data.body} />
         </View>
 
         {data.imgs?.length ? (

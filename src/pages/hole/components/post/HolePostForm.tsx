@@ -18,7 +18,7 @@ export function HolePostForm({ height }: { height: number }) {
       style={{
         height: height,
       }}
-      className={'flex space-y-2 py-2'}
+      className={'flex space-y-2 py-2 px-3'}
     >
       <View className={'border-b-[1px] border-b-black/5'}>
         <AreaInput
