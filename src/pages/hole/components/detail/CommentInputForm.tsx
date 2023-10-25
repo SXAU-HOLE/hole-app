@@ -4,7 +4,7 @@ import { AreaInput } from '@/components/form/AreaInput'
 import { IconButton } from 'react-native-paper'
 import { SmileIcon } from '@/components/Icons'
 import { useCommentContext } from '@/shared/context/CommentContext'
-import { useHoleComment } from '@/query/hole'
+import { useHoleComment, useReplyList } from '@/query/hole'
 import { useMutation } from '@tanstack/react-query'
 import Toast from 'react-native-toast-message'
 import { useMemo } from 'react'
@@ -20,8 +20,11 @@ export function CommentInputForm() {
     isReply,
     data,
     closeInput,
+    selectCommentId,
   } = useCommentContext()
-  const { invalidateQuery } = useHoleComment()
+  const { invalidateQuery: invalidateComment } = useHoleComment()
+
+  const { invalidateQuery: invalidateReply } = useReplyList(selectCommentId!)
 
   const placeHolder = useMemo(() => {
     if (isReply) {
@@ -33,14 +36,20 @@ export function CommentInputForm() {
 
   const mutation = useMutation({
     mutationFn: reqFunc,
-    onSuccess(data) {
+    onSuccess() {
       Toast.show({
         type: 'success',
         text1: '留言成功！',
       })
       Keyboard.dismiss()
       resetField('body')
-      invalidateQuery()
+      if (!selectCommentId) {
+        console.log('更新评论')
+        invalidateComment()
+      } else {
+        console.log('更新回复')
+        invalidateReply()
+      }
     },
   })
 

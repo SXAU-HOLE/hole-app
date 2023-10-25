@@ -1,25 +1,29 @@
 import { DetailComment } from './components/DetailComment'
-import { useHoleDetail } from '@/query/hole'
+import { useHoleComment, useHoleDetail } from '@/query/hole'
 import { FullPage } from '@/components/Page'
-import { DetailBottom } from '@/pages/hole/components/detail/DetailBottom'
 import { CommentContext } from '@/shared/context/CommentContext'
 import { CommentInputForm } from '@/pages/hole/components/detail/CommentInputForm'
+import { LoadingScreen } from '@/components/LoadingScreen'
 export function HoleDetail() {
   const { isSuccess } = useHoleDetail()
+  const { isSuccess: isCommentSuccess } = useHoleComment()
+  const isAllSuccess = isSuccess && isCommentSuccess
 
   return (
     <FullPage>
-      <CommentContext>
-        {isSuccess ? (
-          <>
-            <DetailComment></DetailComment>
-          </>
-        ) : (
-          <></>
-        )}
+      <LoadingScreen isLoading={!isAllSuccess}>
+        <CommentContext>
+          {isSuccess ? (
+            <>
+              <DetailComment></DetailComment>
+            </>
+          ) : (
+            <></>
+          )}
 
-        <CommentInputForm></CommentInputForm>
-      </CommentContext>
+          <CommentInputForm></CommentInputForm>
+        </CommentContext>
+      </LoadingScreen>
     </FullPage>
   )
 }

@@ -25,6 +25,7 @@ export const [useCommentContext, CommentContext] = createStore(() => {
   const { id } = useRoute().params as { id: string }
   const [isShowHeader, setIsShowHeader] = useState(false)
   const inputRef = useRef(null) as React.MutableRefObject<any>
+  const [selectCommentId, setSelectCommentId] = useState<string | null>(null)
 
   const isReply = data === null || data === undefined
 
@@ -87,5 +88,7 @@ export const [useCommentContext, CommentContext] = createStore(() => {
     isReply,
     data,
     closeInput,
+    selectCommentId,
+    setSelectCommentId,
   }
 })

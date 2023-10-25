@@ -11,11 +11,18 @@ export function ReplyBody({
   onPress?: () => any
 }) {
   const { replies, repliesCount } = data
-  const { openInput } = useCommentContext()
+  const { openInput, setSelectCommentId } = useCommentContext()
 
   const [open, setOpen] = useState(false)
-  const onClose = () => {
+  const closeReplyList = () => {
+    setSelectCommentId(null)
     setOpen(false)
+  }
+
+  const openReplyList = () => {
+    setSelectCommentId(data.id)
+    setOpen(true)
+    openInput(data)
   }
 
   return (
@@ -49,7 +56,7 @@ export function ReplyBody({
         <View>
           <Text
             className={'text-primary/80 text-xs mt-1'}
-            onPress={() => setOpen(true)}
+            onPress={openReplyList}
           >
             共{repliesCount}条回复 &gt;
           </Text>
@@ -57,7 +64,7 @@ export function ReplyBody({
             <ReplyList
               commentId={data.id}
               open={open}
-              onClose={onClose}
+              onClose={closeReplyList}
             ></ReplyList>
           )}
         </View>

@@ -48,7 +48,8 @@ export function ReplyList({
             <FlatList
               data={data}
               renderItem={({ item, index }) => (
-                <ReplyItem key={index} data={item} />
+                // @ts-ignore
+                <ReplyItem key={index} data={item} commentId={commentId} />
               )}
               ListFooterComponent={
                 <LoadMore
