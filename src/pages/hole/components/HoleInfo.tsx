@@ -41,9 +41,6 @@ const HoleInfoBody = ({ data }: Props) => {
 
       <View className="overflow-hidden">
         <View>
-          {/*<Text variant={'bodyMedium'} numberOfLines={7}>*/}
-          {/*  {data.body}*/}
-          {/*</Text>*/}
           <EmojiableText body={data.body} />
         </View>
 

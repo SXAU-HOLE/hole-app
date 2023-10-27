@@ -8,7 +8,7 @@ import {
 import { Actionsheet, Input, KeyboardAvoidingView } from 'native-base'
 import Animated from 'react-native-reanimated'
 import useKeyboardHeight from '@/hooks/useKeyboardHeight'
-import { CommentInputForm } from '@/pages/hole/components/detail/CommentInputForm'
+import { CommentInputForm } from '@/pages/hole/detail/components/CommentInputForm'
 import { Text, View } from 'react-native'
 import { CommentBottom } from '@/pages/hole/components/detail/CommentBottom'
 import { DetailBottom } from '@/pages/hole/components/detail/DetailBottom'

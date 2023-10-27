@@ -16,7 +16,6 @@ export function CommentInputForm() {
     reqFunc,
     id,
     resetField,
-    inputRef,
     isReply,
     data,
     closeInput,
@@ -76,7 +75,6 @@ export function CommentInputForm() {
             <View className={'flex-1'}>
               <View>
                 <AreaInput
-                  inputRef={inputRef}
                   name={'body'}
                   control={control}
                   className={'rounded-lg bg-gray-200 px-3 py-1'}
@@ -84,6 +82,7 @@ export function CommentInputForm() {
                   placeholder={placeHolder}
                   multiline={true}
                   onBlur={closeInput}
+                  autoFocus={true}
                 ></AreaInput>
               </View>
             </View>

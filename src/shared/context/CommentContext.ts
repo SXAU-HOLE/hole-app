@@ -24,7 +24,6 @@ export const [useCommentContext, CommentContext] = createStore(() => {
   const [data, setData] = useState<ICommentData | null>(null)
   const { id } = useRoute().params as { id: string }
   const [isShowHeader, setIsShowHeader] = useState(false)
-  const inputRef = useRef(null) as React.MutableRefObject<any>
   const [selectCommentId, setSelectCommentId] = useState<string | null>(null)
 
   const isReply = data === null || data === undefined
@@ -57,15 +56,17 @@ export const [useCommentContext, CommentContext] = createStore(() => {
 
   const openInput = (data: ICommentData | null = null) => {
     setData(data)
-    inputRef.current?.focus()
+    setShowInput(true)
   }
 
   const closeInput = () => {
-    if (inputRef.current.value) {
-      console.log(inputRef.current.value)
-    } else {
+    const isInputEmpty = !form.getValues('body')?.length
+
+    if (isInputEmpty) {
       setData(null)
     }
+
+    setShowInput(false)
   }
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -84,7 +85,6 @@ export const [useCommentContext, CommentContext] = createStore(() => {
     onScroll,
     id,
     isShowHeader,
-    inputRef,
     isReply,
     data,
     closeInput,

@@ -6,7 +6,7 @@ import { CommentItem } from '@/pages/hole/components/detail/CommentItem'
 import React from 'react'
 import { useCommentContext } from '@/shared/context/CommentContext'
 
-export function DetailComment() {
+export function CommentList() {
   const { flattenData, hasNextPage, fetchNextPage } = useHoleComment()
   const { onScroll } = useCommentContext()
 

@@ -11,7 +11,6 @@ interface Props {
 export function EmojiableText({ body, numberOfLines }: Props) {
   const reg = /(\[.*?\])/g
   const parts = body.split(reg)
-  console.log(parts)
 
   const renderBody = () =>
     parts.map((part, index) => {
@@ -20,7 +19,6 @@ export function EmojiableText({ body, numberOfLines }: Props) {
       if (emoji) {
         return <Emoji asset={emoji.asset} key={index} size={24} />
       } else {
-        console.log('part ', part)
         return (
           <Text
             className={`${'text-surfaceVariant'}`}
