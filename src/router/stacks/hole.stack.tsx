@@ -4,6 +4,7 @@ import { HolePost } from '@/pages/hole/HolePost'
 import { HoleSearch } from '@/pages/hole/HoleSearch'
 import { HoleDetailHeader } from '@/pages/hole/components/detail/DetailHeader'
 import { CommentContext } from '@/shared/context/CommentContext'
+import { HoleRely } from '@/pages/hole/detail/reply/HoleRely'
 
 const HoleStack = createNativeStackNavigator()
 
@@ -20,6 +21,10 @@ const HoleDetailStacks = () => {
         <HoleStack.Screen
           name={'index'}
           component={HoleDetail}
+        ></HoleStack.Screen>
+        <HoleStack.Screen
+          name={'reply'}
+          component={HoleRely}
         ></HoleStack.Screen>
       </HoleStack.Navigator>
     </CommentContext>

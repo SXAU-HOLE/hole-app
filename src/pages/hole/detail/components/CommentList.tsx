@@ -31,9 +31,9 @@ export function CommentList() {
           </>
         )}
         // @ts-ignore
-        renderItem={({ item }) =>
-          item.map((e, i) => <CommentItem key={e.id} data={e}></CommentItem>)
-        }
+        renderItem={({ item }) => (
+          <CommentItem key={item.id} data={item}></CommentItem>
+        )}
         onEndReachedThreshold={0.1}
         onEndReached={onLoadMore}
         onScroll={onScroll}

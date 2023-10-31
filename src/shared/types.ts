@@ -17,3 +17,5 @@ export interface ListResponseAble {
     currentPage: number
   }
 }
+
+export type Func = (...args: any[]) => any

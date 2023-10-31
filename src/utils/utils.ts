@@ -28,7 +28,9 @@ export function flatInfiniteQueryData<T>(data: InfiniteData<any> | undefined) {
 
   return {
     isEmpty,
-    data: isEmpty ? [] : (data?.pages.map((page) => page.items) as T[]),
+    data: isEmpty
+      ? []
+      : (data?.pages.map((page) => page.items) as T[])?.flat(1),
   }
 }
 

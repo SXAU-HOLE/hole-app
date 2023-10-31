@@ -17,6 +17,8 @@ import { useNavigation } from '@react-navigation/native'
 import { AnimateHolePost } from '@/pages/hole/components/AnimateHolePost'
 import { AnimateToTop } from '@/pages/hole/components/AnimateToTop'
 import { SkeletonLoading } from '@/components/Skeleton'
+import RefreshingFlatList from '@/components/RefreshingFlatList'
+import { Empty } from '@/components/Empty'
 
 type HoleListProps = UseInfiniteQueryResult & {
   invalidateQuery: () => any
@@ -32,14 +34,7 @@ const HoleList = ({
   const theme = useTheme()
 
   const [refreshing, setRefreshing] = useState(false)
-  const { data: flatData, isEmpty } = flatInfiniteQueryData(data)
-
-  const onLoadMore = async () => {
-    if (!hasNextPage) return
-
-    await fetchNextPage()
-  }
-
+  const { data: flatData, isEmpty } = flatInfiniteQueryData<IHole>(data)
   const onRefresh = () => {
     setRefreshing(true)
 
@@ -75,7 +70,7 @@ const HoleList = ({
   }
 
   const listRef = useRef<any>()
-  const goTop = () => {
+  const scrollToTopHandler = () => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true })
   }
 
@@ -91,36 +86,29 @@ const HoleList = ({
           <AnimateHolePost offset={PostFABOffset} />
           <AnimateToTop
             visible={isToTopFABVisible}
-            goTop={goTop}
+            goTop={scrollToTopHandler}
           ></AnimateToTop>
         </View>
         {isSuccess ? (
-          <FlatList
+          <RefreshingFlatList<IHole>
             ref={listRef}
+            onScroll={(event) => scrollHandler(event)}
             data={flatData}
-            ListFooterComponent={() => (
-              <LoadMore
-                text={'没有更多帖子了哦'}
-                hasNextPage={hasNextPage}
-              ></LoadMore>
+            renderItem={({ item }) => (
+              <HoleInfo key={item.id} data={item} onPress={() => go(item.id)} />
             )}
-            renderItem={({ item }) => {
-              // @ts-ignore
-              return item.map((e: any) => (
-                <HoleInfo data={e} key={e.id} onPress={() => go(e.id)} />
-              ))
-            }}
-            refreshing={refreshing}
-            refreshControl={
-              <MyRefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            hasNextPage={hasNextPage}
+            fetchNextPage={fetchNextPage}
+            onTopRefresh={invalidateQuery}
+            ListEmptyComponent={<Empty />}
+            ListFooterComponent={() =>
+              isEmpty ? (
+                <></>
+              ) : (
+                <LoadMore text={'没有更多帖子了哦'} hasNextPage={hasNextPage} />
+              )
             }
-            onEndReachedThreshold={0.1}
-            onEndReached={onLoadMore}
-            onScroll={(event) => {
-              scrollHandler(event)
-            }}
-            showsVerticalScrollIndicator={false}
-          ></FlatList>
+          />
         ) : (
           <SkeletonLoading nums={3}></SkeletonLoading>
         )}
