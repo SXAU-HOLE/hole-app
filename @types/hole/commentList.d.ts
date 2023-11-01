@@ -7,7 +7,7 @@ declare interface IHoleCommentListItem {
   id: string
   createAt: string
   body: string
-  favoriteCounts: number
+  favoriteCount: number
   user: User
   replies: Reply[]
   isLiked: boolean

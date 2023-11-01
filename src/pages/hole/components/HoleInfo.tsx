@@ -1,7 +1,7 @@
 import { CommentIcon, LikeIcon } from '@/components/Icons'
 import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
-import { Image, View } from 'react-native'
+import { View } from 'react-native'
 import { Text, TouchableRipple } from 'react-native-paper'
 import { ImageList } from '@/components/Image/ImageList'
 import { EmojiableText } from '@/components/Text/EmojiableText'
@@ -18,7 +18,6 @@ const HoleInfoHeader = ({ data }: Props) => {
         <UserAvatar url={data.user.avatar} size={35}></UserAvatar>
         <View>
           <Text className="color-primary font-medium text-xl ">#{data.id}</Text>
-
           <TimeText time={data.createAt}></TimeText>
         </View>
       </View>

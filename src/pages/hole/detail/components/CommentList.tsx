@@ -4,6 +4,7 @@ import RefreshingFlatList from '@/components/RefreshingFlatList'
 import { CommentItem } from '@/pages/hole/detail/components/CommentItem'
 import { DetailContent } from '@/pages/hole/detail/components/DetailContent'
 import { LoadMore } from '@/components/LoadMore'
+import { DeleteCommentLikeRequest, LikeCommentRequest } from '@/apis/hole'
 
 export function CommentList() {
   const {
@@ -23,7 +24,14 @@ export function CommentList() {
     <>
       <RefreshingFlatList
         data={flattenData}
-        renderItem={({ item }) => <CommentItem key={item.id} data={item} />}
+        renderItem={({ item }) => (
+          <CommentItem
+            key={item.id}
+            data={item}
+            postLikeRequest={LikeCommentRequest}
+            deleteLikeRequest={DeleteCommentLikeRequest}
+          />
+        )}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
         onTopRefresh={onTopRefresh}

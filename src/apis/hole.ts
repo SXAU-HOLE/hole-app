@@ -145,3 +145,35 @@ export function GetReplyListRequest(params: PaginateAble<{ id: string }>) {
     params,
   })
 }
+
+export function LikeReplyRequest(data: { id: string }) {
+  return request({
+    method: 'POST',
+    url: '/hole/comment/reply/like',
+    data,
+  })
+}
+
+export function DeleteReplyLikeRequest(data: { id: string }) {
+  return request({
+    method: 'DELETE',
+    url: '/hole/comment/reply/like',
+    data,
+  })
+}
+
+export function LikeCommentRequest(data: { id: string }) {
+  return request({
+    method: 'POST',
+    url: '/hole/comment/like',
+    data,
+  })
+}
+
+export function DeleteCommentLikeRequest(data: { id: string }) {
+  return request({
+    method: 'DELETE',
+    url: '/hole/comment/like',
+    data,
+  })
+}
