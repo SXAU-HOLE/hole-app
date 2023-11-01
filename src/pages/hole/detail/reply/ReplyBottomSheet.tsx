@@ -1,17 +1,14 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 
-import {
+import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { Actionsheet, Input, KeyboardAvoidingView } from 'native-base'
-import Animated from 'react-native-reanimated'
+import { Actionsheet, KeyboardAvoidingView } from 'native-base'
 import useKeyboardHeight from '@/hooks/useKeyboardHeight'
 import { CommentInputForm } from '@/pages/hole/detail/components/CommentInputForm'
-import { Text, View } from 'react-native'
-import { CommentBottom } from '@/pages/hole/components/detail/CommentBottom'
-import { DetailBottom } from '@/pages/hole/detail/components/DetailBottom'
+import { View } from 'react-native'
 
 export interface ReplyProps {
   isOpen: boolean

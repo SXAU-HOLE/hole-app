@@ -14,6 +14,7 @@ import { useRoute } from '@react-navigation/native'
 import { useMemo } from 'react'
 import { useBaseInfiniteQuery } from '@/hooks/useBaseInfiniteQuery'
 import { flatInfiniteQueryData } from '@/utils/utils'
+import { HoleReplyListRouteParams } from '@/hooks/useReplyListRoute'
 
 export function useHoleList() {
   const route = useRoute()
@@ -128,13 +129,15 @@ export function useHoleCommentQuery() {
   }
 }
 
-export function useReplyListQuery(commentId: string) {
-  const queryKey = ['hole.reply', commentId]
+export function useReplyListQuery() {
+  const params = useRoute().params as HoleReplyListRouteParams
+
+  const queryKey = ['hole.reply', params.commentId, params.replyId]
 
   const query = useBaseInfiniteQuery<any>({
     queryKey,
     queryFn: ({ pageParam }) =>
-      GetReplyListRequest({ id: commentId, page: pageParam, limit: 10 }),
+      GetReplyListRequest({ id: params.commentId, page: pageParam, limit: 10 }),
   })
 
   return {

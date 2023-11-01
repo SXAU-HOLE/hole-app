@@ -1,42 +1,26 @@
 import { Pressable, Text, View } from 'react-native'
+import { useReplyListRoute } from '@/hooks/useReplyListRoute'
 import { useCommentContext } from '@/shared/context/CommentContext'
-import { ReplyList } from '@/pages/hole/detail/reply/ReplyList'
-import { useState } from 'react'
 
-export function ReplyBody({
-  data,
-  onPress,
-}: {
-  data: IHoleCommentListItem
-  onPress?: () => any
-}) {
+export function ReplyBody({ data }: { data: IHoleCommentListItem }) {
   const { replies, repliesCount } = data
-  const { openInput, setSelectCommentId } = useCommentContext()
 
-  const [open, setOpen] = useState(false)
-  const closeReplyList = () => {
-    setSelectCommentId(null)
-    setOpen(false)
-  }
-
-  const openReplyList = () => {
-    setSelectCommentId(data.id)
-    setOpen(true)
-    openInput(data)
-  }
+  const { go } = useReplyListRoute()
+  const { setComment } = useCommentContext()
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={() => {
+        go({ commentId: data.id })
+        setComment(data)
+      }}
       className={'bg-surfaceVariant/10 rounded-lg p-2'}
     >
       <View className={'flex flex-col'}>
         {replies.slice(0, 3).map((reply) => (
           <Pressable
             key={reply.id}
-            onPress={() => {
-              openInput({ ...data, commentId: data.id, replyId: reply.id })
-            }}
+            onPress={() => {}}
             className={'flex flex-row space-x-1 my-1'}
           >
             <Text className={'text-primary'}>{reply.user.username}</Text>
@@ -54,19 +38,9 @@ export function ReplyBody({
       </View>
       {replies.length > 3 ? (
         <View>
-          <Text
-            className={'text-primary/80 text-xs mt-1'}
-            onPress={openReplyList}
-          >
+          <Text className={'text-primary/80 text-xs mt-1'}>
             共{repliesCount}条回复 &gt;
           </Text>
-          {open && (
-            <ReplyList
-              commentId={data.id}
-              open={open}
-              onClose={closeReplyList}
-            ></ReplyList>
-          )}
         </View>
       ) : (
         <></>

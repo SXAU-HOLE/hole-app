@@ -5,6 +5,7 @@ import { CommentItem } from '@/pages/hole/detail/components/CommentItem'
 import { DetailContent } from '@/pages/hole/detail/components/DetailContent'
 import { LoadMore } from '@/components/LoadMore'
 import { DeleteCommentLikeRequest, LikeCommentRequest } from '@/apis/hole'
+import { useCommentContext } from '@/shared/context/CommentContext'
 
 export function CommentList() {
   const {
@@ -15,6 +16,7 @@ export function CommentList() {
     isFetching,
     isDataEmpty,
   } = useHoleCommentQuery()
+  const { openInput } = useCommentContext()
 
   const onTopRefresh = async () => {
     await invalidateQuery()
@@ -30,6 +32,7 @@ export function CommentList() {
             data={item}
             postLikeRequest={LikeCommentRequest}
             deleteLikeRequest={DeleteCommentLikeRequest}
+            onBodyPress={() => openInput({ commentId: item.id, ...item })}
           />
         )}
         hasNextPage={hasNextPage}

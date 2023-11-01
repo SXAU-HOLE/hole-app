@@ -22,6 +22,7 @@ export const [useCommentContext, CommentContext] = createStore(() => {
   const [data, setData] = useState<ICommentData | null>(null)
   const [isShowHeader, setIsShowHeader] = useState(false)
   const [selectCommentId, setSelectCommentId] = useState<string | null>(null)
+  const [comment, setComment] = useState<ICommentData>()
 
   const isReply = data === null || data === undefined
 
@@ -86,5 +87,7 @@ export const [useCommentContext, CommentContext] = createStore(() => {
     closeInput,
     selectCommentId,
     setSelectCommentId,
+    comment,
+    setComment,
   }
 })

@@ -3,7 +3,6 @@ import { UserText } from '@/components/Text/UserText'
 import UserAvatar from '@/components/UserAvatar'
 import { Pressable, StyleSheet, View } from 'react-native'
 import { Text, TouchableRipple, useTheme } from 'react-native-paper'
-import { useCommentContext } from '@/shared/context/CommentContext'
 import { ReplyBody } from '@/pages/hole/detail/reply/ReplyBody'
 import ReadMore from 'react-native-read-more-text'
 import { SecondaryText } from '@/components/Text/SecondaryText'
@@ -24,6 +23,7 @@ interface Props {
   onBodyPress?: Func
   postLikeRequest: (data: { id: string }) => any
   deleteLikeRequest: (data: { id: string }) => any
+  isRenderReply?: boolean
 }
 
 export function CommentItem({
@@ -31,8 +31,8 @@ export function CommentItem({
   deleteLikeRequest,
   postLikeRequest,
   onBodyPress,
+  isRenderReply = true,
 }: Props) {
-  const { openInput } = useCommentContext()
   const theme = useTheme()
 
   const mutation = useMutation({
@@ -90,9 +90,9 @@ export function CommentItem({
                   <CommentItemIsLike data={data} mutation={mutation} />
                 </View>
               </View>
-              {data?.replies?.length ? (
+              {isRenderReply && 'replies' in data && data?.replies?.length ? (
                 <>
-                  <ReplyBody data={data} />
+                  <ReplyBody data={data as IHoleCommentListItem} />
                 </>
               ) : (
                 <></>
