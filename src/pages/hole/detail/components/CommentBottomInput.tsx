@@ -1,9 +1,7 @@
 import { Pressable, View } from 'react-native'
 import { SecondaryText } from '@/components/Text/SecondaryText'
 import { useCommentContext } from '@/shared/context/CommentContext'
-import { AreaInput } from '@/components/form/AreaInput'
-import { IconButton } from 'react-native-paper'
-import { CameraIcon, EmojiIcon, SmileIcon } from '@/components/Icons'
+import { CameraIcon, EmojiIcon } from '@/components/Icons'
 
 export type IBottomCommentData = {
   id: string

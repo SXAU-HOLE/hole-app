@@ -1,5 +1,4 @@
 import {
-  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
   StatusBar,
@@ -10,7 +9,6 @@ import { useTheme } from 'react-native-paper'
 import Page from '@/components/Page'
 import { HoleInfo } from './HoleInfo'
 import { LoadMore } from '@/components/LoadMore'
-import { MyRefreshControl } from '@/components/RefreshControl'
 import { UseInfiniteQueryResult } from '@tanstack/react-query'
 import { flatInfiniteQueryData } from '@/utils/utils'
 import { useNavigation } from '@react-navigation/native'
@@ -33,14 +31,7 @@ const HoleList = ({
 }: HoleListProps) => {
   const theme = useTheme()
 
-  const [refreshing, setRefreshing] = useState(false)
   const { data: flatData, isEmpty } = flatInfiniteQueryData<IHole>(data)
-  const onRefresh = () => {
-    setRefreshing(true)
-
-    invalidateQuery()
-    setRefreshing(false)
-  }
 
   const navigation = useNavigation()
   const go = (id: number) => {

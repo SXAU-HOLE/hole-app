@@ -1,14 +1,12 @@
-import { LikeIcon } from '@/components/Icons'
 import { AutoSizeImageList } from '@/components/Image/AutoSizeImageList'
 import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
 import { useHoleDetail } from '@/query/hole'
-import { View, Image } from 'react-native'
+import { View } from 'react-native'
 import { IconButton, Text, useTheme } from 'react-native-paper'
-import { LikeHole } from './LikeHole'
-import { CommentHeader } from '@/pages/hole/components/detail/CommentHeader'
+import { LikeHole } from '../../components/LikeHole'
+import { CommentListHeader } from '@/pages/hole/detail/components/CommentListHeader'
 import { Toast } from '@/utils/toast'
-import ReadMore from 'react-native-read-more-text'
 
 export function ContentBottom() {
   return (
@@ -24,7 +22,7 @@ export function ContentBottom() {
   )
 }
 
-export function DetialContent() {
+export function DetailContent() {
   const { data } = useHoleDetail()
   const theme = useTheme()
 
@@ -67,7 +65,7 @@ export function DetialContent() {
         style={{ backgroundColor: theme.colors.background }}
       ></View>
 
-      <CommentHeader />
+      <CommentListHeader />
     </View>
   )
 }

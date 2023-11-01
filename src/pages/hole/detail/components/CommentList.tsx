@@ -1,44 +1,42 @@
-import { useHoleComment } from '@/query/hole'
-import { FlatList, View } from 'react-native'
-import { DetialContent } from '@/pages/hole/components/DetailContent'
-import { LoadMore } from '@/components/LoadMore'
-import { CommentItem } from '@/pages/hole/components/detail/CommentItem'
+import { useHoleCommentQuery } from '@/query/hole'
 import React from 'react'
-import { useCommentContext } from '@/shared/context/CommentContext'
+import RefreshingFlatList from '@/components/RefreshingFlatList'
+import { CommentItem } from '@/pages/hole/detail/components/CommentItem'
+import { DetailContent } from '@/pages/hole/detail/components/DetailContent'
+import { LoadMore } from '@/components/LoadMore'
 
 export function CommentList() {
-  const { flattenData, hasNextPage, fetchNextPage } = useHoleComment()
-  const { onScroll } = useCommentContext()
+  const {
+    flattenData,
+    hasNextPage,
+    fetchNextPage,
+    invalidateQuery,
+    isFetching,
+    isDataEmpty,
+  } = useHoleCommentQuery()
 
-  const onLoadMore = async () => {
-    if (!hasNextPage) return
-
-    await fetchNextPage()
+  const onTopRefresh = async () => {
+    await invalidateQuery()
   }
 
   return (
-    <View className={'bg-white'}>
-      <FlatList
+    <>
+      <RefreshingFlatList
         data={flattenData}
-        ListHeaderComponent={<DetialContent />}
+        renderItem={({ item }) => <CommentItem key={item.id} data={item} />}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+        onTopRefresh={onTopRefresh}
+        refreshing={isFetching}
+        ListHeaderComponent={DetailContent}
         ListFooterComponent={() => (
-          <>
-            <LoadMore
-              text={'没有更多评论了哦'}
-              hasNextPage={hasNextPage}
-            ></LoadMore>
-            <View className={'mt-20 bg-transparent'}></View>
-          </>
+          <LoadMore text={isDataEmpty ? '没有更多评论了哦' : ''} />
         )}
-        // @ts-ignore
-        renderItem={({ item }) => (
-          <CommentItem key={item.id} data={item}></CommentItem>
-        )}
-        onEndReachedThreshold={0.1}
-        onEndReached={onLoadMore}
-        onScroll={onScroll}
-        showsVerticalScrollIndicator={false}
-      ></FlatList>
-    </View>
+        ListFooterComponentStyle={{
+          marginBottom: 50,
+          backgroundColor: 'white',
+        }}
+      ></RefreshingFlatList>
+    </>
   )
 }

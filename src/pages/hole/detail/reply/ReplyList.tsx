@@ -1,11 +1,11 @@
 import { FlatList, Text, View } from 'react-native'
-import { ReplyBottomSheet } from '@/pages/hole/components/reply/ReplyBottomSheet'
-import { useReplyList } from '@/query/hole'
+import { ReplyBottomSheet } from '@/pages/hole/detail/reply/ReplyBottomSheet'
+import { useReplyListQuery } from '@/query/hole'
 import { useTheme } from 'react-native-paper'
 import { Loading } from '@/components/Loading'
 import { LoadMore } from '@/components/LoadMore'
 import React from 'react'
-import { ReplyItem } from '@/pages/hole/components/reply/ReplyItem'
+import { ReplyItem } from '@/pages/hole/detail/reply/ReplyItem'
 
 export function ReplyList({
   open,
@@ -17,10 +17,8 @@ export function ReplyList({
   commentId: string
 }) {
   const { flattenData, isSuccess, isLoading, hasNextPage, fetchNextPage } =
-    useReplyList(commentId)
+    useReplyListQuery(commentId)
   const theme = useTheme()
-  const { data: transform } = flattenData
-  const data = transform?.flat(1)
 
   const onLoadMore = async () => {
     if (!hasNextPage) return
@@ -41,12 +39,12 @@ export function ReplyList({
           <View className={'flex flex-row space-x-3 px-3 py-5'}>
             <Text>全部回复</Text>
             <Text style={{ color: theme.colors.surfaceVariant }}>
-              共 {data.length} 条
+              共 {flattenData.length} 条
             </Text>
           </View>
           <View>
             <FlatList
-              data={data}
+              data={flattenData}
               renderItem={({ item, index }) => (
                 // @ts-ignore
                 <ReplyItem key={index} data={item} commentId={commentId} />

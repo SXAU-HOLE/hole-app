@@ -1,16 +1,15 @@
 import { Keyboard, View } from 'react-native'
 import { IconButton } from 'react-native-paper'
-import useKeyboardHeight from '@/hooks/useKeyboardHeight'
 import { AreaInput } from '@/components/form/AreaInput'
 import { SmileIcon } from '@/components/Icons'
 import { useCommentContext } from '@/shared/context/CommentContext'
 import { useMutation } from '@tanstack/react-query'
 import Toast from 'react-native-toast-message'
-import { useHoleComment } from '@/query/hole'
+import { useHoleCommentQuery } from '@/query/hole'
 
 export function DetailBottom() {
   const { control, handleSubmit, reqFunc, id, resetField } = useCommentContext()
-  const { invalidateQuery } = useHoleComment()
+  const { invalidateQuery } = useHoleCommentQuery()
 
   const mutation = useMutation({
     mutationFn: reqFunc,

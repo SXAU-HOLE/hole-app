@@ -4,9 +4,8 @@ import {
   InfiniteData,
   SetDataOptions,
   Updater,
-  UseInfiniteQueryOptions,
   useInfiniteQuery,
-  useQuery,
+  UseInfiniteQueryOptions,
   useQueryClient,
 } from '@tanstack/react-query'
 
@@ -34,7 +33,7 @@ export function useBaseInfiniteQuery<T extends ListResponseAble>(
     ...options,
   })
 
-  const flattenData = flatInfiniteQueryData(query.data)
+  const { data: flattenData } = flatInfiniteQueryData(query.data)
 
   const client = useQueryClient()
   const invalidateQuery = async () => {

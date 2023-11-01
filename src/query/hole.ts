@@ -6,7 +6,6 @@ import {
 } from '@/apis/hole'
 import { HoleListMode } from '@/shared/enum'
 import {
-  InfiniteData,
   useInfiniteQuery,
   useQuery,
   useQueryClient,
@@ -15,8 +14,6 @@ import { useRoute } from '@react-navigation/native'
 import { useMemo } from 'react'
 import { useBaseInfiniteQuery } from '@/hooks/useBaseInfiniteQuery'
 import { flatInfiniteQueryData } from '@/utils/utils'
-import { ICommentData } from '@/shared/context/CommentContext'
-import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 
 export function useHoleList() {
   const route = useRoute()
@@ -61,7 +58,6 @@ export function useHoleList() {
     })
   }
   const invalidate = async () => {
-    console.log('invalidate')
     await client.invalidateQueries(queryKey)
   }
 
@@ -102,8 +98,8 @@ export function useHoleDetail() {
   }
 }
 
-export function useHoleComment() {
-  const params = useRoute().params as { id: number }
+export function useHoleCommentQuery() {
+  const params = useRoute().params as { id: string }
 
   const key = ['hole.comments', params.id]
 
@@ -122,13 +118,17 @@ export function useHoleComment() {
     return flatInfiniteQueryData<IHoleCommentListItem[]>(query.data)
   }, [query.data])
 
+  const isDataEmpty = flattenData?.length > 0
+
   return {
     ...query,
     flattenData,
+    isDataEmpty,
+    id: params.id,
   }
 }
 
-export function useReplyList(commentId: string) {
+export function useReplyListQuery(commentId: string) {
   const queryKey = ['hole.reply', commentId]
 
   const query = useBaseInfiniteQuery<any>({

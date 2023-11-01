@@ -8,7 +8,7 @@ import { request } from '@/utils/request'
 import { PostHoleValidator } from '@/shared/validators/hole'
 
 interface Id {
-  id: number
+  id: string
 }
 
 /**

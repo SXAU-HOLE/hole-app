@@ -11,7 +11,7 @@ import useKeyboardHeight from '@/hooks/useKeyboardHeight'
 import { CommentInputForm } from '@/pages/hole/detail/components/CommentInputForm'
 import { Text, View } from 'react-native'
 import { CommentBottom } from '@/pages/hole/components/detail/CommentBottom'
-import { DetailBottom } from '@/pages/hole/components/detail/DetailBottom'
+import { DetailBottom } from '@/pages/hole/detail/components/DetailBottom'
 
 export interface ReplyProps {
   isOpen: boolean

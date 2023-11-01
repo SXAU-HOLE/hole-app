@@ -1,6 +1,6 @@
 import { Pressable, Text, View } from 'react-native'
 import { useCommentContext } from '@/shared/context/CommentContext'
-import { ReplyList } from '@/pages/hole/components/reply/ReplyList'
+import { ReplyList } from '@/pages/hole/detail/reply/ReplyList'
 import { useState } from 'react'
 
 export function ReplyBody({

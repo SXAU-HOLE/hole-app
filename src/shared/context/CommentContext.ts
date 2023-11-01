@@ -1,5 +1,5 @@
 import { createStore } from 'hox'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { CommentReplyValidator } from '@/shared/validators/reply'
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
@@ -7,9 +7,7 @@ import {
   PostHoleCommentReplyRequest,
   PostHoleDetailCommentRequest,
 } from '@/apis/hole'
-import { useRoute } from '@react-navigation/native'
 import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
-import input from '@/components/form/Input'
 
 export type ICommentData = {
   id?: string
@@ -22,7 +20,6 @@ export type ICommentData = {
 export const [useCommentContext, CommentContext] = createStore(() => {
   const [showInput, setShowInput] = useState(false)
   const [data, setData] = useState<ICommentData | null>(null)
-  const { id } = useRoute().params as { id: string }
   const [isShowHeader, setIsShowHeader] = useState(false)
   const [selectCommentId, setSelectCommentId] = useState<string | null>(null)
 
@@ -83,7 +80,6 @@ export const [useCommentContext, CommentContext] = createStore(() => {
     reqFunc,
     openInput,
     onScroll,
-    id,
     isShowHeader,
     isReply,
     data,

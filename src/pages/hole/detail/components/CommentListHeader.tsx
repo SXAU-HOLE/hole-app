@@ -1,9 +1,13 @@
 import { Text, View } from 'react-native'
 import { BarsIcon } from '@/components/Icons'
 
-export function CommentHeader() {
+export function CommentListHeader() {
   return (
-    <View className={'flex flex-row items-center px-3 justify-between h-14'}>
+    <View
+      className={
+        'flex flex-row items-center px-3 justify-between h-14 bg-white'
+      }
+    >
       <View className={'flex flex-row space-x-3'}>
         <Text>全部回复</Text>
       </View>

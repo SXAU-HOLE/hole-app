@@ -2,16 +2,16 @@ import TimeText from '@/components/Text/TimeText'
 import { UserText } from '@/components/Text/UserText'
 import UserAvatar from '@/components/UserAvatar'
 import { View } from 'react-native'
-import { Text, TouchableRipple, useTheme } from 'react-native-paper'
+import { Text, TouchableRipple } from 'react-native-paper'
 import { useCommentContext } from '@/shared/context/CommentContext'
-import { ReplyBody } from '@/pages/hole/components/reply/ReplyBody'
+import { ReplyBody } from '@/pages/hole/detail/reply/ReplyBody'
 import ReadMore from 'react-native-read-more-text'
 
 export function CommentItem({ data }: { data: IHoleCommentListItem }) {
   const { openInput } = useCommentContext()
 
   return (
-    <TouchableRipple className="px-3" onPress={() => openInput(data)}>
+    <TouchableRipple className="px-3 bg-white" onPress={() => openInput(data)}>
       <View
         className={
           'flex flex-row border-b-[1px] border-black/5 py-2 rounded-lg'
