@@ -6,6 +6,8 @@ import { CommentItem } from '@/pages/hole/detail/components/CommentItem'
 import { DeleteReplyLikeRequest, LikeReplyRequest } from '@/apis/hole'
 import { LoadMore } from '@/components/LoadMore'
 import { HoleReplyHeader } from '@/pages/hole/detail/reply/HoleReplyHeader'
+import { CommentBottomInput } from '@/pages/hole/detail/components/CommentBottomInput'
+import { useCommentContext } from '@/shared/context/CommentContext'
 
 export function HoleRely() {
   const {
@@ -16,7 +18,7 @@ export function HoleRely() {
     invalidateQuery,
     fetchNextPage,
   } = useReplyListQuery()
-
+  const { comment, openInput } = useCommentContext()
   const onTopRefresh = async () => {
     await invalidateQuery()
   }
@@ -31,6 +33,14 @@ export function HoleRely() {
               data={item as IHoleReplyListItem}
               deleteLikeRequest={DeleteReplyLikeRequest}
               postLikeRequest={LikeReplyRequest}
+              onBodyPress={(data) => {
+                openInput({
+                  commentId: comment!.id,
+                  replyId: item.id,
+                  body: data.body,
+                  user: data.user,
+                })
+              }}
             />
           )}
           refreshing={isLoading}
@@ -44,6 +54,14 @@ export function HoleRely() {
               hasNextPage={hasNextPage}
             />
           )}
+          ListFooterComponentStyle={{
+            marginBottom: 50,
+            backgroundColor: 'white',
+          }}
+        />
+        <CommentBottomInput
+          // @ts-ignore
+          data={{ commentId: comment.id, ...comment }}
         />
       </FullPage>
     </LoadingScreen>

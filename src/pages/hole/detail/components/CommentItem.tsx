@@ -17,6 +17,7 @@ import Animated, {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Func } from '@/shared/types'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
+import { AutoSizeImageList } from '@/components/Image/AutoSizeImageList'
 
 interface Props {
   data: IHoleCommentListItem | IHoleReplyListItem
@@ -75,9 +76,23 @@ export function CommentItem({
                     </Text>
                   )}
                 >
+                  {'replyUser' in data && data.replyUser !== null && (
+                    <>
+                      <Text className={'mx-1'}>回复</Text>
+                      <Text className={'text-primary ml-10'}>
+                        {data.replyUser.username} :
+                      </Text>
+                    </>
+                  )}
+
                   <Text>{data.body}</Text>
                 </ReadMore>
               </View>
+
+              <View className={'my-2'}>
+                <AutoSizeImageList imgs={data.imgs} />
+              </View>
+
               <View className={'my-2 flex flex-row justify-between'}>
                 <TimeText time={data.createAt}></TimeText>
                 <View className={'flex flex-row'}>

@@ -2,8 +2,8 @@ import { CommentList } from './components/CommentList'
 import { useHoleCommentQuery, useHoleDetail } from '@/query/hole'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { CommentMaskModal } from '@/pages/hole/detail/components/CommentMaskModal'
-import { CommentBottomInput } from '@/pages/hole/detail/components/CommentBottomInput'
 import { FullPage } from '@/components/Page'
+import { CommentBottomInput } from '@/pages/hole/detail/components/CommentBottomInput'
 
 export function HoleDetail() {
   const { isSuccess } = useHoleDetail()
@@ -13,8 +13,8 @@ export function HoleDetail() {
   return (
     <FullPage>
       <LoadingScreen isLoading={!isAllSuccess}>
-        <CommentList></CommentList>
-        <CommentBottomInput></CommentBottomInput>
+        <CommentList />
+        <CommentBottomInput />
       </LoadingScreen>
 
       <CommentMaskModal></CommentMaskModal>

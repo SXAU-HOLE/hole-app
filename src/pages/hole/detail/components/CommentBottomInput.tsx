@@ -30,7 +30,7 @@ export function CommentBottomInput({ data }: Props) {
         }
       >
         <SecondaryText className={'flex-1  py-2 px-3 rounded-full'}>
-          写下你的想法吧
+          写下你的想法吧...
         </SecondaryText>
         <EmojiIcon size={24} />
         <CameraIcon size={24} />

@@ -44,7 +44,7 @@ export const [useCommentContext, CommentContext] = createStore(() => {
     } else {
       params.id = param.id
     }
-
+    console.log('params', params)
     const func = isReply
       ? PostHoleDetailCommentRequest
       : PostHoleCommentReplyRequest
@@ -53,18 +53,20 @@ export const [useCommentContext, CommentContext] = createStore(() => {
   }
 
   const openInput = (data: ICommentData | null = null) => {
-    setData(data)
     setShowInput(true)
+    setData(data)
+
+    console.log('openInput', data)
   }
 
   const closeInput = () => {
     const isInputEmpty = !form.getValues('body')?.length
 
+    setShowInput(false)
+
     if (isInputEmpty) {
       setData(null)
     }
-
-    setShowInput(false)
   }
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
