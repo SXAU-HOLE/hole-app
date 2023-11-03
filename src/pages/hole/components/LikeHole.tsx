@@ -10,7 +10,7 @@ export function LikeHole() {
 
   const mutation = useMutation(
     ['like', data],
-    (id: number) => {
+    (id: string) => {
       const reqFunc = data.isLiked ? DeleteLikeHole : PostLikeHole
 
       return reqFunc({ id })

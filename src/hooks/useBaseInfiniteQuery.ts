@@ -33,7 +33,7 @@ export function useBaseInfiniteQuery<T extends ListResponseAble>(
     ...options,
   })
 
-  const { data: flattenData, isEmpty } = flatInfiniteQueryData(query.data)
+  const { data: flattenData, isEmpty } = flatInfiniteQueryData<T>(query.data)
 
   const client = useQueryClient()
   const invalidateQuery = async () => {

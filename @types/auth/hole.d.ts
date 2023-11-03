@@ -4,7 +4,7 @@ declare interface IHoleListResponse {
 }
 
 declare interface IHole {
-  id: number
+  id: string
   createAt: string
   title: string
   body: string

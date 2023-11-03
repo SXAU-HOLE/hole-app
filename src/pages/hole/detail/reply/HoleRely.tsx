@@ -30,7 +30,7 @@ export function HoleRely() {
           data={flattenData}
           renderItem={({ item }) => (
             <CommentItem
-              data={item as IHoleReplyListItem}
+              data={item}
               deleteLikeRequest={DeleteReplyLikeRequest}
               postLikeRequest={LikeReplyRequest}
               onBodyPress={(data) => {

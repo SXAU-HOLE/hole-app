@@ -34,7 +34,7 @@ const HoleList = ({
   const { data: flatData, isEmpty } = flatInfiniteQueryData<IHole>(data)
 
   const navigation = useNavigation()
-  const go = (id: number) => {
+  const go = (id: number | string) => {
     // @ts-ignore
     navigation.navigate('hole', {
       screen: 'detail',

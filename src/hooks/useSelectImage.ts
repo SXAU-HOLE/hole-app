@@ -19,6 +19,7 @@ export function useSelectImage(options: ImagePicker.ImagePickerOptions) {
       if (!result.canceled) {
         setImgs((draft: any) => {
           for (const assets of result.assets) {
+            // @ts-ignore
             if (draft.length >= options.selectionLimit) {
               Toast.error({
                 text1: `最多只能选${options.selectionLimit}张图片哦`,
