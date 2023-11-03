@@ -8,8 +8,10 @@ import { useCallback, useState } from 'react'
 import { EmojiItem } from '@/assets/emoji'
 import { HolePostAddTags } from '@/pages/hole/post/components/HolePostAddTags'
 import { useHolePostContext } from '@/shared/context/HolePostContext'
+import { useTheme } from 'react-native-paper'
 
 export function BottomActions() {
+  const theme = useTheme()
   const {
     setImgs,
     form: { setValue, getValues },
@@ -47,16 +49,26 @@ export function BottomActions() {
             onPress={onImageSelect}
           ></IconButton>
           <HolePostAddTags />
-          <IconButton
-            icon={() => <EmojiIcon size={24} />}
-            onPress={() => {
-              setShowEmoji(!showEmoji)
-              Keyboard.dismiss()
-            }}
-          />
+          {showEmoji ? (
+            <IconButton
+              icon={'keyboard-outline'}
+              iconColor={theme.colors.primary}
+              onPress={() => {
+                setShowEmoji(false)
+              }}
+            />
+          ) : (
+            <IconButton
+              icon={() => <EmojiIcon size={24} />}
+              onPress={() => {
+                setShowEmoji(true)
+                Keyboard.dismiss()
+              }}
+            />
+          )}
         </View>
       </View>
-      {showEmoji && <EmojiArea onSelect={onEmojiSelect}></EmojiArea>}
+      <EmojiArea onSelect={onEmojiSelect} expandArea={showEmoji}></EmojiArea>
     </View>
   )
 }

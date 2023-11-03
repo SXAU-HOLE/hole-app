@@ -22,13 +22,13 @@ export function PostHeader() {
       let res = []
 
       if (imgs.length) {
-        const respone = await UploadHoleImgRequest(imgs)
-        res = respone.data
+        const response = await UploadHoleImgRequest(imgs)
+        res = response?.data || response
       }
 
       // 创建tags
       const reg = /#(.*?)#/g
-      const part = new Set(data.body.match(reg))
+      const part = new Set(data.body?.match(reg))
       const uniquePart = Array.from(part)
 
       return await PostHoleRequest({
@@ -37,8 +37,7 @@ export function PostHeader() {
         tags: uniquePart,
       })
     },
-    onSuccess(data) {
-      console.log(data)
+    onSuccess() {
       Toast.success({ text1: '成功发布帖子' })
       navigator.goBack()
       //   刷新列表

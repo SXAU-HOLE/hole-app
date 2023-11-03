@@ -37,6 +37,7 @@ export const AreaInput = <T extends object>({
             onChangeText={onChange}
             textAlignVertical={'top'}
             cursorColor={theme.colors.primary}
+            selectionColor={theme.colors.onPrimaryContainer}
             style={{
               fontSize: 16,
               ...(props.style as object),

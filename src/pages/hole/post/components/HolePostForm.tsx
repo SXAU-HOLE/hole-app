@@ -2,13 +2,19 @@ import { View } from 'react-native'
 import { AreaInput } from '@/components/form/AreaInput'
 import { FormImage } from '@/components/form/FormImage'
 import { useHolePostContext } from '@/shared/context/HolePostContext'
+import { Button } from 'react-native-paper'
 
 export function HolePostForm({ height }: { height: number }) {
   const {
     form: { control },
     imgs,
     setImgs,
+    setFocus,
   } = useHolePostContext()
+
+  const focus = () => {
+    setFocus('body')
+  }
 
   return (
     <View
@@ -21,8 +27,9 @@ export function HolePostForm({ height }: { height: number }) {
         <AreaInput
           name={'title'}
           control={control}
-          placeholder={'标题不是非必须的哦 ♥ (20字以内)'}
+          placeholder={'标题不是非必须的 (20字以内)'}
           style={{ fontSize: 18 }}
+          autoFocus={true}
         ></AreaInput>
       </View>
       <View className={'flex-1'}>
@@ -33,6 +40,7 @@ export function HolePostForm({ height }: { height: number }) {
           multiline={true}
         ></AreaInput>
       </View>
+      <Button onPress={focus}> 测试</Button>
       <View>
         <FormImage
           imgs={imgs}
@@ -41,7 +49,7 @@ export function HolePostForm({ height }: { height: number }) {
               draft.splice(index, 1)
             })
           }}
-        ></FormImage>
+        />
       </View>
     </View>
   )

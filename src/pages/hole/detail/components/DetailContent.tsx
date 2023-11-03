@@ -7,6 +7,7 @@ import { IconButton, Text, useTheme } from 'react-native-paper'
 import { LikeHole } from '../../components/LikeHole'
 import { CommentListHeader } from '@/pages/hole/detail/components/CommentListHeader'
 import { Toast } from '@/utils/toast'
+import { EmojiableText } from '@/components/Text/EmojiableText'
 
 export function ContentBottom() {
   return (
@@ -47,9 +48,11 @@ export function DetailContent() {
             ) : (
               <></>
             )}
-            <Text variant={'bodyMedium'} className={'my-3'}>
-              {data.body}
-            </Text>
+
+            <View className={'my-3'}>
+              <EmojiableText body={data.body} />
+            </View>
+
             {data.imgs?.length ? (
               <AutoSizeImageList imgs={data.imgs}></AutoSizeImageList>
             ) : (

@@ -18,6 +18,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Func } from '@/shared/types'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AutoSizeImageList } from '@/components/Image/AutoSizeImageList'
+import { EmojiableText } from '@/components/Text/EmojiableText'
 
 interface Props {
   data: IHoleCommentListItem | IHoleReplyListItem
@@ -85,7 +86,7 @@ export function CommentItem({
                     </>
                   )}
 
-                  <Text>{data.body}</Text>
+                  <EmojiableText body={data.body} />
                 </ReadMore>
               </View>
 

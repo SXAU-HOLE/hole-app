@@ -1,14 +1,14 @@
 import { EmojiList } from '@/assets/emoji'
 import { Emoji } from '@/components/components/Emoji'
 import { Text } from 'react-native-paper'
-import { View } from 'react-native'
+import { TextProps, View } from 'react-native'
 
-interface Props {
+interface Props extends TextProps {
   body: string
   numberOfLines?: number
 }
 
-export function EmojiableText({ body, numberOfLines }: Props) {
+export function EmojiableText({ body, numberOfLines, ...props }: Props) {
   const reg = /(\[.*?\])/g
   const parts = body.split(reg)
 

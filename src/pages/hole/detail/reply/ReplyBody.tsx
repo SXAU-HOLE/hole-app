@@ -1,6 +1,7 @@
 import { Pressable, Text, View } from 'react-native'
 import { useReplyListRoute } from '@/hooks/useReplyListRoute'
 import { useCommentContext } from '@/shared/context/CommentContext'
+import { EmojiableText } from '@/components/Text/EmojiableText'
 
 export function ReplyBody({ data }: { data: IHoleCommentListItem }) {
   const { replies, repliesCount } = data
@@ -32,7 +33,7 @@ export function ReplyBody({ data }: { data: IHoleCommentListItem }) {
                 </Text>
               </>
             )}
-            <Text>: {reply.body}</Text>
+            <EmojiableText body={`: ${reply.body}`} />
           </Pressable>
         ))}
       </View>

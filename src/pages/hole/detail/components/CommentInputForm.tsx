@@ -6,11 +6,13 @@ import { useCommentContext } from '@/shared/context/CommentContext'
 import { useHoleCommentQuery, useReplyListQuery } from '@/query/hole'
 import { useMutation } from '@tanstack/react-query'
 import Toast from 'react-native-toast-message'
-import { useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useSelectImage } from '@/hooks/useSelectImage'
 import { CameraIcon, EmojiIcon } from '@/components/Icons'
 import { FormImage } from '@/components/form/FormImage'
 import { UploadHoleImgRequest } from '@/apis/hole'
+import { EmojiArea } from '@/components/components/EmojiArea'
+import { EmojiItem } from '@/assets/emoji'
 
 export function CommentInputForm() {
   const {
@@ -21,6 +23,8 @@ export function CommentInputForm() {
     isReply,
     data,
     closeInput,
+    getValues,
+    setValue,
   } = useCommentContext()
   const { invalidateQuery: invalidateComment, id } = useHoleCommentQuery()
 
@@ -61,6 +65,11 @@ export function CommentInputForm() {
       id,
     })
   }
+
+  const [showEmoji, setShowEmoji] = useState(false)
+  const onEmojiSelect = useCallback((emoji: EmojiItem) => {
+    setValue('body', `${getValues('body') || ''}${emoji.name}`)
+  }, [])
 
   return (
     <KeyboardVisible>
@@ -108,9 +117,13 @@ export function CommentInputForm() {
             }
           >
             <CameraIcon size={24} onPress={onSelectImage} />
-            <EmojiIcon size={24}></EmojiIcon>
+            <EmojiIcon
+              size={24}
+              onPress={() => setShowEmoji(!showEmoji)}
+            ></EmojiIcon>
           </View>
         </View>
+        <EmojiArea onSelect={onEmojiSelect} expandArea={showEmoji} />
       </View>
     </KeyboardVisible>
   )
