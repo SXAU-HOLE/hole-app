@@ -10,7 +10,7 @@ export function useSelectImage(options: ImagePicker.ImagePickerOptions) {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
+        allowsEditing: false,
         selectionLimit: 3,
         quality: 0.9,
         ...options,

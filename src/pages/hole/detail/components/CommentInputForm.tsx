@@ -73,7 +73,7 @@ export function CommentInputForm() {
 
   return (
     <KeyboardVisible>
-      <View className={'w-full absolute bottom-[150] px-3'}>
+      <View className={'w-full absolute bottom-[190] px-3'}>
         <FormImage
           imgs={imgs}
           onCloseable={(index) =>

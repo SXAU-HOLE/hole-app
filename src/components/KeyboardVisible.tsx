@@ -1,11 +1,11 @@
 import useKeyboardHeight from '@/hooks/useKeyboardHeight'
-import { View } from 'react-native'
+import { View, ViewProps } from 'react-native'
 
-interface Props {
+interface Props extends ViewProps {
   children: React.ReactNode
 }
 
-export function KeyboardVisible(props: Props) {
+export function KeyboardVisible({ children, ...props }: Props) {
   const height = useKeyboardHeight()
 
   return (
@@ -14,8 +14,9 @@ export function KeyboardVisible(props: Props) {
       style={{
         bottom: height,
       }}
+      {...props}
     >
-      {props.children}
+      {children}
     </View>
   )
 }

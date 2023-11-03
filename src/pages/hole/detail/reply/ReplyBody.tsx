@@ -22,7 +22,7 @@ export function ReplyBody({ data }: { data: IHoleCommentListItem }) {
           <Pressable
             key={reply.id}
             onPress={() => {}}
-            className={'flex flex-row space-x-1 my-1'}
+            className={'flex flex-row space-x-1 my-1 items-center'}
           >
             <Text className={'text-primary'}>{reply.user.username}</Text>
             {reply.replyUser !== null && (
