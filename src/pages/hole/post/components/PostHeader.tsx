@@ -2,19 +2,19 @@ import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
 import { CloseIcon } from '@/components/Icons'
 import { Button, Text } from 'react-native-paper'
-import { usePostContext } from '@/shared/context/HolePostContext'
+import { useHolePostContext } from '@/shared/context/HolePostContext'
 import { useMutation } from '@tanstack/react-query'
 import { PostHoleValidator } from '@/shared/validators/hole'
 import { PostHoleRequest, UploadHoleImgRequest } from '@/apis/hole'
-import { Toast } from '@/utils/toast'
 import { useHoleList } from '@/query/hole'
+import { Toast } from '@/utils/toast'
 
 export function PostHeader() {
   const navigator = useNavigation()
   const {
     form: { handleSubmit },
     imgs,
-  } = usePostContext()
+  } = useHolePostContext()
   const { invalidate } = useHoleList()
 
   const mutation = useMutation({
@@ -26,9 +26,19 @@ export function PostHeader() {
         res = respone.data
       }
 
-      return await PostHoleRequest({ ...data, imgs: res })
+      // 创建tags
+      const reg = /#(.*?)#/g
+      const part = new Set(data.body.match(reg))
+      const uniquePart = Array.from(part)
+
+      return await PostHoleRequest({
+        ...data,
+        imgs: res,
+        tags: uniquePart,
+      })
     },
     onSuccess(data) {
+      console.log(data)
       Toast.success({ text1: '成功发布帖子' })
       navigator.goBack()
       //   刷新列表

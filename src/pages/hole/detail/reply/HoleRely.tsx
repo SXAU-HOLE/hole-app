@@ -36,7 +36,7 @@ export function HoleRely() {
               onBodyPress={(data) => {
                 openInput({
                   commentId: comment!.id,
-                  replyId: item.id,
+                  replyId: item?.id,
                   body: data.body,
                   user: data.user,
                 })

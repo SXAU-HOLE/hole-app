@@ -1,12 +1,12 @@
 import { FullPage } from '@/components/Page'
 import { View } from 'react-native'
-import { BottomActions } from '@/pages/hole/components/post/BottomActions'
-import { useEffect, useMemo, useState } from 'react'
+import { BottomActions } from '@/pages/hole/post/components/BottomActions'
+import { useMemo, useState } from 'react'
 import { WindowHeight } from '@/utils/utils'
 import useKeyboardHeight from '@/hooks/useKeyboardHeight'
-import { HolePostContext, PostContext } from '@/shared/context/HolePostContext'
-import { PostHeader } from '@/pages/hole/components/post/PostHeader'
-import { PostBody } from '@/pages/hole/components/post/PostBody'
+import { HolePostContext } from '@/shared/context/HolePostContext'
+import { PostHeader } from '@/pages/hole/post/components/PostHeader'
+import { PostBody } from '@/pages/hole/post/components/PostBody'
 
 export function HolePost() {
   const [headerHeight, setHeaderHeight] = useState(0)
@@ -18,8 +18,7 @@ export function HolePost() {
   )
 
   return (
-    // @ts-ignore
-    <PostContext.Provider value={HolePostContext()}>
+    <HolePostContext>
       <FullPage>
         <View
           onLayout={(e) => setHeaderHeight(e.nativeEvent.layout.height)}
@@ -39,6 +38,6 @@ export function HolePost() {
           <BottomActions></BottomActions>
         </View>
       </FullPage>
-    </PostContext.Provider>
+    </HolePostContext>
   )
 }

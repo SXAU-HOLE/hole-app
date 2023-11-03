@@ -1,8 +1,8 @@
-import { createContext, useContext } from 'react'
 import { useImmer } from 'use-immer'
 import { useForm } from 'react-hook-form'
 import { PostHoleValidator } from '@/shared/validators/hole'
-import { classValidatorResolver } from '@hookform/resolvers/class-validator'
+import { createStore } from 'hox'
+import { Tag } from '@/pages/hole/post/components/HolePostAddTags'
 
 type Func = (data: any) => void
 
@@ -12,13 +12,10 @@ type IContext = {
   setImgs: Func
   form: UseFormReturnType
 } | null
-export const PostContext = createContext<IContext>(null)
 
-export function usePostContext() {
-  return useContext(PostContext)!
-}
-export function HolePostContext() {
+export const [useHolePostContext, HolePostContext] = createStore(() => {
   const [imgs, setImgs] = useImmer<string[]>([])
+  const [tags, setTags] = useImmer<Tag[]>([])
 
   const {
     formState: { errors },
@@ -29,5 +26,8 @@ export function HolePostContext() {
     imgs,
     setImgs,
     form,
+    ...form,
+    tags,
+    setTags,
   }
-}
+})

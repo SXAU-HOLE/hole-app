@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { HoleDetail } from '@/pages/hole/detail/HoleDetail'
-import { HolePost } from '@/pages/hole/HolePost'
+import { HolePost } from '@/pages/hole/post/HolePost'
 import { HoleSearch } from '@/pages/hole/HoleSearch'
 import { HoleDetailHeader } from '@/pages/hole/detail/DetailHeader'
 import { CommentContext } from '@/shared/context/CommentContext'

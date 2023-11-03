@@ -1,17 +1,14 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { AreaInput } from '@/components/form/AreaInput'
-import { useForm } from 'react-hook-form'
-import { PostHoleValidator } from '@/shared/validators/hole'
-import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import { FormImage } from '@/components/form/FormImage'
-import { usePostContext } from '@/shared/context/HolePostContext'
+import { useHolePostContext } from '@/shared/context/HolePostContext'
 
 export function HolePostForm({ height }: { height: number }) {
   const {
     form: { control },
     imgs,
     setImgs,
-  } = usePostContext()
+  } = useHolePostContext()
 
   return (
     <View

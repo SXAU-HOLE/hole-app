@@ -73,7 +73,7 @@ export function UploadHoleImgRequest(imgs: string[]) {
     })
   }
 
-  return request<IResponse>({
+  return request<any>({
     method: 'POST',
     url: '/oss/upload',
     headers: {
@@ -175,5 +175,12 @@ export function DeleteCommentLikeRequest(data: { id: string }) {
     method: 'DELETE',
     url: '/hole/comment/like',
     data,
+  })
+}
+
+export function GetHotTagsRequest() {
+  return request({
+    method: 'GET',
+    url: '/hole/tags',
   })
 }
