@@ -15,6 +15,7 @@ export function BottomActions() {
   const {
     setImgs,
     form: { setValue, getValues },
+    setFocus,
   } = useHolePostContext()
 
   const { onImageSelect } = useImagePicker({
@@ -54,6 +55,7 @@ export function BottomActions() {
               icon={'keyboard-outline'}
               iconColor={theme.colors.primary}
               onPress={() => {
+                setFocus('body')
                 setShowEmoji(false)
               }}
             />
@@ -61,8 +63,8 @@ export function BottomActions() {
             <IconButton
               icon={() => <EmojiIcon size={24} />}
               onPress={() => {
-                setShowEmoji(true)
                 Keyboard.dismiss()
+                setShowEmoji(true)
               }}
             />
           )}

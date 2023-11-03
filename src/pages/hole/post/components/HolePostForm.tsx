@@ -2,19 +2,13 @@ import { View } from 'react-native'
 import { AreaInput } from '@/components/form/AreaInput'
 import { FormImage } from '@/components/form/FormImage'
 import { useHolePostContext } from '@/shared/context/HolePostContext'
-import { Button } from 'react-native-paper'
 
 export function HolePostForm({ height }: { height: number }) {
   const {
     form: { control },
     imgs,
     setImgs,
-    setFocus,
   } = useHolePostContext()
-
-  const focus = () => {
-    setFocus('body')
-  }
 
   return (
     <View
@@ -40,7 +34,7 @@ export function HolePostForm({ height }: { height: number }) {
           multiline={true}
         ></AreaInput>
       </View>
-      <Button onPress={focus}> 测试</Button>
+
       <View>
         <FormImage
           imgs={imgs}

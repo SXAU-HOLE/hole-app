@@ -29,15 +29,15 @@ export const AreaInput = <T extends object>({
       name={name}
       control={control}
       rules={rules}
-      render={({ field: { value, onChange, onBlur } }) => (
+      render={({ field: { value, onChange, onBlur, ref } }) => (
         <>
           <TextInput
+            ref={ref}
             value={value}
             onBlur={onBlur}
             onChangeText={onChange}
             textAlignVertical={'top'}
-            cursorColor={theme.colors.primary}
-            selectionColor={theme.colors.onPrimaryContainer}
+            selectionColor={theme.colors.primary}
             style={{
               fontSize: 16,
               ...(props.style as object),
