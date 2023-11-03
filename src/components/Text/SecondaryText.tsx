@@ -5,11 +5,7 @@ export function SecondaryText(props: TextProps<any>) {
 
   return (
     <Text
-      className={props.className}
-      style={{
-        color: theme.colors.surfaceVariant,
-        ...((props.style as object) || {}),
-      }}
+      className={`${props.className} color-surfaceVariant`}
       {...props}
     ></Text>
   )
