@@ -4,7 +4,6 @@ import UserAvatar from '@/components/UserAvatar'
 import { Pressable, StyleSheet, View } from 'react-native'
 import { Text, TouchableRipple, useTheme } from 'react-native-paper'
 import { ReplyBody } from '@/pages/hole/detail/reply/ReplyBody'
-import ReadMore from 'react-native-read-more-text'
 import { SecondaryText } from '@/components/Text/SecondaryText'
 import { useState } from 'react'
 import Animated, {
@@ -63,31 +62,17 @@ export function CommentItem({
               <View>
                 <UserText username={data.user.username} />
               </View>
-              <View>
-                <ReadMore
-                  numberOfLines={3}
-                  renderTruncatedFooter={(handlePress) => (
-                    <Text className={'text-primary'} onPress={handlePress}>
-                      展开评论
+              <View className={'flex flex-row'}>
+                {'replyUser' in data && data.replyUser !== null && (
+                  <>
+                    <Text className={'mx-1'}>回复</Text>
+                    <Text className={'text-primary'}>
+                      {data.replyUser.username} :
                     </Text>
-                  )}
-                  renderRevealedFooter={(handlePress) => (
-                    <Text className={'text-primary'} onPress={handlePress}>
-                      收起评论
-                    </Text>
-                  )}
-                >
-                  {'replyUser' in data && data.replyUser !== null && (
-                    <>
-                      <Text className={'mx-1'}>回复</Text>
-                      <Text className={'text-primary ml-10'}>
-                        {data.replyUser.username} :
-                      </Text>
-                    </>
-                  )}
+                  </>
+                )}
 
-                  <EmojiableText body={data.body} />
-                </ReadMore>
+                <EmojiableText body={data.body} />
               </View>
 
               <View className={'my-2'}>

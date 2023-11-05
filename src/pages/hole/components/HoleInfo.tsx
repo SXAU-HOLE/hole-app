@@ -38,19 +38,21 @@ const HoleInfoBody = ({ data }: Props) => {
         <></>
       )}
 
-      <View className="overflow-hidden">
-        <View>
-          <EmojiableText body={data.body} />
-        </View>
-
-        {data.imgs?.length ? (
-          <View className={'flex flex-row flex-wrap w-full mt-1'}>
-            <ImageList imgs={data.imgs} />
-          </View>
-        ) : (
-          <></>
-        )}
+      <View>
+        <EmojiableText
+          body={data.body}
+          numberOfLines={3}
+          variant={'bodyMedium'}
+          style={{ color: 'rgba(0, 0, 0, .75)', lineHeight: 25 }}
+        />
       </View>
+      {data.imgs?.length ? (
+        <View className={'flex flex-row flex-wrap w-full mt-1'}>
+          <ImageList imgs={data.imgs} />
+        </View>
+      ) : (
+        <></>
+      )}
     </View>
   )
 }

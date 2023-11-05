@@ -1,17 +1,27 @@
-import { useCommentContext } from '@/shared/context/CommentContext'
+import { useReplyRoute } from '@/hooks/route/useReplyRoute'
 import { CommentItem } from '@/pages/hole/detail/components/CommentItem'
 import { DeleteCommentLikeRequest, LikeCommentRequest } from '@/apis/hole'
 import { Separator } from '@/components/Separator'
-import { SecondaryText } from '@/components/Text/SecondaryText'
 import { View } from 'react-native'
+import { SecondaryText } from '@/components/Text/SecondaryText'
+import { useCommentContext } from '@/shared/context/CommentContext'
 
 export function HoleReplyHeader() {
-  const { comment } = useCommentContext()
+  const { comment, commentId, holeId } = useReplyRoute()
+  const { openInput } = useCommentContext()
 
   return (
     <>
       <CommentItem
         data={comment as IHoleCommentListItem}
+        onBodyPress={() =>
+          openInput({
+            commentId: commentId,
+            // @ts-ignore
+            id: holeId,
+            ...comment,
+          })
+        }
         deleteLikeRequest={DeleteCommentLikeRequest}
         postLikeRequest={LikeCommentRequest}
         isRenderReply={false}

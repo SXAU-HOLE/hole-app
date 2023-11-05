@@ -42,7 +42,7 @@ export function DetailContent() {
           </View>
           <View>
             {data.title ? (
-              <Text variant={'titleLarge'} className={'font-medium'}>
+              <Text variant={'titleLarge'} className={'font-medium mt-3'}>
                 {data?.title}
               </Text>
             ) : (
@@ -50,7 +50,11 @@ export function DetailContent() {
             )}
 
             <View className={'my-3'}>
-              <EmojiableText body={data.body} />
+              <EmojiableText
+                body={data.body}
+                variant={'bodyLarge'}
+                style={{ color: 'rgba(0, 0, 0, .75)', lineHeight: 25 }}
+              />
             </View>
 
             {data.imgs?.length ? (
