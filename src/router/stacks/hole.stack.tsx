@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { HoleDetail } from '@/pages/hole/detail/HoleDetail'
 import { HolePost } from '@/pages/hole/post/HolePost'
-import { HoleSearch } from '@/pages/hole/HoleSearch'
+import { HoleSearchHeader } from '@/pages/hole/search/HoleSearchHeader'
 import { HoleDetailHeader } from '@/pages/hole/detail/DetailHeader'
 import { CommentContext } from '@/shared/context/CommentContext'
 import { HoleRely } from '@/pages/hole/detail/reply/HoleRely'
+import { HoleSearchResult } from '@/pages/hole/search/result/result'
+import { HoleSearch } from '@/pages/hole/search/HoleSearch'
 
 const HoleStack = createNativeStackNavigator()
 
@@ -31,6 +33,26 @@ const HoleDetailStacks = () => {
   )
 }
 
+const HoleSearchStacks = () => {
+  return (
+    <HoleStack.Navigator
+      initialRouteName={'index'}
+      screenOptions={{
+        header: () => <HoleSearchHeader />,
+      }}
+    >
+      <HoleStack.Screen
+        name={'index'}
+        component={HoleSearch}
+      ></HoleStack.Screen>
+      <HoleStack.Screen
+        name={'result'}
+        component={HoleSearchResult}
+      ></HoleStack.Screen>
+    </HoleStack.Navigator>
+  )
+}
+
 const HoleStacks = () => {
   return (
     <HoleStack.Navigator
@@ -46,7 +68,7 @@ const HoleStacks = () => {
       <HoleStack.Screen name={'post'} component={HolePost}></HoleStack.Screen>
       <HoleStack.Screen
         name={'search'}
-        component={HoleSearch}
+        component={HoleSearchStacks}
       ></HoleStack.Screen>
     </HoleStack.Navigator>
   )

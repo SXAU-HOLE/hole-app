@@ -53,3 +53,5 @@ export const BarsIcon = withAntDesignIcon('bars')
 export const EmojiIcon = withFontAV5Icon('grin-beam')
 
 export const CameraIcon = withFontAV5Icon('camera')
+
+export const SearchIcon = withMaterialIcon('search')
