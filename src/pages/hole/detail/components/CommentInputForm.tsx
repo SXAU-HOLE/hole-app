@@ -45,7 +45,6 @@ export function CommentInputForm() {
   const mutation = useMutation({
     mutationFn: reqFunc,
     async onSuccess(data) {
-      console.log(data)
       Toast.show({
         type: 'success',
         text1: '留言成功！',

@@ -5,6 +5,9 @@ import { View } from 'react-native'
 import { Text, TouchableRipple } from 'react-native-paper'
 import { ImageList } from '@/components/Image/ImageList'
 import { EmojiableText } from '@/components/Text/EmojiableText'
+import { useHoleSearchRoute } from '@/hooks/route/useHoleSearchRoute'
+import { Badges } from '@/components/Badges'
+import { Tag } from '@/pages/hole/post/components/HolePostAddTags'
 
 interface Props {
   data: IHole
@@ -26,6 +29,8 @@ const HoleInfoHeader = ({ data }: Props) => {
 }
 
 const HoleInfoBody = ({ data }: Props) => {
+  const { goResult } = useHoleSearchRoute()
+
   return (
     <View className="flex">
       {data.title !== '' ? (
@@ -49,6 +54,19 @@ const HoleInfoBody = ({ data }: Props) => {
       {data.imgs?.length ? (
         <View className={'flex flex-row flex-wrap w-full mt-1'}>
           <ImageList imgs={data.imgs} />
+        </View>
+      ) : (
+        <></>
+      )}
+      {data.tags?.length ? (
+        <View>
+          <Badges
+            data={data.tags}
+            onPress={(tag: Tag) => {
+              console.log(tag)
+              goResult(tag.body)
+            }}
+          />
         </View>
       ) : (
         <></>

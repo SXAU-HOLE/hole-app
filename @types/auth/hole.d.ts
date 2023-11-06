@@ -4,6 +4,7 @@ declare interface IHoleListResponse {
 }
 
 declare interface IHole {
+  tags: any[]
   id: string
   createAt: string
   title: string
