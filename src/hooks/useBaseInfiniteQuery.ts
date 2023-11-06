@@ -17,6 +17,7 @@ export function useBaseInfiniteQuery<T extends ListResponseAble>(
 ) {
   const query = useInfiniteQuery(options.queryKey!, options.queryFn!, {
     getNextPageParam: (lastPages) => {
+      console.log(lastPages)
       const nextPage = lastPages.meta?.currentPage + 1
 
       if (
@@ -25,7 +26,6 @@ export function useBaseInfiniteQuery<T extends ListResponseAble>(
       ) {
         return
       }
-
       return nextPage
     },
     refetchOnMount: false,

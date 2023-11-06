@@ -6,6 +6,7 @@ import {
 import { PaginateAble } from '@/shared/types'
 import { request } from '@/utils/request'
 import { PostHoleValidator } from '@/shared/validators/hole'
+import { SearchValidator } from '@/shared/validators/hole/search'
 
 interface Id {
   id: string
@@ -182,5 +183,13 @@ export function GetHotTagsRequest() {
   return request({
     method: 'GET',
     url: '/hole/tags',
+  })
+}
+
+export function GetSearchRequest(params: PaginateAble<SearchValidator>) {
+  return request<ISearchHoleResponse>({
+    method: 'GET',
+    url: '/hole/search',
+    params,
   })
 }

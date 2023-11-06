@@ -1,10 +1,13 @@
-import { Text } from 'react-native'
-import Page from '@/components/Page'
+import { FullPage } from '@/components/Page'
+import { useSearchResultQuery } from '@/query/hole'
+import HoleList from '@/pages/hole/components/list'
 
 export function HoleSearchResult() {
+  const query = useSearchResultQuery()
+
   return (
-    <Page>
-      <Text>HoleSearchResult</Text>
-    </Page>
+    <FullPage>
+      <HoleList {...query} />
+    </FullPage>
   )
 }

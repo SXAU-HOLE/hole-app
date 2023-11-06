@@ -3,6 +3,7 @@ import {
   GetHoleDetailRequest,
   GetHoleListRequest,
   GetReplyListRequest,
+  GetSearchRequest,
 } from '@/apis/hole'
 import { HoleListMode } from '@/shared/enum'
 import {
@@ -15,6 +16,7 @@ import { useMemo } from 'react'
 import { useBaseInfiniteQuery } from '@/hooks/useBaseInfiniteQuery'
 import { flatInfiniteQueryData } from '@/utils/utils'
 import { HoleReplyListRouteParams } from '@/hooks/useReplyListRoute'
+import { SearchValidator } from '@/shared/validators/hole/search'
 
 export function useHoleList() {
   const route = useRoute()
@@ -138,6 +140,26 @@ export function useReplyListQuery() {
     queryKey,
     queryFn: ({ pageParam }) =>
       GetReplyListRequest({ id: params.commentId, page: pageParam, limit: 10 }),
+  })
+
+  return {
+    ...query,
+  }
+}
+
+export function useSearchResultQuery() {
+  const params = useRoute().params as SearchValidator
+
+  const key = [params.keywords]
+
+  const query = useBaseInfiniteQuery({
+    queryKey: key,
+    queryFn: ({ pageParam }) =>
+      GetSearchRequest({
+        limit: 10,
+        page: pageParam,
+        keywords: '123',
+      }),
   })
 
   return {
