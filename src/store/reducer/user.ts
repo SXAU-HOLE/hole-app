@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface UserState {
   isLogin: boolean
@@ -15,6 +15,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<string>) => {
+      console.log('login')
       state.isLogin = true
       state.tooken = action.payload
     },

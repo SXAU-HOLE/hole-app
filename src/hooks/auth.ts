@@ -1,8 +1,7 @@
 import { store } from '@/store'
-import { useSelector } from 'react-redux'
 import {
-  logout as storeLogout,
   login as StoreLogin,
+  logout as storeLogout,
 } from '@/store/reducer/user'
 import { useLinkTo } from '@react-navigation/native'
 
@@ -12,12 +11,12 @@ export function useAuth() {
 
   const login = (token: string) => {
     store.dispatch(StoreLogin(token))
-    linkTo('/index')
+    // linkTo('/index')
   }
 
   const logout = () => {
     store.dispatch(storeLogout())
-    linkTo('/auth')
+    // linkTo('/auth')
   }
 
   return {

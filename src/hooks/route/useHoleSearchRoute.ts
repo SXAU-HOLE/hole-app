@@ -1,7 +1,8 @@
-import { useNavigation } from '@react-navigation/native'
+import { useLinkTo, useNavigation } from '@react-navigation/native'
 
 export function useHoleSearchRoute() {
   const navigation = useNavigation()
+  const linkTo = useLinkTo()
 
   const goResult = (keywords: string) => {
     // @ts-ignore
@@ -15,10 +16,8 @@ export function useHoleSearchRoute() {
   }
 
   const goHome = () => {
-    // @ts-ignore
-    navigation.navigate('Index', {
-      screen: 'latest',
-    })
+    linkTo('/index/home/hot')
+    console.log('home')
   }
 
   return {
