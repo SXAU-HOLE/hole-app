@@ -8,12 +8,14 @@ import { LikeHole } from '../../components/LikeHole'
 import { CommentListHeader } from '@/pages/hole/detail/components/CommentListHeader'
 import { Toast } from '@/utils/toast'
 import { EmojiableText } from '@/components/Text/EmojiableText'
+import { Svg } from '@/components/Svg/Svg'
+import Send from '@/assets/svg/Send.svg'
 
 export function ContentBottom() {
   return (
     <View className={'py-3 flex flex-row justify-around items-center'}>
       <IconButton
-        icon={'share'}
+        icon={() => <Svg SvgComponent={Send} size={20} />}
         onPress={() => {
           Toast.info({ text1: '功能正在开发中~~' })
         }}

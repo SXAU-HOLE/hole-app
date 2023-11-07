@@ -1,4 +1,3 @@
-import { CommentIcon, LikeIcon } from '@/components/Icons'
 import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
 import { View } from 'react-native'
@@ -8,6 +7,9 @@ import { EmojiableText } from '@/components/Text/EmojiableText'
 import { useHoleSearchRoute } from '@/hooks/route/useHoleSearchRoute'
 import { Badges } from '@/components/Badges'
 import { Tag } from '@/pages/hole/post/components/HolePostAddTags'
+import { Svg } from '@/components/Svg/Svg'
+import Like from '@/assets/svg/Like.svg'
+import Message from '@/assets/svg/Message.svg'
 
 interface Props {
   data: IHole
@@ -79,13 +81,11 @@ const HoleInfoBottom = ({ data }: Props) => {
   const iconsList = [
     {
       value: data.favoriteCount,
-      element: <LikeIcon size={18} color={'#686E87'} />,
+      element: <Svg SvgComponent={Like} size={18} color={'#686E87'} />,
     },
     {
       value: data.commentCounts,
-      element: (
-        <CommentIcon name="chat" size={18} color={'#686E87'}></CommentIcon>
-      ),
+      element: <Svg SvgComponent={Message} size={18} color={'#686E87'} />,
     },
   ]
 
