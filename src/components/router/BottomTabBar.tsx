@@ -1,10 +1,14 @@
-import { View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { TouchableRipple, useTheme } from 'react-native-paper'
+import { Text, useTheme } from 'react-native-paper'
 import { BottomTabBarIcons, Icons } from '@/components/router/BottomTabBarIcons'
 
 export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
   const theme = useTheme()
+  const RouteNameMap = {
+    home: '树洞',
+    user: '我',
+  }
 
   return (
     <View
@@ -16,11 +20,10 @@ export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
         const isFocused = state.index === index
 
         return (
-          <TouchableRipple
+          <Pressable
             key={index}
             onPress={() => navigation.navigate(route)}
             className={'flex-1'}
-            rippleColor={theme.colors.onBackground}
           >
             <View
               className={'flex flex-1 items-center justify-center rounded-full'}
@@ -29,8 +32,11 @@ export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
                 route={route.name as Icons}
                 isFocused={isFocused}
               />
+              <Text className={`${isFocused && 'color-primary'}`}>
+                {RouteNameMap[route.name as Icons]}
+              </Text>
             </View>
-          </TouchableRipple>
+          </Pressable>
         )
       })}
     </View>

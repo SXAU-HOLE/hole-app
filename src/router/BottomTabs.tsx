@@ -13,7 +13,7 @@ export function BottomTabs() {
       tabBar={(props) => <BottomTabBar {...props} />}
     >
       <Tab.Screen name={'home'} component={TopTabs}></Tab.Screen>
-      <Tab.Screen name={'user'} component={User}></Tab.Screen>
+      <Tab.Screen name={'user'} component={User} options={{}}></Tab.Screen>
     </Tab.Navigator>
   )
 }

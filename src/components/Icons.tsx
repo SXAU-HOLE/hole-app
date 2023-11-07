@@ -6,6 +6,8 @@ import { IconProps } from 'react-native-vector-icons/Icon'
 
 import React from 'react'
 import { useTheme } from 'react-native-paper'
+import { Svg } from '@/components/Svg/Svg'
+import Right from '@/assets/svg/Right.svg'
 
 export const Icons = (props: IconProps) => <MaterialIcon {...props} />
 
@@ -55,3 +57,7 @@ export const EmojiIcon = withFontAV5Icon('grin-beam')
 export const CameraIcon = withFontAV5Icon('camera')
 
 export const SearchIcon = withMaterialIcon('search')
+
+export const RightSvg = ({ size }: { size?: number }) => (
+  <Svg SvgComponent={Right} size={size || 24} />
+)

@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
 import { Avatar } from 'react-native-paper'
 import { isImageFile } from '@/utils/utils'
@@ -9,6 +9,8 @@ interface Props {
   size?: number
 
   mode?: 'sm' | 'md' | 'lg'
+
+  style?: StyleProp<ViewStyle>
 }
 
 const UserAvatar = ({ mode = 'sm', ...props }: Props) => {
@@ -20,6 +22,7 @@ const UserAvatar = ({ mode = 'sm', ...props }: Props) => {
       source={{
         uri: isImageFile(props.url) ? `${props.url}` : `${props.url}.png`,
       }}
+      {...props}
     />
   )
 }

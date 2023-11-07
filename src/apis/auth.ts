@@ -23,3 +23,10 @@ export function ForgetRequest(data: any) {
     data,
   })
 }
+
+export function GetUserProfileRequest() {
+  return request<IUser>({
+    method: 'GET',
+    url: 'user/profile',
+  })
+}
