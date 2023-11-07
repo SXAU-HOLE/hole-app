@@ -27,10 +27,10 @@ export function HoleSearchHistory() {
       <Text variant={'titleSmall'} style={{ lineHeight: 30 }}>
         搜索历史
       </Text>
-      <View className={'flex flex-row gap-2'}>
+      <View className={'flex flex-row justify-between flex-wrap gap-2'}>
         {data.map((tag, index) => (
           <Pressable key={index} onPress={() => onPressItem(tag)}>
-            <View className={'relative bg-gray-400/20 rounded-[5px] py-2 px-4'}>
+            <View className={`relative bg-gray-400/20 rounded-[5px] py-2 px-4`}>
               <Text className={'text-xs'}>{tag}</Text>
               <Closeable
                 onPress={() => {
@@ -39,6 +39,9 @@ export function HoleSearchHistory() {
               />
             </View>
           </Pressable>
+        ))}
+        {data.map((t, i) => (
+          <View key={i}></View>
         ))}
       </View>
     </View>
