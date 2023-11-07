@@ -4,18 +4,20 @@ import UserAvatar from '@/components/UserAvatar'
 import { Text } from 'react-native-paper'
 import { SecondaryText } from '@/components/Text/SecondaryText'
 import { RightSvg } from '@/components/Icons'
+import { useUserProfileRoute } from '@/hooks/route/useUserProfileRoute'
 
 export function UserCard() {
   const { data, isSuccess } = useUserProfile()
 
-  const goEdit = () => {
-    console.log('edit')
-  }
+  const { goProfileScreen } = useUserProfileRoute()
 
   return (
     <View className={'h-48 bg-white'}>
       <View className={'h-14'}></View>
-      <Pressable className={'pl-5 pr-3 flex flex-row'} onPress={goEdit}>
+      <Pressable
+        className={'pl-5 pr-3 flex flex-row'}
+        onPress={goProfileScreen}
+      >
         {isSuccess && <UserAvatar url={data!.avatar} size={84} />}
         <View className={'ml-4 flex flex-col justify-around'}>
           <Text variant={'titleLarge'} className={'font-bold'}>

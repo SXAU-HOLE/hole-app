@@ -61,3 +61,5 @@ export const SearchIcon = withMaterialIcon('search')
 export const RightSvg = ({ size }: { size?: number }) => (
   <Svg SvgComponent={Right} size={size || 24} />
 )
+
+export const ArrowLeftIcon = withMaterialIcon('arrow-back')

@@ -3,6 +3,7 @@ import React from 'react'
 import { useTheme } from 'react-native-paper'
 import HoleStacks from '@/router/stacks/hole.stack'
 import { BottomTabs } from '@/router/BottomTabs'
+import { UserStacks } from '@/router/stacks/user.stack'
 
 const IndexStack = createNativeStackNavigator()
 
@@ -17,14 +18,9 @@ export function IndexStacks() {
         statusBarStyle: 'dark',
       }}
     >
-      <IndexStack.Screen
-        name={'main'}
-        component={BottomTabs}
-      ></IndexStack.Screen>
-      <IndexStack.Screen
-        name={'hole'}
-        component={HoleStacks}
-      ></IndexStack.Screen>
+      <IndexStack.Screen name={'main'} component={BottomTabs} />
+      <IndexStack.Screen name={'hole'} component={HoleStacks} />
+      <IndexStack.Screen name={'user-nested'} component={UserStacks} />
     </IndexStack.Navigator>
   )
 }

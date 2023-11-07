@@ -6,7 +6,7 @@ import { RightSvg } from '@/components/Icons'
 interface Props {
   icon?: ReactComponentElement<any>
   text: string
-  onPress?: string
+  onPress?: () => any
   children?: React.ReactNode
 }
 export function ArrowBar({ icon, text, onPress, children }: Props) {
@@ -15,7 +15,7 @@ export function ArrowBar({ icon, text, onPress, children }: Props) {
       className={
         'bg-white flex flex-row items-center justify-between px-6 py-4'
       }
-      onPress={() => {}}
+      onPress={onPress}
     >
       <View className={'flex flex-row items-center'}>
         {icon}
