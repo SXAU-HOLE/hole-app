@@ -21,7 +21,7 @@ export function ArrowBar({ icon, text, onPress, children }: Props) {
         {icon}
         <Text className={`${icon && 'ml-3'}`}>{text}</Text>
       </View>
-      <View className={'flex flex-row '}>
+      <View className={'flex flex-row items-center'}>
         <View className={'mr-3'}>{children}</View>
         <RightSvg size={18} />
       </View>

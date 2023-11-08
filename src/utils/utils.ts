@@ -1,11 +1,13 @@
-import { formatDistanceToNow, differenceInDays, format } from 'date-fns'
+import { differenceInDays, format, formatDistanceToNow } from 'date-fns'
 import zhCN from 'date-fns/locale/zh-CN'
 import { InfiniteData } from '@tanstack/react-query'
 import { Dimensions } from 'react-native'
 
-export function formatDate(time: string) {
+export function formatDate(time: string, isDay?: boolean) {
   const date = new Date(time)
   const now = new Date()
+
+  if (isDay) return format(date, 'yyyy/MM/dd', { locale: zhCN }).toString()
 
   const diff = differenceInDays(now, date)
 
