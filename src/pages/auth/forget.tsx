@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthView from './AuthView'
-import { View, TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import Input from '@/components/form/Input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ForgetFormValidator } from '@/shared/validators/auth'
@@ -8,8 +8,11 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import PasswordInput from '@/components/form/PasswordInput'
 import { Button } from 'react-native-paper'
 import { ForgetRequest } from '@/apis/auth'
+import { Toast } from '@/utils/toast'
+import { useNavigation } from '@react-navigation/native'
 
 const ForgetForm = () => {
+  const navigation = useNavigation()
   const {
     control,
     handleSubmit,
@@ -20,7 +23,11 @@ const ForgetForm = () => {
   })
 
   const onSubmit: SubmitHandler<ForgetFormValidator> = async (data) => {
-    await ForgetRequest(data)
+    const res = await ForgetRequest(data)
+    if (res) {
+      Toast.success({ text1: '找回密码成功' })
+      navigation.goBack()
+    }
   }
 
   return (
@@ -38,7 +45,7 @@ const ForgetForm = () => {
         <PasswordInput<ForgetFormValidator>
           control={control}
           name={'password'}
-          label={'密码'}
+          label={'找回后的密码'}
         />
       </View>
 

@@ -18,7 +18,7 @@ export function RegisterRequest(data: any) {
 
 export function ForgetRequest(data: any) {
   return request({
-    url: 'auth/register',
+    url: 'auth/forget',
     method: 'POST',
     data,
   })

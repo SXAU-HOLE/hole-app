@@ -22,6 +22,7 @@ interface IUser {
   username: string
   role: string
   avatar: string
+  studentId: string
 }
 
 interface IPage {

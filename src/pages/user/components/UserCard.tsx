@@ -25,7 +25,7 @@ export function UserCard() {
           </Text>
           <View className={'flex flex-row items-center justify-between'}>
             <SecondaryText className={'mr-3'}>
-              账号：{data?.username}
+              账号：{data?.studentId}
             </SecondaryText>
             <RightSvg size={14} />
           </View>
