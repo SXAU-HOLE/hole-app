@@ -9,9 +9,11 @@ import { PostUserProfileRequest } from '@/apis/user'
 import { Toast } from '@/utils/toast'
 import { useImagePicker } from '@/hooks/useImagePicker'
 import { UploadHoleImgRequest } from '@/apis/hole'
+import { useUserProfileRoute } from '@/hooks/route/useUserProfileRoute'
 
 export function Profile() {
   const { data, isSuccess, refetch } = useUserProfile()
+  const route = useUserProfileRoute()
 
   const mutationAvatar = useMutation({
     mutationFn: (avatar: string) => PostUserProfileRequest({ avatar }),
@@ -36,16 +38,9 @@ export function Profile() {
     onImageSelect()
   }
 
-  const mutationUsername = useMutation({
-    mutationFn: (username: string) => PostUserProfileRequest({ username }),
-    async onSuccess() {
-      await refetch()
-      Toast.success({
-        text1: '成功修改昵称',
-      })
-    },
-  })
-  const changeUsername = () => {}
+  const changeUsername = () => {
+    route.goEditUsernameScreen()
+  }
 
   return (
     <>

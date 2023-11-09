@@ -7,6 +7,7 @@ import { Profile } from '@/pages/user/profile/profile'
 import { UserCommentList } from '@/pages/user/comment/UserCommenList'
 import { UserLikedHoleList } from '@/pages/user/like/UserLikedHoleList'
 import { useTheme } from 'react-native-paper'
+import { EditUsernameScreen } from '@/pages/user/profile/editUsernameScreen'
 
 const UserStack = createNativeStackNavigator()
 
@@ -36,6 +37,13 @@ const UserScreens: UserScreen[] = [
     component: UserLikedHoleList,
     options: {
       title: '我的点赞',
+    },
+  },
+  {
+    name: 'edit-username',
+    component: EditUsernameScreen,
+    options: {
+      title: '修改用户昵称',
     },
   },
 ]

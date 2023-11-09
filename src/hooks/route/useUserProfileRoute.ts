@@ -15,9 +15,14 @@ export function useUserProfileRoute() {
     linkTo('/user-nested/liked')
   }
 
+  const goEditUsernameScreen = () => {
+    linkTo('/user-nested/edit-username')
+  }
+
   return {
     goProfileScreen,
     goCommentScreen,
     goLikedScreen,
+    goEditUsernameScreen,
   }
 }
