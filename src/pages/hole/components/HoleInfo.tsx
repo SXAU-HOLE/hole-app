@@ -61,7 +61,7 @@ const HoleInfoBody = ({ data }: Props) => {
         <></>
       )}
       {data.tags?.length ? (
-        <View>
+        <View className="mt-2">
           <Badges
             data={data.tags}
             onPress={(tag: Tag) => {

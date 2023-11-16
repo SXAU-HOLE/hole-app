@@ -1,6 +1,6 @@
 export const RequestConfig = {
-  baseUrl: 'http://192.168.1.5:3000',
-  schoolUrl: 'http://192.168.1.5:8080',
+  baseUrl: 'http://39.107.158.183:3000',
+  schoolUrl: 'http://39.107.158.183:8080',
 }
 
 export const Limit = {
