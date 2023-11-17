@@ -33,6 +33,7 @@
     "expo-media-library": "^15.6.0",
     "expo-secure-store": "^12.5.0",
     "expo-status-bar": "~1.6.0",
+    "expo-updates": "~0.18.17",
     "hox": "^2.1.1",
     "lottie-react-native": "^6.3.1",
     "native-base": "^3.4.28",
