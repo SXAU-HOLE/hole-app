@@ -1,5 +1,5 @@
 import { View, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import AuthView from './AuthView'
 import { Button } from 'react-native-paper'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -10,7 +10,6 @@ import Input from '@/components/form/Input'
 import PasswordInput from '@/components/form/PasswordInput'
 import { LoginRequest } from '@/apis/auth'
 import { useAuth } from '@/hooks/auth'
-import { store } from '@/store'
 
 const LoginForm = () => {
   const {
@@ -23,12 +22,15 @@ const LoginForm = () => {
   })
 
   const { login } = useAuth()
+  const [loading, setLoading] = useState(false)
 
   const onSubmit: SubmitHandler<LoginFormValidator> = async (data) => {
-    const { access_token } = await LoginRequest(data)
+    setLoading(true)
+    const res = await LoginRequest(data)
+    setLoading(false)
 
-    if (access_token) {
-      login(access_token)
+    if (res?.access_token) {
+      login(res?.access_token)
     }
   }
 
@@ -58,7 +60,9 @@ const LoginForm = () => {
       </View>
 
       <TouchableOpacity className="mt-3" onPress={handleSubmit(onSubmit)}>
-        <Button mode="contained">登录</Button>
+        <Button mode="contained" loading={loading}>
+          登录
+        </Button>
       </TouchableOpacity>
 
       <View className="mt-6">

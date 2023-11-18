@@ -12,6 +12,7 @@ export interface ErrorResponse {
 
 const instance = axios.create({
   baseURL: RequestConfig.baseUrl,
+  timeout: 5000,
 })
 
 instance.interceptors.response.use(
