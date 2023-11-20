@@ -37,3 +37,4 @@ yarn-error.*
 # vscode,idea
 .vscode
 .idea
+android
