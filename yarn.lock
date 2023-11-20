@@ -5154,10 +5154,10 @@ expo-modules-core@1.5.12:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-secure-store@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.npmmirror.com/expo-secure-store/-/expo-secure-store-5.0.1.tgz#451d61e9519bb964e315c2be336e2aa5f130b8a4"
-  integrity sha512-iA0/MJCHZk9z5OdxEXH5TYEDKq5sEIdASBr/7XkdCl+gB7+3peSeEXsXPRK+TK/Tzo9JGgfYrXha/CsVC9nD5A==
+expo-secure-store@~12.3.1:
+  version "12.3.1"
+  resolved "https://registry.npmmirror.com/expo-secure-store/-/expo-secure-store-12.3.1.tgz#7e5ba94f6e7374f132108c9feb5cc811568f3db6"
+  integrity sha512-XLIgWDiIuiR0c+AA4NCWWibAMHCZUyRcy+lQBU49U6rvG+xmd3YrBJfQjfqAPyLroEqnLPGTWUX57GyRsfDOQw==
 
 expo-splash-screen@~0.17.0:
   version "0.17.5"
@@ -5166,6 +5166,13 @@ expo-splash-screen@~0.17.0:
   dependencies:
     "@expo/configure-splash-screen" "^0.6.0"
     "@expo/prebuild-config" "5.0.7"
+
+expo-splash-screen@~0.20.5:
+  version "0.20.5"
+  resolved "https://registry.npmmirror.com/expo-splash-screen/-/expo-splash-screen-0.20.5.tgz#ebeba3e3977606830f74f506ab2cc25042bb7efd"
+  integrity sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==
+  dependencies:
+    "@expo/prebuild-config" "6.2.6"
 
 expo-status-bar@~1.6.0:
   version "1.6.0"
