@@ -1,9 +1,10 @@
 import { DeleteLikeHole, PostLikeHole } from '@/apis/hole'
 import { IconButton } from '@/components/IconButton'
-import { LikeIcon } from '@/components/Icons'
 import { useHoleDetail } from '@/query/hole'
 import { useMutation } from '@tanstack/react-query'
 import { Text, View } from 'react-native'
+import Like from '@/assets/svg/Like.svg'
+import { Svg } from '@/components/Svg/Svg'
 
 export function LikeHole() {
   const { data, toggleIsLike } = useHoleDetail()
@@ -27,7 +28,7 @@ export function LikeHole() {
   return (
     <View className={'flex justify-center items-center'}>
       <IconButton
-        icon={() => <LikeIcon size={20} active={data.isLiked} />}
+        icon={() => <Svg SvgComponent={Like} size={20} active={data.isLiked} />}
         transparent={true}
         onPress={likeHole}
       />

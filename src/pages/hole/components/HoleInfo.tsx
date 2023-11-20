@@ -81,7 +81,7 @@ const HoleInfoBottom = ({ data }: Props) => {
   const iconsList = [
     {
       value: data.favoriteCount,
-      element: <Svg SvgComponent={Like} size={18} color={'#686E87'} />,
+      element: <Svg SvgComponent={Like} size={18} active={data.isLiked} />,
     },
     {
       value: data.commentCounts,

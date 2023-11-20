@@ -16,7 +16,7 @@ export function useHoleSearchRoute() {
   }
 
   const goHome = () => {
-    linkTo('/index/home/hot')
+    navigation.goBack()
     console.log('home')
   }
 

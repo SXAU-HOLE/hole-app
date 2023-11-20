@@ -47,7 +47,7 @@ export function SearchHeader({ placeholder, onSubmit }: SearchProps) {
   }, [params?.keywords])
 
   return (
-    <View className={'flex flex-row bg-background px-2'}>
+    <View className={'flex flex-row bg-background px-2 py-4'}>
       <View
         className={
           'w-[85%] flex flex-row items-center rounded-full bg-onBackground px-3'

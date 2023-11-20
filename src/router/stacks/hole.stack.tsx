@@ -65,7 +65,7 @@ const HoleStacks = () => {
         name={'detail'}
         component={HoleDetailStacks}
       ></HoleStack.Screen>
-      <HoleStack.Screen name={'post'} component={HolePost}></HoleStack.Screen>
+      <HoleStack.Screen name={'post'} component={HolePost} />
       <HoleStack.Screen
         name={'search'}
         component={HoleSearchStacks}

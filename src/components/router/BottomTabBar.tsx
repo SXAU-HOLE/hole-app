@@ -32,7 +32,7 @@ export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
                 route={route.name as Icons}
                 isFocused={isFocused}
               />
-              <Text className={`${isFocused && 'color-primary'}`}>
+              <Text className={`${isFocused && 'color-primary'} text-[12px]`}>
                 {RouteNameMap[route.name as Icons]}
               </Text>
             </View>
