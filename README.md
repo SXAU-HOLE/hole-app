@@ -16,44 +16,44 @@
 ### 登录页
 
 <div>
-<img src="D:\work\sxau\hole-app\assets\example\login.png" style="zoom: 50%;" />
-<img src="D:\work\sxau\hole-app\assets\example\register.png" alt="register" style="zoom:50%;" />
-<img src="D:\work\sxau\hole-app\assets\example\forget.png" style="zoom: 50%;" />
+<img src="assets\example\login.png" style="zoom: 50%;" />
+<img src="assets\example\register.png" alt="register" style="zoom:50%;" />
+<img src="assets\example\forget.png" style="zoom: 50%;" />
 </div>
 
 ### 树洞列表
 
 <div>
-    <img src="D:\work\sxau\hole-app\assets\example\hole-list.png" alt="hole-list" style="zoom:50%;" />
+    <img src="assets\example\hole-list.png" alt="hole-list" style="zoom:50%;" />
 </div>
 
 ### 树洞发布页
 
 <div>
-    <img src="D:\work\sxau\hole-app\assets\example\post.png" alt="post" style="zoom:50%;" />
-    <img src="D:\work\sxau\hole-app\assets\example\post-2.png" alt="post" style="zoom:50%;" />
-    <img src="D:\work\sxau\hole-app\assets\example\post-3.png" alt="post" style="zoom:50%;" />
+    <img src="assets\example\post.png" alt="post" style="zoom:50%;" />
+    <img src="assets\example\post-2.png" alt="post" style="zoom:50%;" />
+    <img src="assets\example\post-3.png" alt="post" style="zoom:50%;" />
 </div>
 
 ### 树洞详情页
 
 <div>
-<img src="D:\work\sxau\hole-app\assets\example\hole-detail.png" alt="hole-detail" style="zoom:50%;" />
-<img src="D:\work\sxau\hole-app\assets\example\hole-detail-2.png" alt="hole-detail" style="zoom:50%;" />
+<img src="assets\example\hole-detail.png" alt="hole-detail" style="zoom:50%;" />
+<img src="assets\example\hole-detail-2.png" alt="hole-detail" style="zoom:50%;" />
 </div>
 
 ### 搜索页
 <div>
-<img src="D:\work\sxau\hole-app\assets\example\search.png" alt="search" style="zoom:50%;" />
-<img src="D:\work\sxau\hole-app\assets\example\search-2.png" alt="hole-detail" style="zoom:50%;" />
+<img src="assets\example\search.png" alt="search" style="zoom:50%;" />
+<img src="assets\example\search-2.png" alt="hole-detail" style="zoom:50%;" />
 </div>
 
 
 ### 个人页
 
 <div>
-<img src="D:\work\sxau\hole-app\assets\example\mine.png" alt="mine" style="zoom:50%;" />
-<img src="D:\work\sxau\hole-app\assets\example\mine-2.png" alt="mine-2" style="zoom:50%;" />
+<img src="assets\example\mine.png" alt="mine" style="zoom:50%;" />
+<img src="assets\example\mine-2.png" alt="mine-2" style="zoom:50%;" />
 </div>
 
 ## 技术栈
