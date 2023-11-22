@@ -81,13 +81,7 @@ export function CommentItem({
 
               <View className={'my-2 flex flex-row justify-between'}>
                 <TimeText time={data.createAt}></TimeText>
-                <View className={'flex flex-row'}>
-                  <MaterialCommunityIcons
-                    name={'chat-outline'}
-                    size={16}
-                    color={theme.colors.surfaceVariant}
-                    style={{ marginRight: 10 }}
-                  />
+                <View className={'flex flex-row px-2'}>
                   <CommentItemIsLike data={data} mutation={mutation} />
                 </View>
               </View>
@@ -157,14 +151,14 @@ const CommentItemIsLike = ({
   return (
     <Pressable onPress={onLikeIconPress}>
       <View className={'flex flex-row items-center space-x-1'}>
-        <View className={'relative p-2 flex-row'}>
+        <View className={'relative p-2.5 flex-row'}>
           <Animated.View
             className={'flex-row space-x-1 items-center'}
             style={[StyleSheet.absoluteFillObject, outlineStyle]}
           >
             <MaterialCommunityIcons
               name={'heart-outline'}
-              size={16}
+              size={18}
               color={theme.colors.surfaceVariant}
             />
           </Animated.View>
@@ -174,7 +168,7 @@ const CommentItemIsLike = ({
           >
             <MaterialCommunityIcons
               name={'heart'}
-              size={16}
+              size={18}
               color={theme.colors.error}
             />
           </Animated.View>

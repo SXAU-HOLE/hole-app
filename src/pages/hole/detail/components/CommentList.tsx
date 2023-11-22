@@ -16,7 +16,7 @@ export function CommentList() {
     isFetching,
     isDataEmpty,
   } = useHoleCommentQuery()
-  const { openInput } = useCommentContext()
+  const { openInput, onScroll } = useCommentContext()
 
   const onTopRefresh = async () => {
     await invalidateQuery()
@@ -38,6 +38,7 @@ export function CommentList() {
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}
         onTopRefresh={onTopRefresh}
+        onScroll={onScroll}
         refreshing={isFetching}
         ListHeaderComponent={DetailContent}
         ListFooterComponent={() => (
