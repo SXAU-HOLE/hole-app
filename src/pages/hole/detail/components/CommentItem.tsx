@@ -62,10 +62,10 @@ export function CommentItem({
               <View>
                 <UserText username={data.user.username} />
               </View>
-              <View className={'flex flex-row'}>
+              <View className={'flex flex-row my-2'}>
                 {'replyUser' in data && data.replyUser !== null && (
                   <>
-                    <Text className={'mx-1'}>回复</Text>
+                    <Text className={'mr-1'}>回复</Text>
                     <Text className={'text-primary'}>
                       {data.replyUser.username} :
                     </Text>
@@ -75,11 +75,13 @@ export function CommentItem({
                 <EmojiableText body={data.body} />
               </View>
 
-              <View className={'my-2'}>
-                <AutoSizeImageList imgs={data.imgs} />
-              </View>
+              {!!data.imgs.length && (
+                <View className={'my-2'}>
+                  <AutoSizeImageList imgs={data.imgs} />
+                </View>
+              )}
 
-              <View className={'my-2 flex flex-row justify-between'}>
+              <View className={'flex flex-row justify-between'}>
                 <TimeText time={data.createAt}></TimeText>
                 <View className={'flex flex-row px-2'}>
                   <CommentItemIsLike data={data} mutation={mutation} />
