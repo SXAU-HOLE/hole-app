@@ -56,7 +56,7 @@ export function ImageList({ imgs }: { imgs: string[] }) {
               close={close}
             />
           </Modal>
-          <View className={'w-full flex flex-row justify-between'}>
+          <View className={'w-full flex flex-row justify-start'}>
             {imgs.slice(0, 3).map((img, index) => (
               <View
                 className={'w-[33%] h-28 relative'}
