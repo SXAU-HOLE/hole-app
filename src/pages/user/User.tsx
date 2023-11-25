@@ -1,9 +1,9 @@
-import { Button } from 'react-native-paper'
-import { useAuth } from '@/hooks/auth'
 import { FullPage } from '@/components/Page'
 import { UserCard } from '@/pages/user/components/UserCard'
 import { UserScreenList } from '@/pages/user/components/UserScreenList'
 import { View } from 'react-native'
+import { ArrowBar } from '@/pages/user/components/ArrowBar'
+import { useAuth } from '@/hooks/auth'
 
 export function User() {
   const { logout } = useAuth()
@@ -12,12 +12,12 @@ export function User() {
     <FullPage>
       <UserCard />
 
-      <View className={'mt-10'}>
+      <View className={'mt-3'}>
         <UserScreenList />
       </View>
 
-      <View className={'mt-10'}>
-        <Button onPress={logout}>退出登录</Button>
+      <View className={'mt-3'}>
+        <ArrowBar text={'退出登录'} center={true} onPress={logout} />
       </View>
     </FullPage>
   )

@@ -8,23 +8,33 @@ interface Props {
   text: string
   onPress?: () => any
   children?: React.ReactNode
+  center?: boolean
 }
-export function ArrowBar({ icon, text, onPress, children }: Props) {
+export function ArrowBar({
+  icon,
+  text,
+  onPress,
+  children,
+  center = false,
+}: Props) {
   return (
     <Pressable
-      className={
-        'bg-white flex flex-row items-center justify-between px-6 py-4'
-      }
+      className={`bg-white flex flex-row items-center ${
+        center ? 'justify-center' : 'justify-between'
+      } px-6 py-4`}
       onPress={onPress}
     >
       <View className={'flex flex-row items-center'}>
         {icon}
         <Text className={`${icon && 'ml-3'}`}>{text}</Text>
       </View>
-      <View className={'flex flex-row items-center'}>
-        <View className={'mr-3'}>{children}</View>
-        <RightSvg size={18} />
-      </View>
+
+      {!center && (
+        <View className={'flex flex-row items-center'}>
+          <View className={'mr-3'}>{children}</View>
+          <RightSvg size={18} />
+        </View>
+      )}
     </Pressable>
   )
 }
