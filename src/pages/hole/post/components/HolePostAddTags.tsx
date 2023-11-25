@@ -8,6 +8,8 @@ import { useTagsQuery } from '@/query/tags'
 import { SecondaryText } from '@/components/Text/SecondaryText'
 import { useHolePostContext } from '@/shared/context/HolePostContext'
 import { Func } from '@/shared/types'
+import { Svg } from '@/components/Svg/Svg'
+import Attach from '@/assets/svg/Attach.svg'
 
 export interface Tag {
   id: string
@@ -52,7 +54,10 @@ export function HolePostAddTags() {
           </View>
         </Actionsheet.Content>
       </Actionsheet>
-      <IconButton icon={'tag-outline'} onPress={() => setOpen(!open)} />
+      <IconButton
+        icon={() => <Svg SvgComponent={Attach} size={24} />}
+        onPress={() => setOpen(!open)}
+      />
     </>
   )
 }

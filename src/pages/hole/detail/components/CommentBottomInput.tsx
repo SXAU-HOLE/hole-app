@@ -1,7 +1,9 @@
 import { Pressable, View } from 'react-native'
 import { SecondaryText } from '@/components/Text/SecondaryText'
 import { useCommentContext } from '@/shared/context/CommentContext'
-import { CameraIcon, EmojiIcon } from '@/components/Icons'
+import { Svg } from '@/components/Svg/Svg'
+import Image from '@/assets/svg/Image.svg'
+import Smile from '@/assets/svg/Smile.svg'
 
 export type IBottomCommentData = {
   id: string
@@ -32,8 +34,8 @@ export function CommentBottomInput({ data }: Props) {
         <SecondaryText className={'flex-1  py-2 px-3 rounded-full'}>
           写下你的想法吧...
         </SecondaryText>
-        <EmojiIcon size={24} />
-        <CameraIcon size={24} />
+        <Svg SvgComponent={Image} size={24} />
+        <Svg SvgComponent={Smile} size={20} />
       </View>
     </Pressable>
   )

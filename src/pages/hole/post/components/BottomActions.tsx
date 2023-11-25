@@ -1,7 +1,6 @@
 import { Keyboard, View } from 'react-native'
 import { IconButton } from '@/components/IconButton'
 import { useImagePicker } from '@/hooks/useImagePicker'
-import { EmojiIcon } from '@/components/Icons'
 import { EmojiArea } from '@/components/components/EmojiArea'
 import { useCallback, useState } from 'react'
 import { EmojiItem } from '@/assets/emoji'
@@ -9,6 +8,9 @@ import { HolePostAddTags } from '@/pages/hole/post/components/HolePostAddTags'
 import { useHolePostContext } from '@/shared/context/HolePostContext'
 import { useTheme } from 'react-native-paper'
 import { Toast } from '@/utils/toast'
+import { Svg } from '@/components/Svg/Svg'
+import Image from '@/assets/svg/Image.svg'
+import Smile from '@/assets/svg/Smile.svg'
 
 export function BottomActions() {
   const theme = useTheme()
@@ -46,7 +48,7 @@ export function BottomActions() {
       <View className={'px-2'}>
         <View className={'flex flex-row items-center justify-between'}>
           <IconButton
-            icon={'image-outline'}
+            icon={() => <Svg SvgComponent={Image} size={24} />}
             onPress={onImageSelect}
           ></IconButton>
           <HolePostAddTags />
@@ -61,7 +63,7 @@ export function BottomActions() {
             />
           ) : (
             <IconButton
-              icon={() => <EmojiIcon size={24} />}
+              icon={() => <Svg SvgComponent={Smile} size={24} />}
               onPress={() => {
                 Keyboard.dismiss()
                 setShowEmoji(true)
