@@ -38,6 +38,17 @@ export function PostHoleRequest(data: PostHoleValidator) {
   })
 }
 
+/*
+ *  删除树洞
+ * */
+export function DeleteHoleRequest(data: { id: string }) {
+  return request({
+    method: 'DELETE',
+    url: '/hole/delete',
+    data,
+  })
+}
+
 /**
  * 点赞
  */

@@ -15,7 +15,7 @@ export function PostHeader() {
     form: { handleSubmit },
     imgs,
   } = useHolePostContext()
-  const { invalidate } = useHoleList()
+  const { refetchQueries } = useHoleList()
 
   const mutation = useMutation({
     mutationFn: async (data: PostHoleValidator) => {
@@ -37,11 +37,12 @@ export function PostHeader() {
         tags: uniquePart,
       })
     },
-    onSuccess() {
+    async onSuccess(data) {
+      console.log('post', data)
       Toast.success({ text1: '成功发布帖子' })
       navigator.goBack()
       //   刷新列表
-      invalidate()
+      await refetchQueries()
     },
   })
 

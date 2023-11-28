@@ -70,7 +70,7 @@ export function DetailContent() {
       </View>
       {/*  底部距离 */}
       <View
-        className={'h-5'}
+        className={'h-2'}
         style={{ backgroundColor: theme.colors.background }}
       ></View>
 

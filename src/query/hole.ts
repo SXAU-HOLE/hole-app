@@ -50,6 +50,7 @@ export function useHoleList() {
       },
     },
   )
+
   const client = useQueryClient()
   const invalidateQuery = async () => {
     client.setQueryData(queryKey, (oldData: any) => {
@@ -60,11 +61,12 @@ export function useHoleList() {
       refetchPage: (page, index) => index === 0,
     })
   }
-  const invalidate = async () => {
-    await client.invalidateQueries(queryKey)
+
+  const refetchQueries = () => {
+    client.refetchQueries(queryKey)
   }
 
-  return { ...query, invalidateQuery, invalidate }
+  return { ...query, invalidateQuery, refetchQueries }
 }
 
 export function useHoleDetail() {

@@ -34,8 +34,8 @@ instance.interceptors.response.use(
         text2: !msg
           ? '可能是服务器出问题啦，请联系管理员'
           : Array.isArray(msg)
-          ? msg.map((i) => i).join('\n')
-          : msg,
+            ? msg.map((i) => i).join('\n')
+            : msg,
       })
     }
   },

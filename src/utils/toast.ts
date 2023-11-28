@@ -1,26 +1,29 @@
-import RNToast from 'react-native-toast-message'
 import type { ToastShowParams } from 'react-native-toast-message'
+import RNToast from 'react-native-toast-message'
 
 export const Toast = {
-  success(params: ToastShowParams) {
+  success(params: ToastShowParams | string) {
+    const toastParams = typeof params === 'object' ? params : { text1: params }
+
     RNToast.show({
       type: 'success',
-      ...params,
-      text1: `${params.text1}`,
+      ...toastParams,
     })
   },
-  error(params: ToastShowParams) {
+  error(params: ToastShowParams | string) {
+    const toastParams = typeof params === 'object' ? params : { text1: params }
+
     RNToast.show({
       type: 'error',
-      ...params,
-      text1: `${params.text1}`,
+      ...toastParams,
     })
   },
-  info(params: ToastShowParams) {
+  info(params: ToastShowParams | string) {
+    const toastParams = typeof params === 'object' ? params : { text1: params }
+
     RNToast.show({
       type: 'info',
-      ...params,
-      text1: `${params.text1}`,
+      ...toastParams,
     })
   },
 }
