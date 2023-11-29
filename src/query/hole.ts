@@ -62,11 +62,7 @@ export function useHoleList() {
     })
   }
 
-  const refetchQueries = () => {
-    client.refetchQueries(queryKey)
-  }
-
-  return { ...query, invalidateQuery, refetchQueries }
+  return { ...query, invalidateQuery }
 }
 
 export function useHoleDetail() {

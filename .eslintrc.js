@@ -22,6 +22,7 @@ module.exports = {
         "@tanstack/eslint-plugin-query"
     ],
     "rules": {
+        'no-unused-vars': 'error',
         "no-undef": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "react/react-in-jsx-scope": "off",
