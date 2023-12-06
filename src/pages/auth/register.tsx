@@ -59,7 +59,7 @@ const RegisterForm = () => {
         <PasswordInput<RegisterFormValidator>
           control={control}
           name={'sxauPassword'}
-          label={'请输入信息门户密码'}
+          label={'请输入教务系统密码'}
         />
       </View>
 
@@ -74,7 +74,10 @@ const RegisterForm = () => {
 
 const Register = () => {
   return (
-    <AuthView>
+    <AuthView
+      desc={'快快注册一个账号吧'}
+      content={'教务系统密码初始值为 \n' + '姓的首字母大写+身份证后六位+@'}
+    >
       <RegisterForm></RegisterForm>
     </AuthView>
   )

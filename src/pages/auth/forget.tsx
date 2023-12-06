@@ -45,7 +45,7 @@ const ForgetForm = () => {
         <PasswordInput<ForgetFormValidator>
           control={control}
           name={'password'}
-          label={'找回后的密码'}
+          label={'重置后的密码'}
         />
       </View>
 
@@ -53,7 +53,7 @@ const ForgetForm = () => {
         <PasswordInput<ForgetFormValidator>
           control={control}
           name={'sxauPassword'}
-          label={'请输入信息门户密码'}
+          label={'请输入教务系统密码'}
         />
       </View>
 
@@ -66,7 +66,10 @@ const ForgetForm = () => {
 
 const Forget = () => {
   return (
-    <AuthView>
+    <AuthView
+      desc={'又忘记密码啦？'}
+      content={'教务系统密码初始值为 \n' + '姓的首字母大写+身份证后六位+@'}
+    >
       <ForgetForm></ForgetForm>
     </AuthView>
   )
