@@ -17,7 +17,6 @@ const HoleDetailStacks = () => {
         initialRouteName={'index'}
         screenOptions={{
           header: () => <HoleDetailHeader />,
-          statusBarColor: 'white',
         }}
       >
         <HoleStack.Screen

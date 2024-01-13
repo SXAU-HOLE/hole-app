@@ -15,6 +15,8 @@ const HoleHot = () => {
         <StatusBar
           barStyle={'dark-content'}
           backgroundColor={theme.colors.background}
+          animated={true}
+          showHideTransition={'slide'}
         />
       ) : null}
       <HoleList {...query}></HoleList>

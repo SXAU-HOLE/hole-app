@@ -11,7 +11,6 @@ export function IndexStacks() {
     <IndexStack.Navigator
       screenOptions={{
         headerShown: false,
-        statusBarStyle: 'dark',
         animation: 'slide_from_right',
       }}
     >

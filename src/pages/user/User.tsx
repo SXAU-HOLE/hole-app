@@ -12,7 +12,14 @@ export function User() {
 
   return (
     <FullPage>
-      {isFocused ? <StatusBar backgroundColor={'white'} /> : null}
+      {isFocused ? (
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={'white'}
+          animated={true}
+          showHideTransition={'slide'}
+        />
+      ) : null}
 
       <UserCard />
 

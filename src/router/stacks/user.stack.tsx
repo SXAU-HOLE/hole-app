@@ -6,7 +6,6 @@ import { Header } from '@/components/Header'
 import { Profile } from '@/pages/user/profile/profile'
 import { UserCommentList } from '@/pages/user/comment/UserCommenList'
 import { UserLikedHoleList } from '@/pages/user/like/UserLikedHoleList'
-import { useTheme } from 'react-native-paper'
 import { EditUsernameScreen } from '@/pages/user/profile/editUsernameScreen'
 
 const UserStack = createNativeStackNavigator()
@@ -49,13 +48,10 @@ const UserScreens: UserScreen[] = [
 ]
 
 export const UserStacks = () => {
-  const theme = useTheme()
-
   return (
     <UserStack.Navigator
       screenOptions={{
         header: Header,
-        statusBarColor: theme.colors.background,
       }}
     >
       {UserScreens.map((screen) => (
