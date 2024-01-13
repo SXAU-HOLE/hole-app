@@ -63,6 +63,8 @@ const CHART_COLORS = {
 }
 
 const colors = {
+  disabled: '#f0f0f0',
+  border: '#37bf92',
   primary: PRIMARY.main,
   onPrimary: PRIMARY.lighter,
   primaryContainer: PRIMARY.light,

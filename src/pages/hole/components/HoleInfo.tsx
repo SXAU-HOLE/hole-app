@@ -1,7 +1,7 @@
 import TimeText from '@/components/Text/TimeText'
 import UserAvatar from '@/components/UserAvatar'
 import { View } from 'react-native'
-import { Text, TouchableRipple } from 'react-native-paper'
+import { Text, TouchableRipple, useTheme } from 'react-native-paper'
 import { ImageList } from '@/components/Image/ImageList'
 import { EmojiableText } from '@/components/Text/EmojiableText'
 import { useHoleSearchRoute } from '@/hooks/route/useHoleSearchRoute'
@@ -107,6 +107,25 @@ const HoleInfoBottom = ({ data }: Props) => {
   )
 }
 
+const HoleInfoVote = ({ data }: Props) => {
+  const theme = useTheme()
+
+  return (
+    <View
+      className={
+        'w-full bg-onBackground/40 px-3 py-2 rounded-lg flex flex-row justify-between items-center'
+      }
+    >
+      <Text className={'text-gray-500'}>
+        邀请投票： {data.vote.title || '投票'}
+      </Text>
+      <View className={'border-l-2 pl-3 border-gray-200'}>
+        <Text className={'text-gray-500'}>单选</Text>
+      </View>
+    </View>
+  )
+}
+
 export const HoleInfo = ({ data, onPress }: Props) => {
   return (
     <View className="bg-white mt-2 rounded-2xl overflow-hidden">
@@ -119,6 +138,8 @@ export const HoleInfo = ({ data, onPress }: Props) => {
           <View>
             <HoleInfoBody data={data}></HoleInfoBody>
           </View>
+
+          <View>{data.vote && <HoleInfoVote data={data} />}</View>
 
           <View>
             <HoleInfoBottom data={data}></HoleInfoBottom>

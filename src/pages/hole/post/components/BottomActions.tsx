@@ -11,6 +11,7 @@ import { Toast } from '@/utils/toast'
 import { Svg } from '@/components/Svg/Svg'
 import Image from '@/assets/svg/Image.svg'
 import Smile from '@/assets/svg/Smile.svg'
+import HoleVote from '@/pages/hole/post/components/HoleVote'
 
 export function BottomActions() {
   const theme = useTheme()
@@ -52,6 +53,7 @@ export function BottomActions() {
             onPress={onImageSelect}
           ></IconButton>
           <HolePostAddTags />
+          <HoleVote />
           {showEmoji ? (
             <IconButton
               icon={'keyboard-outline'}

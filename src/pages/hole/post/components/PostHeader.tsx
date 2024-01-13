@@ -6,7 +6,6 @@ import { useHolePostContext } from '@/shared/context/HolePostContext'
 import { useMutation } from '@tanstack/react-query'
 import { PostHoleValidator } from '@/shared/validators/hole'
 import { PostHoleRequest, UploadHoleImgRequest } from '@/apis/hole'
-import { useHoleList } from '@/query/hole'
 import { Toast } from '@/utils/toast'
 
 export function PostHeader() {
@@ -14,6 +13,7 @@ export function PostHeader() {
   const {
     form: { handleSubmit },
     imgs,
+    vote,
   } = useHolePostContext()
 
   const mutation = useMutation({
@@ -37,7 +37,6 @@ export function PostHeader() {
       })
     },
     async onSuccess(data) {
-      console.log('post', data)
       Toast.success({ text1: '成功发布帖子' })
       navigator.goBack()
       // TODO  刷新列表

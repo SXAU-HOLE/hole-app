@@ -6,4 +6,6 @@ export class PostHoleValidator {
   imgs?: string[]
 
   tags?: string[]
+
+  vote?: any
 }

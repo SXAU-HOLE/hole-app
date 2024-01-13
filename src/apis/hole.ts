@@ -5,7 +5,6 @@ import {
 } from '@/shared/enum'
 import { PaginateAble } from '@/shared/types'
 import { request } from '@/utils/request'
-import { PostHoleValidator } from '@/shared/validators/hole'
 import { SearchValidator } from '@/shared/validators/hole/search'
 
 interface Id {
@@ -30,7 +29,13 @@ export function GetHoleListRequest(
 /**
  * 创建树洞
  */
-export function PostHoleRequest(data: PostHoleValidator) {
+export function PostHoleRequest(data: {
+  imgs: any[] | string[]
+  title?: string
+  body: string
+  vote?: any
+  tags: unknown[] | string[]
+}) {
   return request<IResponse>({
     method: 'POST',
     url: '/hole/create',

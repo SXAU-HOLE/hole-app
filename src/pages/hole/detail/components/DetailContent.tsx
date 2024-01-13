@@ -10,6 +10,7 @@ import { Toast } from '@/utils/toast'
 import { EmojiableText } from '@/components/Text/EmojiableText'
 import { Svg } from '@/components/Svg/Svg'
 import Send from '@/assets/svg/Send.svg'
+import Vote from '@/pages/hole/detail/components/Vote'
 
 export function ContentBottom() {
   return (
@@ -64,6 +65,8 @@ export function DetailContent() {
             ) : (
               <></>
             )}
+
+            {data.vote ? <Vote vote={data.vote} /> : <></>}
           </View>
         </View>
         <ContentBottom></ContentBottom>

@@ -14,6 +14,34 @@ declare interface IHole {
   user: IUser
   isLiked: boolean
   commentCounts: number
+  vote: Vote
+}
+
+declare enum VoteType {
+  // 单选
+  single = 'single',
+
+  // 多选
+  multiple = 'multiple',
+}
+
+declare interface VoteItem {
+  id: number
+  option: string
+  count: number
+  isVoted: number
+}
+
+declare interface Vote {
+  id: string
+  type: VoteType
+  title: string
+  endTime: Date
+  users: User[]
+  items: VoteItem[]
+  totalCount: number
+  isExpired: boolean
+  isVoted: number
 }
 
 interface IUser {
