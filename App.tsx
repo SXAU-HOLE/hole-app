@@ -7,6 +7,7 @@ import { ReactQueryProvider } from '@/shared/providers/react-query'
 import { persistor, store } from '@/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { NativeBaseProvider } from 'native-base'
+import 'react-native-gesture-handler'
 
 export default function App() {
   return (

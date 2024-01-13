@@ -2,6 +2,7 @@ import { RequestConfig } from '@/shared/config'
 import { store } from '@/store'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import Toast from 'react-native-toast-message'
+import { useAuth } from '@/hooks/auth'
 
 export interface ErrorResponse {
   code: number
@@ -25,6 +26,12 @@ instance.interceptors.response.use(
   },
   (error: AxiosError) => {
     const data = error.response?.data as ErrorResponse
+
+    const { logout } = useAuth()
+    if (error.response?.status == 401) {
+      logout()
+    }
+
     if (data) {
       const msg = data.message
 

@@ -12,6 +12,7 @@ export function IndexStacks() {
       screenOptions={{
         headerShown: false,
         statusBarStyle: 'dark',
+        animation: 'slide_from_right',
       }}
     >
       <IndexStack.Screen name={'main'} component={BottomTabs} />
