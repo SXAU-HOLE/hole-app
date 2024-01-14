@@ -18,6 +18,11 @@ export function PostHeader() {
 
   const mutation = useMutation({
     mutationFn: async (data: PostHoleValidator) => {
+      const voteData = {
+        items: vote.items.map((item) => item.value),
+        title: vote.title,
+      }
+
       let res = []
 
       if (imgs.length) {
@@ -34,6 +39,7 @@ export function PostHeader() {
         ...data,
         imgs: res,
         tags: uniquePart,
+        vote: voteData,
       })
     },
     async onSuccess(data) {

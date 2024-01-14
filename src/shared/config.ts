@@ -1,5 +1,5 @@
 export const RequestConfig = {
-  baseUrl: 'http://192.168.0.104:3000',
+  baseUrl: 'http://39.107.158.183:3000',
   schoolUrl: 'http://39.107.158.183:8080',
 }
 

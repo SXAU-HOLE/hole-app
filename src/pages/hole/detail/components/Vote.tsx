@@ -25,6 +25,7 @@ interface VoteItemProps {
   disabled: boolean
   active: boolean
   totalCount: number
+  progress: boolean
 }
 
 const VoteItem = ({
@@ -34,32 +35,44 @@ const VoteItem = ({
   index,
   disabled,
   totalCount,
+  progress,
 }: VoteItemProps) => {
   const theme = useTheme()
+  const isActive = useMemo(
+    () => active || (progress && item.isVoted),
+    [active, progress, item.isVoted],
+  )
   const itemStyle = useMemo(() => {
     let base =
-      'bg-white h-10 px-2 my-1 rounded-lg flex flex-row items-center box-border '
+      'w-full bg-white h-10 px-2 my-1 rounded-lg flex flex-row items-center box-border '
 
     const activeStyle = 'border-border border-[0.5px]'
 
-    if (active) {
+    if (isActive) {
       base += activeStyle
     }
 
     return base
   }, [disabled, active])
+
   const [itemWidth, setItemWidth] = useState(0)
   const percent = useMemo(() => {
-    return +(item.count / totalCount).toFixed(2)
-  }, [totalCount])
+    if (totalCount !== 0) {
+      return +(item.count / totalCount).toFixed(2)
+    } else {
+      return 0
+    }
+  }, [item.count, totalCount])
   const width = useDerivedValue(() => {
     return itemWidth * percent
-  }, [itemWidth])
+  }, [itemWidth, percent])
 
   const progressStyle = useAnimatedStyle(() => {
     return {
       width: withTiming(width.value, { duration: 1000 }),
-      backgroundColor: theme.colors.primary,
+      backgroundColor: item.isVoted
+        ? theme.colors.primary
+        : theme.colors.surfaceVariant,
     }
   })
 
@@ -70,18 +83,18 @@ const VoteItem = ({
         onLayout={(e) => setItemWidth(e.nativeEvent.layout.width)}
       >
         <View className={'flex flex-row w-full justify-between'}>
-          <Text className={`${active && 'color-border'}`}>
+          <Text className={`${isActive && 'color-border'}`}>
             {index}. {item.option}
           </Text>
 
           {disabled && (
-            <Text className={`${active && 'color-border'}`}>
+            <Text className={`${isActive && 'color-border'}`}>
               {(percent * 100).toFixed(0)}%
             </Text>
           )}
         </View>
 
-        {disabled && (
+        {progress && (
           <Animated.View
             style={[progressStyle]}
             className={'absolute h-full opacity-30 rounded-lg'}
@@ -92,7 +105,8 @@ const VoteItem = ({
   )
 }
 
-const Vote = ({ vote }: { vote: Vote }) => {
+const Vote = ({ vote: initialVote }: { vote: Vote }) => {
+  const [vote, setVote] = useState(initialVote)
   const [selectedItems, setSelected] = useState<number[]>([])
 
   const handleItem = useCallback((itemId: number) => {
@@ -108,7 +122,8 @@ const Vote = ({ vote }: { vote: Vote }) => {
   }, [])
 
   const mutate = useMutation({
-    mutationKey: [vote.id],
+    // @ts-ignore
+    mutationKey: [vote.id, vote.isVoted],
     mutationFn: (ids: number[]) => {
       PostHoleVoteRequest({
         id: vote.id,
@@ -124,6 +139,24 @@ const Vote = ({ vote }: { vote: Vote }) => {
 
   const submit = (ids: number[]) => {
     mutate.mutate(ids)
+
+    setVote((prevVote) => {
+      const updatedVote = {
+        ...prevVote,
+        isVoted: 1,
+        totalCount: prevVote.totalCount + 1,
+      }
+
+      // 更新 vote.items 数组中与 ids 数组中的项目具有相同 ID 的项
+      updatedVote.items = prevVote.items.map((item) => {
+        if (ids.includes(item.id)) {
+          return { ...item, isVoted: 1, count: item.count + 1 }
+        }
+        return item
+      })
+
+      return updatedVote
+    })
   }
 
   return (
@@ -145,7 +178,8 @@ const Vote = ({ vote }: { vote: Vote }) => {
             key={item.id}
             index={index}
             item={item}
-            active={!item.isVoted && selectedItems.includes(item.id)}
+            active={selectedItems.includes(item.id)}
+            progress={!!item.isVoted}
             onPress={() => handleItem(item.id)}
             disabled={!!vote.isVoted}
             totalCount={vote.totalCount}
