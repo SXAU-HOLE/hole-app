@@ -39,7 +39,7 @@ export function PostHeader() {
         ...data,
         imgs: res,
         tags: uniquePart,
-        vote: voteData,
+        vote: voteData.title ? voteData : null,
       })
     },
     async onSuccess(data) {
